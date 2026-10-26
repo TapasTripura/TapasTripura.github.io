@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Scientific foundation model | Tapas Tripura</title>
+<meta name="description" content="NCWNO, a scientific foundation model that learns many PDEs at once and adapts to new ones without forgetting.">
+<meta property="og:title" content="Scientific foundation model | Tapas Tripura">
+<meta property="og:description" content="NCWNO, a scientific foundation model that learns many PDEs at once and adapts to new ones without forgetting.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#F3F6F6" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0F181C" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230E6E78'/%3E%3Cpath d='M4 34h12c4 0 5-14 9-14s4 24 8 24 4-30 8-30 4 20 8 20h11' fill='none' stroke='%23fff' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&amp;family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="index.html">Tapas Tripura</a>
+    <nav class="main" aria-label="Sections"><ul><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="research.html">Research</a></li><li><a href="foundation-model.html" aria-current="page">Foundation model</a></li><li><a href="publications.html">Publications</a></li><li><a href="collaborations.html">Collaborators</a></li></ul></nav>
+    <button class="theme-btn" id="themeBtn" type="button" aria-label="Switch between light and dark theme">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 3v18"></path><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"></path></svg>
+    </button>
+  </div>
+</header>
+<main id="main">
+<div class="wrap">
+<section class="sec first" id="foundation" aria-labelledby="h-foundation">
+      <h1 id="h-foundation">Scientific foundation model</h1>
+      <div class="body">
+        <div class="feature">
+          <h3>Neural Combinatorial Wavelet Neural Operator (NCWNO)</h3>
+          <p>Building a new machine-learning model from scratch for every scientific task takes a lot of computational time and memory. NCWNO is a foundation model for computational mechanics. It is pre-trained on a diverse spectrum of physics and then adapts to the solution operators of unseen parametric PDEs.</p>
+          <div class="cols">
+            <div>
+              <h4>What it does</h4>
+              <ul>
+                <li>Learns solution operators for several parametric PDEs at once.</li>
+                <li>Generalizes to new parametric PDEs with minimal fine-tuning.</li>
+              </ul>
+            </div>
+            <div>
+              <h4>What sets it apart</h4>
+              <ul>
+                <li>It does not suffer catastrophic forgetting.</li>
+                <li>It keeps positive transfer to new parametric PDEs.</li>
+                <li>It transfers knowledge across dissimilar tasks.</li>
+              </ul>
+            </div>
+          </div>
+          <p>In the showcase experiment, one pre-trained NCWNO predicts six PDEs simultaneously on a 64 × 64 spatial grid.</p>
+          <div class="links"><span class="lab">Paper</span><ul>
+            <li><a href="https://doi.org/10.1016/j.cpc.2025.109882" target="_blank" rel="noopener">NCWNO (CPC 2025)</a></li>
+          </ul></div>
+          <div class="links"><span class="lab">Code</span><ul>
+            <li><a href="https://github.com/TapasTripura/NCWNO" target="_blank" rel="noopener">NCWNO</a></li>
+          </ul></div>
+        </div>
+        <div class="row" style="margin-top:34px">
+          <h3>Neural architecture search for WNO</h3>
+          <p>A generative flow network searches for the best architecture of a wavelet neural operator, so the design no longer has to be tuned by hand.</p>
+          <div class="links"><span class="lab">Paper</span><ul>
+            <li><a href="https://doi.org/10.1016/j.cpc.2025.109755" target="_blank" rel="noopener">Generative flow neural architecture search (CPC 2025)</a></li>
+          </ul></div>
+        </div>
+      </div>
+    </section>
+</div>
+</main>
+<footer class="foot">
+  <div class="wrap">
+    <p>© <span id="yr">2026</span> Tapas Tripura. <a href="mailto:tapas.t@am.iitd.ac.in">tapas.t@am.iitd.ac.in</a></p>
+    <ul class="foot-links">
+      <li><a href="https://github.com/TapasTripura" target="_blank" rel="noopener">GitHub</a></li>
+      <li><a href="https://www.linkedin.com/in/tripuratapas/" target="_blank" rel="noopener">LinkedIn</a></li>
+      <li><a href="https://scholar.google.com/citations?hl=en&amp;user=pW9ZY3QAAAAJ" target="_blank" rel="noopener">Google Scholar</a></li>
+      <li><a href="https://www.researchgate.net/profile/Tapas-Tripura" target="_blank" rel="noopener">ResearchGate</a></li>
+    </ul>
+  </div>
+</footer>
+<script src="site.js" defer></script>
+</body>
+</html>

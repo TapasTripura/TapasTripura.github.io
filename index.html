@@ -131,7 +131,7 @@ nav.main a[aria-current="true"] { color: var(--ink); border-bottom-color: var(--
 
 /* About */
 .about-top { display: grid; grid-template-columns: 148px 1fr; gap: 28px; align-items: start; margin-bottom: 8px; }
-.portrait { width: 148px; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 6px; background: var(--line); }
+.portrait { width: 148px; aspect-ratio: 1; object-fit: cover; object-position: center 20%; border-radius: 50%; background: var(--line); border: 1px solid var(--line); }
 dl.facts { margin: 28px 0 0; font-family: var(--sans); font-size: 0.9375rem; display: grid; grid-template-columns: 8.5em 1fr; gap: 10px 16px; padding-top: 22px; border-top: 1px solid var(--line); }
 dl.facts dt { color: var(--muted); }
 dl.facts dd { margin: 0; }
@@ -279,7 +279,7 @@ footer.foot { border-top: 1px solid var(--line); padding: 28px 0 48px; font-fami
       <h2 id="h-about">About</h2>
       <div class="body">
         <div class="about-top">
-          <img class="portrait" id="portrait" src="assets/dp.png" alt="Portrait of Tapas Tripura" width="148" height="185">
+          <img class="portrait" id="portrait" src="assets/dp.png" alt="Portrait of Tapas Tripura" width="148" height="148">
           <div>
             <p>Tapas Tripura is a researcher in computational mechanics and scientific machine learning. He received his B.Tech. in Civil Engineering from NERIST and his M.Tech. in Structural Engineering from IIT Guwahati. He is pursuing his Ph.D. in the Department of Applied Mechanics at IIT Delhi, where he is affiliated with the Center for Scientific Computing and Computational Mechanics.</p>
           </div>

@@ -211,3 +211,4 @@ footer.foot .wrap { display: flex; flex-wrap: wrap; gap: 10px 28px; justify-cont
 .foot-links { display: flex; flex-wrap: wrap; gap: 6px 18px; list-style: none; margin: 0; padding: 0; }
 @media (max-width: 860px) { .sec > h1 { position: static; } .sec.first { padding-top: 36px; } }
 @media (max-width: 640px) { .explore li { grid-template-columns: 1fr; gap: 2px; } }
+.pubs .doi { font-family: var(--sans); font-size: 0.8125rem; color: var(--muted); display: block; margin-top: 2px; overflow-wrap: anywhere; }

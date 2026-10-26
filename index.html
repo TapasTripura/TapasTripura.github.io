@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tapas Tripura | Scientific machine learning and computational mechanics</title>
+<meta name="description" content="Tapas Tripura is a research scholar at IIT Delhi working on data-driven physics discovery, neural operators, scientific foundation models and reinforcement learning for control.">
+<meta property="og:title" content="Tapas Tripura">
+<meta property="og:description" content="Research scholar at IIT Delhi. Physics discovery, neural operators, scientific foundation models and reinforcement learning for control.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#F3F6F6" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0F181C" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230E6E78'/%3E%3Cpath d='M4 34h12c4 0 5-14 9-14s4 24 8 24 4-30 8-30 4 20 8 20h11' fill='none' stroke='%23fff' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Tapas Tripura",
+  "jobTitle": "Research scholar",
+  "affiliation": { "@type": "CollegeOrUniversity", "name": "Indian Institute of Technology Delhi" },
+  "email": "mailto:tapas.t@am.iitd.ac.in",
+  "sameAs": [
+    "https://github.com/TapasTripura",
+    "https://www.linkedin.com/in/tripuratapas/",
+    "https://scholar.google.com/citations?hl=en&user=pW9ZY3QAAAAJ",
+    "https://www.researchgate.net/profile/Tapas-Tripura"
+  ]
+}
+</script>
+<style>
+:root {
+  --paper: #F3F6F6;
+  --surface: #FFFFFF;
+  --ink: #14232B;
+  --muted: #55656D;
+  --line: #D5DEE0;
+  --teal: #0E6E78;
+  --teal-ink: #FFFFFF;
+  --indigo: #3A48A6;
+  --serif: "Newsreader", Georgia, "Times New Roman", serif;
+  --sans: "Instrument Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0F181C; --surface: #152227; --ink: #E3ECEE; --muted: #96A8AF;
+    --line: #26363C; --teal: #5CC4C9; --teal-ink: #0B1519; --indigo: #8E9BF0;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #0F181C; --surface: #152227; --ink: #E3ECEE; --muted: #96A8AF;
+  --line: #26363C; --teal: #5CC4C9; --teal-ink: #0B1519; --indigo: #8E9BF0;
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 88px; -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; background: var(--paper); color: var(--ink);
+  font-family: var(--serif); font-size: 1.0625rem; line-height: 1.62;
+  text-rendering: optimizeLegibility; -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: underline; text-decoration-color: var(--teal); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+a:hover { color: var(--teal); }
+:focus-visible { outline: 2px solid var(--teal); outline-offset: 3px; border-radius: 2px; }
+.wrap { width: min(1080px, 100% - 40px); margin-inline: auto; }
+.skip { position: absolute; left: -999px; top: 8px; background: var(--teal); color: var(--teal-ink); padding: 8px 14px; font-family: var(--sans); z-index: 50; }
+.skip:focus { left: 8px; }
+
+/* Header */
+header.top {
+  position: sticky; top: 0; z-index: 20;
+  background: color-mix(in srgb, var(--paper) 88%, transparent);
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+.top .wrap { display: flex; align-items: center; gap: 24px; min-height: 60px; }
+.brand { font-family: var(--serif); font-weight: 600; font-size: 1.15rem; text-decoration: none; letter-spacing: -0.01em; white-space: nowrap; }
+.brand:hover { color: var(--ink); }
+nav.main { margin-left: auto; overflow-x: auto; scrollbar-width: none; }
+nav.main::-webkit-scrollbar { display: none; }
+nav.main ul { display: flex; gap: 22px; list-style: none; margin: 0; padding: 0; }
+nav.main a {
+  font-family: var(--sans); font-size: 0.875rem; font-weight: 500; color: var(--muted);
+  text-decoration: none; white-space: nowrap; padding: 6px 0; display: block;
+  border-bottom: 2px solid transparent;
+}
+nav.main a:hover { color: var(--ink); }
+nav.main a[aria-current="true"] { color: var(--ink); border-bottom-color: var(--teal); }
+.theme-btn {
+  flex: none; width: 36px; height: 36px; display: grid; place-items: center;
+  background: transparent; color: var(--ink); border: 1px solid var(--line); border-radius: 50%; cursor: pointer;
+}
+.theme-btn:hover { border-color: var(--teal); color: var(--teal); }
+
+/* Hero */
+.hero { padding: 72px 0 40px; }
+.hero h1 {
+  font-family: var(--serif); font-weight: 500; letter-spacing: -0.025em; line-height: 1;
+  font-size: clamp(2.8rem, 7.2vw, 5.4rem); margin: 0 0 22px;
+}
+.lede { font-size: clamp(1.15rem, 2.2vw, 1.4rem); line-height: 1.5; max-width: 40em; margin: 0 0 28px; color: var(--ink); }
+.actions { display: flex; flex-wrap: wrap; gap: 12px; }
+.btn {
+  font-family: var(--sans); font-weight: 500; font-size: 0.9375rem; text-decoration: none;
+  padding: 10px 18px; border-radius: 6px; border: 1px solid var(--ink); color: var(--ink); background: transparent;
+}
+.btn:hover { color: var(--ink); border-color: var(--teal); background: color-mix(in srgb, var(--teal) 10%, transparent); }
+.btn.primary { background: var(--teal); border-color: var(--teal); color: var(--teal-ink); }
+.btn.primary:hover { color: var(--teal-ink); filter: brightness(1.08); background: var(--teal); }
+
+.scope { margin: 48px 0 0; }
+.scope-frame { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+#wave { display: block; width: 100%; height: 330px; touch-action: pan-y; cursor: crosshair; }
+.scope figcaption { font-family: var(--sans); font-size: 0.8125rem; line-height: 1.5; color: var(--muted); margin-top: 12px; max-width: 62em; }
+
+/* Sections */
+.sec { display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: 48px; padding: 72px 0; border-top: 1px solid var(--line); }
+.sec > h2 {
+  font-family: var(--serif); font-weight: 600; font-size: 1.5rem; letter-spacing: -0.01em; line-height: 1.2;
+  margin: 0; align-self: start; position: sticky; top: 92px;
+}
+.body { max-width: 46rem; min-width: 0; }
+.body > :first-child { margin-top: 0; }
+.body p { margin: 0 0 1em; }
+
+/* About */
+.about-top { display: grid; grid-template-columns: 148px 1fr; gap: 28px; align-items: start; margin-bottom: 8px; }
+.portrait { width: 148px; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 6px; background: var(--line); }
+dl.facts { margin: 28px 0 0; font-family: var(--sans); font-size: 0.9375rem; display: grid; grid-template-columns: 8.5em 1fr; gap: 10px 16px; padding-top: 22px; border-top: 1px solid var(--line); }
+dl.facts dt { color: var(--muted); }
+dl.facts dd { margin: 0; }
+.sub { font-family: var(--sans); font-weight: 600; font-size: 0.9375rem; margin: 36px 0 12px; }
+ul.interests { list-style: none; margin: 0; padding: 0; columns: 2; column-gap: 32px; font-size: 1rem; }
+ul.interests li { break-inside: avoid; padding: 7px 0; border-bottom: 1px solid var(--line); }
+
+/* Research rows */
+.row { padding: 30px 0; border-top: 1px solid var(--line); }
+.row:first-child { padding-top: 0; border-top: 0; }
+.row h3 { font-family: var(--serif); font-weight: 600; font-size: 1.28rem; margin: 0 0 8px; letter-spacing: -0.005em; }
+.row p { margin: 0 0 14px; }
+.links { display: grid; grid-template-columns: 4.6em minmax(0, 1fr); gap: 0 12px; font-family: var(--sans); font-size: 0.875rem; margin-top: 8px; }
+.links .lab { color: var(--muted); }
+.links ul { display: flex; flex-wrap: wrap; gap: 4px 18px; list-style: none; margin: 0; padding: 0; }
+.links li { display: inline; }
+
+/* Foundation model */
+.feature { border-left: 3px solid var(--teal); padding-left: 24px; }
+.feature h3 { font-family: var(--serif); font-weight: 600; font-size: 1.28rem; margin: 0 0 10px; }
+.cols { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin: 22px 0; }
+.cols h4 { font-family: var(--sans); font-size: 0.9375rem; font-weight: 600; margin: 0 0 8px; }
+.cols ul { margin: 0; padding-left: 1.1em; font-size: 1rem; }
+.cols li { margin-bottom: 6px; }
+
+/* Education timeline */
+.timeline { list-style: none; margin: 0; padding: 0 0 0 26px; border-left: 1px solid var(--line); }
+.timeline li { position: relative; padding-bottom: 36px; }
+.timeline li:last-child { padding-bottom: 0; }
+.timeline li::before { content: ""; position: absolute; left: -32px; top: 9px; width: 11px; height: 11px; border-radius: 50%; background: var(--paper); border: 2px solid var(--teal); }
+.timeline .when { font-family: var(--sans); font-size: 0.8125rem; color: var(--muted); display: block; margin-bottom: 2px; }
+.timeline h3 { font-size: 1.12rem; font-weight: 600; margin: 0 0 2px; }
+.timeline .where { margin: 0 0 8px; color: var(--muted); }
+.timeline ul { margin: 0; padding-left: 1.1em; font-size: 1rem; }
+.timeline li li { padding: 0; margin-bottom: 3px; }
+.timeline li li::before { display: none; }
+
+/* Publications */
+.tools { display: flex; flex-wrap: wrap; gap: 14px 16px; align-items: center; margin-bottom: 8px; font-family: var(--sans); }
+.search {
+  flex: 1 1 220px; min-width: 0; padding: 10px 14px; font: inherit; font-size: 0.9375rem; color: var(--ink);
+  background: var(--surface); border: 1px solid var(--line); border-radius: 6px;
+}
+.search::placeholder { color: var(--muted); }
+.seg { display: flex; flex-wrap: wrap; gap: 6px; }
+.seg button {
+  font: inherit; font-size: 0.8125rem; font-weight: 500; padding: 7px 12px; border-radius: 999px; cursor: pointer;
+  color: var(--ink); background: transparent; border: 1px solid var(--line);
+}
+.seg button:hover { border-color: var(--teal); }
+.seg button[aria-pressed="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.count { font-family: var(--sans); font-size: 0.8125rem; color: var(--muted); margin: 10px 0 0; }
+.pubs h3 { font-family: var(--sans); font-size: 0.9375rem; font-weight: 600; margin: 34px 0 6px; padding-bottom: 8px; border-bottom: 1px solid var(--ink); }
+.pubs ol { list-style: none; margin: 0; padding: 0; }
+.pubs li { padding: 16px 0; border-bottom: 1px solid var(--line); }
+.pubs .ti { font-weight: 500; line-height: 1.4; display: block; }
+.pubs .au { font-size: 0.9375rem; color: var(--muted); display: block; margin-top: 3px; }
+.pubs .au strong { color: var(--ink); font-weight: 600; }
+.pubs .ve { font-family: var(--sans); font-size: 0.8125rem; color: var(--muted); display: block; margin-top: 4px; }
+.pubs .empty { padding: 28px 0; font-family: var(--sans); color: var(--muted); }
+
+/* Collaborators */
+.groups { display: grid; grid-template-columns: 1fr 1fr; gap: 36px 40px; }
+.groups h3 { font-family: var(--sans); font-weight: 600; font-size: 0.9375rem; margin: 0 0 10px; padding-bottom: 8px; border-bottom: 1px solid var(--line); }
+.groups ul { list-style: none; margin: 0; padding: 0; font-size: 1rem; }
+.groups li { padding: 5px 0; }
+.groups .role { display: block; font-family: var(--sans); font-size: 0.8125rem; color: var(--muted); }
+.groups .wide { grid-column: 1 / -1; }
+
+/* Contact */
+.mail { font-size: clamp(1.3rem, 3.2vw, 1.9rem); font-weight: 500; letter-spacing: -0.01em; word-break: break-word; }
+.social { display: flex; flex-wrap: wrap; gap: 10px 22px; list-style: none; padding: 0; margin: 22px 0 0; font-family: var(--sans); font-size: 0.9375rem; }
+footer.foot { border-top: 1px solid var(--line); padding: 28px 0 48px; font-family: var(--sans); font-size: 0.8125rem; color: var(--muted); }
+
+@media (max-width: 860px) {
+  .sec { grid-template-columns: 1fr; gap: 24px; padding: 52px 0; }
+  .sec > h2 { position: static; }
+  .top .wrap { flex-wrap: wrap; gap: 4px 16px; padding-block: 8px; }
+  nav.main { order: 3; width: 100%; margin-left: 0; }
+  .theme-btn { margin-left: auto; }
+  .brand + .theme-btn { margin-left: auto; }
+  .hero { padding-top: 44px; }
+}
+@media (max-width: 640px) {
+  #wave { height: 290px; }
+  .about-top { grid-template-columns: 1fr; }
+  .portrait { width: 128px; }
+  ul.interests { columns: 1; }
+  .cols, .groups { grid-template-columns: 1fr; }
+  dl.facts { grid-template-columns: 1fr; gap: 2px; }
+  dl.facts dd { margin-bottom: 10px; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+@media print {
+  header.top, .scope, .tools, .theme-btn { display: none; }
+  body { background: #fff; color: #000; }
+  .sec { break-inside: avoid-page; }
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#top">Tapas Tripura</a>
+    <nav class="main" aria-label="Sections">
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#research">Research</a></li>
+        <li><a href="#foundation">Foundation model</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#publications">Publications</a></li>
+        <li><a href="#collaborators">Collaborators</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <button class="theme-btn" id="themeBtn" type="button" aria-label="Switch between light and dark theme">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 3v18" /><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"/></svg>
+    </button>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero wrap" id="top">
+    <h1>Tapas Tripura</h1>
+    <p class="lede">Research scholar in Applied Mechanics at IIT Delhi and Prime Minister’s Research Fellow. I build machine-learning methods that discover the physics of dynamical systems from data, learn solution operators of PDEs, and control mechanical systems with reinforcement learning.</p>
+    <div class="actions">
+      <a class="btn primary" href="https://drive.google.com/file/d/13Oji7LMWz1eV1DZlfpP8QxZ092-r6675/view?usp=sharing" target="_blank" rel="noopener">Resume</a>
+      <a class="btn" href="https://drive.google.com/file/d/1nGfsRI2wvaV0ZdJDhKcBp3idV_h8CIkF/view?usp=sharing" target="_blank" rel="noopener">Curriculum vitae</a>
+      <a class="btn" href="#publications">Publications</a>
+    </div>
+
+    <figure class="scope">
+      <div class="scope-frame">
+        <canvas id="wave" role="img" aria-label="Interactive plot of a noisy signal with a wavelet sliding along it, and the wavelet transform of that signal below. Move the pointer to change the wavelet’s position and scale."></canvas>
+      </div>
+      <figcaption>Hover or drag across the plot. A wavelet (blue) is shifted and stretched along the signal, and the lower panel shows how strongly it matches the signal at every position and scale. Wavelet transforms are the core of the Wavelet Neural Operator below.</figcaption>
+    </figure>
+  </section>
+
+  <div class="wrap">
+    <!-- About -->
+    <section class="sec" id="about" aria-labelledby="h-about">
+      <h2 id="h-about">About</h2>
+      <div class="body">
+        <div class="about-top">
+          <img class="portrait" id="portrait" src="assets/photo.jpg" alt="Portrait of Tapas Tripura" width="148" height="185">
+          <div>
+            <p>Tapas Tripura is a researcher in computational mechanics and scientific machine learning. He received his B.Tech. in Civil Engineering from NERIST and his M.Tech. in Structural Engineering from IIT Guwahati. He is pursuing his Ph.D. in the Department of Applied Mechanics at IIT Delhi, where he is affiliated with the Center for Scientific Computing and Computational Mechanics.</p>
+          </div>
+        </div>
+        <p>His research sits at the intersection of physics, computation and artificial intelligence: data-driven discovery of physical systems, operator learning, scientific foundation modeling, and reinforcement learning for intelligent control of mechanical systems. He introduced the Wavelet Neural Operator (WNO), proposed a Lagrangian discovery framework for uncovering governing equations directly from data, and developed the scientific foundation model Neural Combinatorial Wavelet Neural Operator (NCWNO). He is a recipient of the Prime Minister’s Research Fellowship (PMRF), awarded by the Ministry of Education, Government of India.</p>
+
+        <dl class="facts">
+          <dt>Position</dt><dd>Research scholar, Department of Applied Mechanics, IIT Delhi</dd>
+          <dt>Thesis</dt><dd>Data-driven online model-predictive control of systems with unknown physics</dd>
+          <dt>Supervisor</dt><dd>Dr. Souvik Chakraborty</dd>
+          <dt>Lab</dt><dd><a href="https://www.csccm.in/" target="_blank" rel="noopener">Center for Scientific Computing and Computational Mechanics</a></dd>
+          <dt>Fellowship</dt><dd>Prime Minister’s Research Fellowship (PMRF)</dd>
+        </dl>
+
+        <h3 class="sub">Research interests</h3>
+        <ul class="interests">
+          <li>Bayesian machine learning and uncertainty quantification</li>
+          <li>Deep learning for mechanics</li>
+          <li>Active control and model predictive control</li>
+          <li>Physics discovery</li>
+          <li>Neural operators and scientific foundation models</li>
+          <li>Deep reinforcement learning</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Research -->
+    <section class="sec" id="research" aria-labelledby="h-research">
+      <h2 id="h-research">Research</h2>
+      <div class="body">
+        <article class="row">
+          <h3>Discovering physics from data</h3>
+          <p>Governing equations are rarely known for real systems. This work learns them from sparse, noisy, output-only measurements by combining stochastic calculus, sparse learning and Bayesian inference. It covers stochastic differential equations driven by Gaussian white noise, partial and stochastic partial differential equations, and interpretable Lagrangians of deterministic and stochastically excited systems.</p>
+          <div class="links"><span class="lab">Papers</span><ul>
+            <li><a href="https://doi.org/10.1016/j.ymssp.2022.109939" target="_blank" rel="noopener">Stochastic systems (MSSP 2023)</a></li>
+            <li><a href="https://doi.org/10.1016/j.cpc.2023.108960" target="_blank" rel="noopener">Lagrangian discovery (CPC 2024)</a></li>
+            <li><a href="https://doi.org/10.1016/j.ymssp.2024.111737" target="_blank" rel="noopener">Bayesian Lagrangian (MSSP 2024)</a></li>
+            <li><a href="https://doi.org/10.1016/j.physd.2023.133927" target="_blank" rel="noopener">PDE discovery (Physica D 2023)</a></li>
+            <li><a href="https://doi.org/10.1016/j.cma.2023.116512" target="_blank" rel="noopener">Stochastic PDEs (CMAME 2024)</a></li>
+            <li><a href="https://doi.org/10.1016/j.ress.2023.109233" target="_blank" rel="noopener">MAntRA (RESS 2023)</a></li>
+          </ul></div>
+          <div class="links"><span class="lab">Code</span><ul>
+            <li><a href="https://github.com/TapasTripura/Learning-physics-from-output-only-data" target="_blank" rel="noopener">Output-only physics learning</a></li>
+            <li><a href="https://github.com/TapasTripura/Lagrange_Discovery_CPC" target="_blank" rel="noopener">Lagrangian discovery</a></li>
+            <li><a href="https://github.com/TapasTripura/Bayesian-Lagrangian-Discovery" target="_blank" rel="noopener">Bayesian Lagrangian</a></li>
+            <li><a href="https://github.com/TapasTripura/Lagrangian-Discovery-Stochastic-Systems" target="_blank" rel="noopener">Stochastic Lagrangian</a></li>
+            <li><a href="https://github.com/TapasTripura/Bayesian-Discovery-of-PDEs" target="_blank" rel="noopener">Bayesian PDE discovery</a></li>
+            <li><a href="https://github.com/TapasTripura/Stochastic-PDE-Discovery" target="_blank" rel="noopener">Stochastic PDE discovery</a></li>
+          </ul></div>
+        </article>
+
+        <article class="row">
+          <h3>Predictive control without known physics</h3>
+          <p>MAP-TD is a deep reinforcement learning method for controlling systems whose physics is unknown. A parsimonious dynamics model, discovered offline with sparse Bayesian learning, predicts long-horizon trajectories inside the agent, which improves sample efficiency and control quality. Demonstrations include deflection control of a cantilever beam, wind-induced vibration control of a 76-degree-of-freedom structure, and active flow control around a circular cylinder, with zero-shot transfer to a square cylinder.</p>
+          <div class="links"><span class="lab">Papers</span><ul>
+            <li><a href="https://drive.google.com/file/d/1ksa0U5pJNEbVzXP2tPq8AYJh9m8f-ogP/view?usp=sharing" target="_blank" rel="noopener">MAP-TD manuscript</a></li>
+            <li><a href="https://doi.org/10.1016/j.probengmech.2023.103517" target="_blank" rel="noopener">Robust predictive control (PEM 2023)</a></li>
+          </ul></div>
+          <div class="links"><span class="lab">Code</span><ul>
+            <li><a href="https://github.com/TapasTripura/RoMAn-Model-Predictive-Control" target="_blank" rel="noopener">RoMAn predictive control</a></li>
+          </ul></div>
+        </article>
+
+        <article class="row">
+          <h3>Neural operators for computational mechanics</h3>
+          <p>The Wavelet Neural Operator (WNO) blends the integral kernel of a neural operator with a wavelet transform. Wavelets are localized in both space and frequency, so WNO tracks fine patterns in the parametric dependence of PDE solutions. It has been extended to physics-informed training, multi-fidelity reliability analysis, tumor elastography and fault detection, and has been applied to forecasting 24 hours of Cyclone Amphan’s wind field from the previous 24 hours.</p>
+          <div class="links"><span class="lab">Papers</span><ul>
+            <li><a href="https://doi.org/10.1016/j.cma.2022.115783" target="_blank" rel="noopener">WNO (CMAME 2023)</a></li>
+            <li><a href="https://doi.org/10.1016/j.cma.2023.116546" target="_blank" rel="noopener">Physics-informed WNO (CMAME 2024)</a></li>
+            <li><a href="https://doi.org/10.1016/j.probengmech.2024.103672" target="_blank" rel="noopener">Multi-fidelity WNO (PEM 2024)</a></li>
+            <li><a href="https://doi.org/10.1016/j.cmpb.2023.107436" target="_blank" rel="noopener">Elastography (CMPB 2023)</a></li>
+            <li><a href="https://doi.org/10.1016/j.psep.2023.02.078" target="_blank" rel="noopener">Fault detection (PSEP 2023)</a></li>
+          </ul></div>
+          <div class="links"><span class="lab">Code</span><ul>
+            <li><a href="https://github.com/TapasTripura/WNO" target="_blank" rel="noopener">WNO</a></li>
+            <li><a href="https://github.com/TapasTripura/WNO-V3" target="_blank" rel="noopener">WNO v3</a></li>
+            <li><a href="https://github.com/TapasTripura/PIWNO---Physics-Informed-Wavelet-Neural-Operator-" target="_blank" rel="noopener">Physics-informed WNO</a></li>
+            <li><a href="https://github.com/TapasTripura/MFWNO" target="_blank" rel="noopener">Multi-fidelity WNO</a></li>
+            <li><a href="https://github.com/TapasTripura/WNO-elastography" target="_blank" rel="noopener">WNO elastography</a></li>
+          </ul></div>
+        </article>
+
+        <article class="row">
+          <h3>Predictive digital twins</h3>
+          <p>A probabilistic machine-learning framework for digital twins of dynamical systems that stay interpretable while predicting future states. It is also covered in the book chapter “Digital twin for dynamical systems” (Springer, 2023).</p>
+          <div class="links"><span class="lab">Papers</span><ul>
+            <li><a href="https://doi.org/10.1016/j.compstruc.2023.107008" target="_blank" rel="noopener">Predictive digital twin (C&amp;S 2023)</a></li>
+          </ul></div>
+          <div class="links"><span class="lab">Code</span><ul>
+            <li><a href="https://github.com/TapasTripura/Interpretable-DT" target="_blank" rel="noopener">Interpretable digital twin</a></li>
+          </ul></div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Foundation model -->
+    <section class="sec" id="foundation" aria-labelledby="h-foundation">
+      <h2 id="h-foundation">Scientific foundation model</h2>
+      <div class="body">
+        <div class="feature">
+          <h3>Neural Combinatorial Wavelet Neural Operator (NCWNO)</h3>
+          <p>Building a new machine-learning model from scratch for every scientific task takes a lot of computational time and memory. NCWNO is a foundation model for computational mechanics. It is pre-trained on a diverse spectrum of physics and then adapts to the solution operators of unseen parametric PDEs.</p>
+          <div class="cols">
+            <div>
+              <h4>What it does</h4>
+              <ul>
+                <li>Learns solution operators for several parametric PDEs at once.</li>
+                <li>Generalizes to new parametric PDEs with minimal fine-tuning.</li>
+              </ul>
+            </div>
+            <div>
+              <h4>What sets it apart</h4>
+              <ul>
+                <li>It does not suffer catastrophic forgetting.</li>
+                <li>It keeps positive transfer to new parametric PDEs.</li>
+                <li>It transfers knowledge across dissimilar tasks.</li>
+              </ul>
+            </div>
+          </div>
+          <p>In the showcase experiment, one pre-trained NCWNO predicts six PDEs simultaneously on a 64 × 64 spatial grid.</p>
+          <div class="links"><span class="lab">Paper</span><ul>
+            <li><a href="https://doi.org/10.1016/j.cpc.2025.109882" target="_blank" rel="noopener">NCWNO (CPC 2025)</a></li>
+          </ul></div>
+          <div class="links"><span class="lab">Code</span><ul>
+            <li><a href="https://github.com/TapasTripura/NCWNO" target="_blank" rel="noopener">NCWNO</a></li>
+          </ul></div>
+        </div>
+        <div class="row" style="margin-top:34px">
+          <h3>Neural architecture search for WNO</h3>
+          <p>A generative flow network searches for the best architecture of a wavelet neural operator, so the design no longer has to be tuned by hand.</p>
+          <div class="links"><span class="lab">Paper</span><ul>
+            <li><a href="https://doi.org/10.1016/j.cpc.2025.109755" target="_blank" rel="noopener">Generative flow neural architecture search (CPC 2025)</a></li>
+          </ul></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Education -->
+    <section class="sec" id="education" aria-labelledby="h-education">
+      <h2 id="h-education">Education</h2>
+      <div class="body">
+        <ol class="timeline">
+          <li>
+            <span class="when">Present</span>
+            <h3>Ph.D. candidate, Applied Mechanics</h3>
+            <p class="where">Indian Institute of Technology Delhi</p>
+            <ul>
+              <li>Thesis: <em>Data-driven online model-predictive control of systems with unknown physics</em></li>
+              <li>CPI 10/10</li>
+            </ul>
+          </li>
+          <li>
+            <span class="when">Class of 2019</span>
+            <h3>M.Tech., Structural Engineering</h3>
+            <p class="where">Indian Institute of Technology Guwahati, Department of Civil Engineering</p>
+            <ul>
+              <li>Thesis: <em>Stochastic simulation of nonlinear dynamic systems with applications</em></li>
+              <li>First Class, Best Thesis Award 2019 (IIT Guwahati), Outstanding grade (AS) for thesis work</li>
+              <li>CPI 9.31/10</li>
+            </ul>
+          </li>
+          <li>
+            <span class="when">Class of 2016</span>
+            <h3>B.Tech., Civil Engineering</h3>
+            <p class="where">North Eastern Regional Institute of Science and Technology (NERIST)</p>
+            <ul>
+              <li>First Class, Gold Medal for the top position in B.Tech.</li>
+              <li>CGPA 4.59/5</li>
+            </ul>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- Publications -->
+    <section class="sec" id="publications" aria-labelledby="h-pubs">
+      <h2 id="h-pubs">Publications</h2>
+      <div class="body pubs">
+        <div class="tools">
+          <input class="search" id="q" type="search" placeholder="Search title, author or journal" aria-label="Search publications" autocomplete="off">
+          <div class="seg" id="seg" role="group" aria-label="Filter by type">
+            <button type="button" data-t="all" aria-pressed="true">All</button>
+            <button type="button" data-t="journal" aria-pressed="false">Journal</button>
+            <button type="button" data-t="conference" aria-pressed="false">Conference</button>
+            <button type="button" data-t="chapter" aria-pressed="false">Book chapter</button>
+            <button type="button" data-t="submitted" aria-pressed="false">Submitted</button>
+          </div>
+        </div>
+        <p class="count" id="count" aria-live="polite"></p>
+        <div id="list"></div>
+        <noscript><p class="empty">Turn on JavaScript to browse the publication list, or see <a href="https://scholar.google.com/citations?hl=en&amp;user=pW9ZY3QAAAAJ">Google Scholar</a>.</p></noscript>
+      </div>
+    </section>
+
+    <!-- Collaborators -->
+    <section class="sec" id="collaborators" aria-labelledby="h-collab">
+      <h2 id="h-collab">Collaborators</h2>
+      <div class="body" style="max-width:none">
+        <div class="groups">
+          <div class="wide">
+            <h3>Supervisor at IIT Delhi</h3>
+            <ul><li>Dr. Souvik Chakraborty <span class="role">Assistant Professor, IIT Delhi</span></li></ul>
+          </div>
+          <div>
+            <h3>Co-authors at IIT Delhi</h3>
+            <ul>
+              <li>Dr. Navaneeth N <span class="role">Computational Mechanics, Ph.D.</span></li>
+              <li>Dr. Abhilash Awasthi <span class="role">Bio-Mechanics, Ph.D.</span></li>
+              <li>Dr. Jyoti Rani <span class="role">Chemical Engineering, Ph.D.</span></li>
+              <li>Rajnish Kumar <span class="role">Bio-Mechanics, Ph.D. scholar</span></li>
+            </ul>
+          </div>
+          <div>
+            <h3>Co-authors outside IIT Delhi</h3>
+            <ul>
+              <li>Dr. Budhaditya Hazra <span class="role">M.Tech. supervisor, Associate Professor, IIT Guwahati</span></li>
+              <li>Dr. Vikram Pakrashi <span class="role">Associate Professor, University College Dublin</span></li>
+              <li>Dr. Basuraj Bhowmik <span class="role">Structural Engineering, Assistant Professor, IIT BHU</span></li>
+              <li>Dr. Satyam Panda <span class="role">Structural Engineering, Postdoc at Trinity College Dublin</span></li>
+              <li>Ankush Gogoi <span class="role">Mechanical Engineering, Ph.D. scholar at University College Dublin</span></li>
+            </ul>
+          </div>
+          <div class="wide">
+            <h3>B.Tech. and M.Tech. co-authors from IIT Delhi</h3>
+            <ul>
+              <li>Aarya Sheetal Desai <span class="role">M.Tech., 2022</span></li>
+              <li>Kalpesh Sanjay More <span class="role">M.Tech., 2023</span></li>
+              <li>Yogesh Chandrakant Mathpati <span class="role">M.Tech., 2024</span></li>
+              <li>Hartej Soin <span class="role">B.Tech., 2025</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="sec" id="contact" aria-labelledby="h-contact">
+      <h2 id="h-contact">Contact</h2>
+      <div class="body">
+        <p class="mail"><a href="mailto:tapas.t@am.iitd.ac.in">tapas.t@am.iitd.ac.in</a></p>
+        <p>Department of Applied Mechanics, Indian Institute of Technology Delhi, Hauz Khas, New Delhi 110016, India.</p>
+        <ul class="social">
+          <li><a href="https://github.com/TapasTripura" target="_blank" rel="noopener">GitHub</a></li>
+          <li><a href="https://www.linkedin.com/in/tripuratapas/" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a href="https://scholar.google.com/citations?hl=en&amp;user=pW9ZY3QAAAAJ" target="_blank" rel="noopener">Google Scholar</a></li>
+          <li><a href="https://www.researchgate.net/profile/Tapas-Tripura" target="_blank" rel="noopener">ResearchGate</a></li>
+        </ul>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer class="foot">
+  <div class="wrap">© <span id="yr">2026</span> Tapas Tripura. Plain HTML, CSS and JavaScript, with no trackers or cookies.</div>
+</footer>
+
+<script>
+/* ---------- Footer year ---------- */
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+/* ---------- Portrait fallback: assets/photo.jpg, then GitHub avatar, then hide ---------- */
+(function () {
+  const img = document.getElementById('portrait');
+  let step = 0;
+  img.addEventListener('error', function () {
+    if (step === 0) { step = 1; img.src = 'https://avatars.githubusercontent.com/u/44923288?v=4'; }
+    else { img.style.display = 'none'; img.parentElement.style.gridTemplateColumns = '1fr'; }
+  });
+})();
+
+/* ---------- Theme toggle ---------- */
+(function () {
+  const root = document.documentElement;
+  const mq = window.matchMedia('(prefers-color-scheme: dark)');
+  try { const saved = localStorage.getItem('theme'); if (saved === 'light' || saved === 'dark') root.setAttribute('data-theme', saved); } catch (e) {}
+  document.getElementById('themeBtn').addEventListener('click', function () {
+    const dark = root.getAttribute('data-theme') ? root.getAttribute('data-theme') === 'dark' : mq.matches;
+    const next = dark ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    try { localStorage.setItem('theme', next); } catch (e) {}
+    window.dispatchEvent(new Event('themechange'));
+  });
+  mq.addEventListener && mq.addEventListener('change', function () { window.dispatchEvent(new Event('themechange')); });
+})();
+
+/* ---------- Active nav link ---------- */
+(function () {
+  const links = [...document.querySelectorAll('nav.main a')];
+  const map = new Map(links.map(a => [a.getAttribute('href').slice(1), a]));
+  const io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) {
+        links.forEach(a => a.removeAttribute('aria-current'));
+        const a = map.get(e.target.id); if (a) a.setAttribute('aria-current', 'true');
+      }
+    });
+  }, { rootMargin: '-40% 0px -55% 0px' });
+  map.forEach(function (_, id) { const s = document.getElementById(id); if (s) io.observe(s); });
+})();
+
+/* ---------- Wavelet scope: signal, sliding Morlet wavelet and its continuous wavelet transform ---------- */
+(function () {
+  const cv = document.getElementById('wave');
+  const ctx = cv.getContext('2d');
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const N = 320, NS = 56, W0 = 5, A_MIN = 4, A_MAX = 110;
+
+  // Test signal: slow wave + chirp + short high-frequency burst + noise (seeded, so it is the same on every load)
+  let seed = 11; const rnd = () => (seed = (seed * 1664525 + 1013904223) >>> 0) / 4294967296;
+  const sig = new Float32Array(N);
+  for (let i = 0; i < N; i++) {
+    const t = i / (N - 1);
+    let v = 0.85 * Math.sin(2 * Math.PI * 2.5 * t);
+    if (t > 0.07 && t < 0.42) v += 0.55 * Math.sin(2 * Math.PI * (9 * t + 38 * t * t)) * Math.sin(Math.PI * (t - 0.07) / 0.35);
+    if (t > 0.62 && t < 0.78) v += 1.0 * Math.sin(2 * Math.PI * 46 * t) * Math.pow(Math.sin(Math.PI * (t - 0.62) / 0.16), 2);
+    sig[i] = v + (rnd() - 0.5) * 0.18;
+  }
+  const scales = Array.from({ length: NS }, (_, k) => A_MIN * Math.pow(A_MAX / A_MIN, k / (NS - 1)));
+  const scaleAt = kf => A_MIN * Math.pow(A_MAX / A_MIN, kf / (NS - 1));
+
+  // Continuous wavelet transform magnitude, computed once. Row 0 = finest scale (highest frequency).
+  const cwt = new Float32Array(NS * N);
+  let cmax = 0;
+  for (let k = 0; k < NS; k++) {
+    const a = scales[k], half = Math.ceil(4 * a), norm = 1 / a;
+    for (let b = 0; b < N; b++) {
+      let re = 0, im = 0;
+      const lo = Math.max(0, b - half), hi = Math.min(N - 1, b + half);
+      for (let i = lo; i <= hi; i++) {
+        const x = (i - b) / a, g = Math.exp(-x * x / 2) * sig[i];
+        re += g * Math.cos(W0 * x); im += g * Math.sin(W0 * x);
+      }
+      const m = Math.sqrt(re * re + im * im) * norm;
+      cwt[k * N + b] = m; if (m > cmax) cmax = m;
+    }
+  }
+
+  const off = document.createElement('canvas'); off.width = N; off.height = NS;
+  const octx = off.getContext('2d');
+  const PAL = {
+    light: ['#F3F6F6', '#BFE0E2', '#4FA3AB', '#0E6E78', '#243A8C'],
+    dark:  ['#0F181C', '#16444D', '#2F8C95', '#6AD0D4', '#E8F8F9']
+  };
+  const hex = h => [1, 3, 5].map(i => parseInt(h.slice(i, i + 2), 16));
+  const ramp = (stops, u) => {
+    const p = Math.min(0.9999, Math.max(0, u)) * (stops.length - 1), i = Math.floor(p), f = p - i;
+    const a = hex(stops[i]), b = hex(stops[i + 1]);
+    return [0, 1, 2].map(c => Math.round(a[c] + (b[c] - a[c]) * f));
+  };
+
+  let C = {};
+  function theme() {
+    const s = getComputedStyle(document.documentElement);
+    const g = n => s.getPropertyValue(n).trim();
+    const dark = s.colorScheme.indexOf('dark') !== -1 || g('--paper').toLowerCase() === '#0f181c';
+    C = { ink: g('--ink'), muted: g('--muted'), paper: g('--paper'), surface: g('--surface'), indigo: g('--indigo'), line: g('--line') };
+    const stops = dark ? PAL.dark : PAL.light;
+    const img = octx.createImageData(N, NS);
+    for (let k = 0; k < NS; k++) for (let b = 0; b < N; b++) {
+      const rgb = ramp(stops, Math.pow(cwt[k * N + b] / cmax, 0.65));
+      const o = (k * N + b) * 4; img.data[o] = rgb[0]; img.data[o + 1] = rgb[1]; img.data[o + 2] = rgb[2]; img.data[o + 3] = 255;
+    }
+    octx.putImageData(img, 0, 0);
+  }
+
+  let cssW = 0, cssH = 0, dpr = 1;
+  function size() {
+    const r = cv.getBoundingClientRect();
+    dpr = Math.min(2, window.devicePixelRatio || 1);
+    cssW = Math.max(280, Math.round(r.width)); cssH = Math.round(r.height);
+    cv.width = Math.round(cssW * dpr); cv.height = Math.round(cssH * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+
+  const LABEL = 20, GAP = 10;
+  function draw(b, kf) {
+    const W = cssW, H = cssH;
+    ctx.clearRect(0, 0, W, H);
+    ctx.fillStyle = C.surface; ctx.fillRect(0, 0, W, H);
+    const sigTop = LABEL, sigH = Math.round((H - 2 * LABEL - GAP) * 0.48);
+    const scLabelY = sigTop + sigH + GAP, scTop = scLabelY + LABEL, scH = H - scTop;
+    const xOf = i => i / (N - 1) * W;
+
+    ctx.font = '500 11.5px "Instrument Sans", system-ui, sans-serif';
+    ctx.textBaseline = 'alphabetic'; ctx.fillStyle = C.muted;
+    ctx.fillText('Signal and wavelet', 12, 14);
+    ctx.fillText(W < 600 ? 'Wavelet transform (fine detail on top)' : 'Wavelet transform: finer detail at the top, broader trends at the bottom', 12, scLabelY + 14);
+
+    // signal
+    const mid = sigTop + sigH / 2, amp = sigH / 2 / 2.3;
+    ctx.save(); ctx.beginPath(); ctx.rect(0, sigTop, W, sigH); ctx.clip();
+    ctx.strokeStyle = C.line; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(0, mid); ctx.lineTo(W, mid); ctx.stroke();
+    ctx.strokeStyle = C.ink; ctx.globalAlpha = 0.85; ctx.lineWidth = 1.25; ctx.lineJoin = 'round'; ctx.beginPath();
+    for (let i = 0; i < N; i++) { const y = mid - sig[i] * amp; i ? ctx.lineTo(xOf(i), y) : ctx.moveTo(xOf(i), y); }
+    ctx.stroke(); ctx.globalAlpha = 1;
+
+    // wavelet at (b, a)
+    const a = scaleAt(kf), half = 4 * a, i0 = Math.max(0, Math.floor(b - half)), i1 = Math.min(N - 1, Math.ceil(b + half));
+    const wh = sigH * 0.40;
+    ctx.fillStyle = C.indigo; ctx.globalAlpha = 0.14; ctx.beginPath();
+    for (let i = i0; i <= i1; i++) { const x = (i - b) / a, y = mid - Math.exp(-x * x / 2) * wh; i === i0 ? ctx.moveTo(xOf(i), y) : ctx.lineTo(xOf(i), y); }
+    for (let i = i1; i >= i0; i--) { const x = (i - b) / a, y = mid + Math.exp(-x * x / 2) * wh; ctx.lineTo(xOf(i), y); }
+    ctx.closePath(); ctx.fill(); ctx.globalAlpha = 1;
+    ctx.strokeStyle = C.indigo; ctx.lineWidth = 2.25; ctx.beginPath();
+    for (let i = i0; i <= i1; i++) { const x = (i - b) / a, y = mid - Math.exp(-x * x / 2) * Math.cos(W0 * x) * wh; i === i0 ? ctx.moveTo(xOf(i), y) : ctx.lineTo(xOf(i), y); }
+    ctx.stroke(); ctx.restore();
+
+    // transform
+    ctx.imageSmoothingEnabled = true; ctx.imageSmoothingQuality = 'high';
+    ctx.drawImage(off, 0, scTop, W, scH);
+
+    // position guide + marker
+    const bx = xOf(b), by = scTop + (kf + 0.5) / NS * scH;
+    ctx.save(); ctx.setLineDash([4, 4]); ctx.strokeStyle = C.indigo; ctx.globalAlpha = 0.65; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(bx, sigTop); ctx.lineTo(bx, H); ctx.stroke(); ctx.restore();
+    ctx.lineWidth = 4; ctx.strokeStyle = C.paper; ctx.beginPath(); ctx.arc(bx, by, 6, 0, 6.2832); ctx.stroke();
+    ctx.lineWidth = 2; ctx.strokeStyle = C.indigo; ctx.beginPath(); ctx.arc(bx, by, 6, 0, 6.2832); ctx.stroke();
+  }
+
+  // State: wavelet rests on the burst, drifts on its own, and follows the pointer when used
+  const REST = { b: 0.70 * (N - 1), k: 6 };
+  let cur = { b: REST.b, k: REST.k }, manual = false, timer = 0, raf = 0, visible = true;
+  function auto(t) {
+    const u = (Math.sin(t * 0.00022 - 1.2) + 1) / 2;
+    return { b: (0.06 + 0.88 * u) * (N - 1), k: 26 + 20 * Math.sin(t * 0.0006 + 1) };
+  }
+  function frame(t) {
+    raf = 0;
+    if (!manual && !reduce) cur = auto(t);
+    draw(cur.b, cur.k);
+    if (!reduce && !manual && visible && !document.hidden) raf = requestAnimationFrame(frame);
+  }
+  function kick() { if (!raf) raf = requestAnimationFrame(frame); }
+
+  function point(e) {
+    const r = cv.getBoundingClientRect();
+    const x = Math.min(1, Math.max(0, (e.clientX - r.left) / r.width));
+    const y = Math.min(1, Math.max(0, (e.clientY - r.top) / r.height));
+    cur = { b: x * (N - 1), k: y * (NS - 1) };
+    manual = true; clearTimeout(timer);
+    timer = setTimeout(function () { manual = false; kick(); }, 2500);
+    kick();
+  }
+  cv.addEventListener('pointermove', point);
+  cv.addEventListener('pointerdown', point);
+
+  new IntersectionObserver(function (es) { visible = es[0].isIntersecting; if (visible) kick(); }).observe(cv);
+  document.addEventListener('visibilitychange', kick);
+  window.addEventListener('themechange', function () { theme(); kick(); });
+  new ResizeObserver(function () { size(); kick(); }).observe(cv);
+
+  theme(); size(); draw(cur.b, cur.k); kick();
+})();
+
+/* ---------- Publications ---------- */
+(function () {
+  // [year, type, authors, title, venue, doi]
+  const P = [
+    ['Submitted', 'submitted', 'T. Tripura, S. Chakraborty', 'Learning to predict and control with sparse model discovery and deep temporal difference reinforcement learning', 'Manuscript submitted', ''],
+    ['Submitted', 'submitted', 'T. Tripura, S. Chakraborty', 'FlowMARL: Model-agnostic reinforcement learning for active flow control', 'Manuscript submitted', ''],
+
+    [2025, 'journal', 'T. Tripura, S. Chakraborty', 'Neural combinatorial wavelet neural operator for catastrophic forgetting free in-context operator learning of multiple partial differential equations', 'Computer Physics Communications, 109882', '10.1016/j.cpc.2025.109882'],
+    [2025, 'journal', 'H. Soin, T. Tripura, S. Chakraborty', 'Generative flow induced neural architecture search: Towards discovering optimal architecture in wavelet neural operator', 'Computer Physics Communications, 109755', '10.1016/j.cpc.2025.109755'],
+    [2025, 'journal', 'J. Rani, T. Tripura, H. Kodamana, S. Chakraborty', 'Generative adversarial wavelet neural operator with applications to fault detection and isolation of multivariate time series data', 'Control Engineering Practice, vol. 165, 106548', ''],
+    [2025, 'journal', 'R. Kumar, T. Tripura, S. Chakraborty, S. Roy', 'Deep muscle electromyogram construction using a physics-integrated deep learning approach', 'Engineering Applications of Artificial Intelligence, vol. 159, 111613', ''],
+
+    [2024, 'journal', 'T. Tripura, A. Thakur, S. Chakraborty', 'Multi-fidelity wavelet neural operator surrogate model for time-independent and time-dependent reliability analysis', 'Probabilistic Engineering Mechanics, vol. 77, 103672', '10.1016/j.probengmech.2024.103672'],
+    [2024, 'journal', 'T. Tripura, S. Chakraborty', 'Discovering interpretable Lagrangian of dynamical systems from data', 'Computer Physics Communications, vol. 294, 108960', '10.1016/j.cpc.2023.108960'],
+    [2024, 'journal', 'N. Navaneeth, T. Tripura, S. Chakraborty', 'Physics informed WNO', 'Computer Methods in Applied Mechanics and Engineering, vol. 418, 116546', '10.1016/j.cma.2023.116546'],
+    [2024, 'journal', 'T. Tripura, S. Chakraborty', 'A Bayesian framework for discovering interpretable Lagrangian of dynamical systems from data', 'Mechanical Systems and Signal Processing, vol. 221, 111737', '10.1016/j.ymssp.2024.111737'],
+    [2024, 'journal', 'T. Tripura, S. Panda, B. Hazra, S. Chakraborty', 'Data-driven discovery of interpretable Lagrangian of stochastically excited dynamical systems', 'Computer Methods in Applied Mechanics and Engineering, vol. 427, 117032', ''],
+    [2024, 'journal', 'Q. Cao, S. Goswami, T. Tripura, S. Chakraborty, G. E. Karniadakis', 'Deep neural operators can predict the real-time response of floating offshore structures under irregular waves', 'Computers & Structures, vol. 291, 107228', ''],
+    [2024, 'journal', 'Y. C. Mathpati, T. Tripura, R. Nayek, S. Chakraborty', 'Discovering stochastic partial differential equations from limited data using variational Bayes inference', 'Computer Methods in Applied Mechanics and Engineering, 116512', '10.1016/j.cma.2023.116512'],
+
+    [2023, 'journal', 'T. Tripura, S. Chakraborty', 'Wavelet neural operator for solving parametric partial differential equations in computational mechanics problems', 'Computer Methods in Applied Mechanics and Engineering, vol. 404, 115783', '10.1016/j.cma.2022.115783'],
+    [2023, 'journal', 'T. Tripura, A. Awasthi, S. Roy, S. Chakraborty', 'A wavelet neural operator based elastography for localization and quantification of tumors', 'Computer Methods and Programs in Biomedicine, vol. 232, 107436', '10.1016/j.cmpb.2023.107436'],
+    [2023, 'journal', 'T. Tripura, S. Chakraborty', 'A sparse Bayesian framework for discovering interpretable nonlinear stochastic dynamical systems with Gaussian white noise', 'Mechanical Systems and Signal Processing, vol. 187, 109939', '10.1016/j.ymssp.2022.109939'],
+    [2023, 'journal', 'T. Tripura, S. Chakraborty', 'Robust model agnostic predictive control algorithm for randomly excited dynamical systems', 'Probabilistic Engineering Mechanics, vol. 74, 103517', '10.1016/j.probengmech.2023.103517'],
+    [2023, 'journal', 'T. Tripura, A. S. Desai, S. Adhikari, S. Chakraborty', 'Probabilistic machine learning based predictive and interpretable digital twin for dynamical systems', 'Computers & Structures, vol. 281, 107008', '10.1016/j.compstruc.2023.107008'],
+    [2023, 'journal', 'J. Rani, T. Tripura, H. Kodamana, S. Chakraborty, P. K. Tamboli', 'Fault detection and isolation using probabilistic wavelet neural operator auto-encoder with application to dynamic processes', 'Process Safety and Environmental Protection, vol. 173, pp. 215–228', '10.1016/j.psep.2023.02.078'],
+    [2023, 'journal', 'Y. C. Mathpati, K. S. More, T. Tripura, R. Nayek, S. Chakraborty', 'MAntRA: A framework for model agnostic reliability analysis', 'Reliability Engineering & System Safety, vol. 235, 109233', '10.1016/j.ress.2023.109233'],
+    [2023, 'journal', 'K. S. More, T. Tripura, R. Nayek, S. Chakraborty', 'A Bayesian framework for learning governing partial differential equation from data', 'Physica D: Nonlinear Phenomena, vol. 456, 133927', '10.1016/j.physd.2023.133927'],
+    [2023, 'journal', 'T. Tripura, B. Hazra, S. Chakraborty', 'Novel Girsanov correction based Milstein schemes for analysis of nonlinear multi-dimensional stochastic dynamical systems', 'Applied Mathematical Modelling, vol. 122, pp. 350–372', ''],
+    [2023, 'chapter', 'T. Tripura, S. Garg, S. Chakraborty', 'Digital twin for dynamical systems', 'In Machine Learning in Modeling and Simulation: Methods and Applications, Springer, pp. 255–296', ''],
+
+    [2022, 'journal', 'T. Tripura, M. Imran, B. Hazra, S. Chakraborty', 'Change of measure enhanced near-exact Euler–Maruyama scheme for the solution to nonlinear stochastic dynamical systems', 'Journal of Engineering Mechanics, vol. 148, no. 6, 04022025', ''],
+    [2022, 'journal', 'S. Panda, T. Tripura, B. Hazra', 'Online damage detection of earthquake-excited structure based on near real-time envelope extraction', 'Structural Health Monitoring, vol. 21, no. 2, pp. 298–319', ''],
+
+    [2021, 'journal', 'S. Panda, T. Tripura, B. Hazra', 'First-order error-adapted eigen perturbation for real-time modal identification of vibrating structures', 'Journal of Vibration and Acoustics, vol. 143, no. 5, 051001', ''],
+
+    [2020, 'journal', 'T. Tripura, B. Bhowmik, V. Pakrashi, B. Hazra', 'Real-time damage detection of degrading systems', 'Structural Health Monitoring, vol. 19, no. 3, pp. 810–837', ''],
+    [2020, 'journal', 'T. Tripura, A. Gogoi, B. Hazra', 'An Itô–Taylor weak 3.0 method for stochastic dynamics of nonlinear systems', 'Applied Mathematical Modelling, vol. 86, pp. 115–141', ''],
+    [2020, 'journal', 'B. Bhowmik, T. Tripura, B. Hazra, V. Pakrashi', 'Real time structural modal identification using recursive canonical correlation analysis and application towards online structural damage detection', 'Journal of Sound and Vibration, vol. 468, 115101', ''],
+    [2020, 'journal', 'B. Bhowmik, T. Tripura, B. Hazra, V. Pakrashi', 'Robust linear and nonlinear structural damage detection using recursive canonical correlation analysis', 'Mechanical Systems and Signal Processing, vol. 136, 106499', ''],
+
+    [2019, 'journal', 'B. Bhowmik, T. Tripura, B. Hazra, V. Pakrashi', 'First-order eigen-perturbation techniques for real-time damage detection of vibrating systems: Theory and applications', 'Applied Mechanics Reviews, vol. 71, no. 6, 060801', ''],
+
+    [2024, 'conference', 'T. Tripura, S. Chakraborty', 'Predictive and interpretable digital twin for dynamical systems', '68th Congress of the Indian Society of Theoretical and Applied Mechanics (ISTAM 2024), NIT Warangal', ''],
+    [2024, 'conference', 'T. Tripura, N. N, S. Chakraborty', 'Physics-informed wavelet neural operator for data-free learning of parametric partial differential equations', '9th European Congress on Computational Methods in Applied Sciences and Engineering (ECCOMAS 2024), Lisbon, Portugal', ''],
+    [2023, 'conference', 'T. Tripura, S. Chakraborty', 'Sparse system identification of dynamical systems from output-only measurements', '9th International Conference on Computational Methods in Structural Dynamics and Earthquake Engineering (COMPDYN 2023)', ''],
+    [2023, 'conference', 'T. Tripura, S. Kumar, S. Chakraborty', 'Wavelet neural operator for reliability analysis', '9th International Congress on Computational Mechanics and Simulations (ICCMS 2023), IIT Gandhinagar', ''],
+    [2022, 'conference', 'T. Tripura, B. Hazra, S. Chakraborty', 'Near-exact Euler–Maruyama for solving nonlinear systems in stochastic dynamics', '5th Indian Conference on Applied Mechanics (INCAM 2022), NIT Jamshedpur', ''],
+    [2019, 'conference', 'B. Bhowmik, T. Tripura, B. Hazra, V. Pakrashi', 'Damage detection under progressive operational degradation of structures in real time', '8th International Operational Modal Analysis Conference (IOMAC 2019), pp. 137–145', '']
+  ].map(r => ({ y: r[0], t: r[1], a: r[2], ti: r[3], v: r[4], d: r[5] }));
+
+  const list = document.getElementById('list'), count = document.getElementById('count');
+  const q = document.getElementById('q'), seg = document.getElementById('seg');
+  let type = 'all';
+  const esc = s => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  const authors = s => esc(s).replace(/T\. Tripura/g, '<strong>T. Tripura</strong>');
+  const tl = { journal: 'journal article', conference: 'conference paper', chapter: 'book chapter', submitted: 'submitted manuscript' };
+
+  function render() {
+    const term = q.value.trim().toLowerCase();
+    const rows = P.filter(p => (type === 'all' || p.t === type) &&
+      (!term || (p.a + ' ' + p.ti + ' ' + p.v + ' ' + p.y).toLowerCase().includes(term)));
+    const groups = new Map();
+    rows.forEach(p => { if (!groups.has(p.y)) groups.set(p.y, []); groups.get(p.y).push(p); });
+    const keys = [...groups.keys()].sort((a, b) => (a === 'Submitted') ? -1 : (b === 'Submitted') ? 1 : b - a);
+    list.innerHTML = keys.map(k => '<h3>' + k + '</h3><ol>' + groups.get(k).map(p => {
+      const title = p.d ? '<a href="https://doi.org/' + p.d + '" target="_blank" rel="noopener">' + esc(p.ti) + '</a>' : esc(p.ti);
+      return '<li><span class="ti">' + title + '</span><span class="au">' + authors(p.a) + '</span><span class="ve">' + esc(p.v) + '</span></li>';
+    }).join('') + '</ol>').join('') || '<p class="empty">No publications match. Clear the search or choose another type.</p>';
+    const n = rows.length;
+    count.textContent = n + ' ' + (type === 'all' ? 'publication' : tl[type]) + (n === 1 ? '' : 's') + (term ? ' matching “' + q.value.trim() + '”' : '');
+  }
+  seg.addEventListener('click', function (e) {
+    const b = e.target.closest('button'); if (!b) return;
+    type = b.dataset.t;
+    seg.querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', String(x === b)));
+    render();
+  });
+  q.addEventListener('input', render);
+  render();
+})();
+</script>
+</body>
+</html>

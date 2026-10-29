@@ -263,3 +263,52 @@ document.getElementById('yr').textContent = new Date().getFullYear();
   q.addEventListener('input', render);
   render();
 })();
+
+/* ---------- Framework gallery ---------- */
+(function () {
+  const root = document.getElementById('frameworks'); if (!root) return;
+  const track = root.querySelector('.track'), slides = [].slice.call(track.children);
+  const prev = root.querySelector('.prev'), next = root.querySelector('.next'), dotsEl = root.querySelector('.dots');
+  const count = root.querySelector('.gcount'), play = root.querySelector('.play');
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const n = slides.length;
+  let idx = 0, playing = !reduce, hover = false, visible = true, raf = 0;
+  slides.forEach(function (s, i) {
+    const b = document.createElement('button'); b.type = 'button'; b.setAttribute('aria-label', 'Show slide ' + (i + 1));
+    b.addEventListener('click', function () { stop(); go(i); }); dotsEl.appendChild(b);
+  });
+  function paint() {
+    [].forEach.call(dotsEl.children, function (b, i) { b.setAttribute('aria-current', i === idx ? 'true' : 'false'); });
+    count.textContent = (idx + 1) + ' of ' + n;
+  }
+  function sync() { play.textContent = playing ? 'Pause' : 'Play'; }
+  function stop() { playing = false; sync(); }
+  function go(i, instant) {
+    idx = (i + n) % n;
+    track.scrollTo({ left: idx * track.clientWidth, behavior: (reduce || instant) ? 'auto' : 'smooth' });
+    paint();
+  }
+  prev.addEventListener('click', function () { stop(); go(idx - 1); });
+  next.addEventListener('click', function () { stop(); go(idx + 1); });
+  play.addEventListener('click', function () { playing = !playing; sync(); });
+  track.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowLeft') { e.preventDefault(); stop(); go(idx - 1); }
+    if (e.key === 'ArrowRight') { e.preventDefault(); stop(); go(idx + 1); }
+  });
+  track.addEventListener('scroll', function () {
+    cancelAnimationFrame(raf);
+    raf = requestAnimationFrame(function () {
+      const i = Math.round(track.scrollLeft / track.clientWidth);
+      if (i !== idx && i >= 0 && i < n) { idx = i; paint(); }
+    });
+  }, { passive: true });
+  track.addEventListener('pointerdown', stop);
+  root.addEventListener('mouseenter', function () { hover = true; });
+  root.addEventListener('mouseleave', function () { hover = false; });
+  root.addEventListener('focusin', function () { hover = true; });
+  root.addEventListener('focusout', function () { hover = false; });
+  new IntersectionObserver(function (es) { visible = es[0].isIntersecting; }, { threshold: 0.3 }).observe(root);
+  window.addEventListener('resize', function () { go(idx, true); });
+  setInterval(function () { if (playing && visible && !hover && !document.hidden) go(idx + 1); }, 7000);
+  sync(); paint();
+})();

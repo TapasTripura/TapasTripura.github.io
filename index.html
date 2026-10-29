@@ -38,7 +38,7 @@
 <header class="top">
   <div class="wrap">
     <a class="brand" href="index.html">Tapas Tripura</a>
-    <nav class="main" aria-label="Sections"><ul><li><a href="index.html" aria-current="page">Home</a></li><li><a href="about.html">About</a></li><li><a href="research.html">Research</a></li><li><a href="foundation-model.html">Foundation model</a></li><li><a href="publications.html">Publications</a></li><li><a href="collaborations.html">Collaborators</a></li></ul></nav>
+    <nav class="main" aria-label="Sections"><ul><li><a href="index.html" aria-current="page">Home</a></li><li><a href="about.html">About</a></li><li><a href="research.html">Research</a></li><li><a href="foundation-model.html">Foundation model</a></li><li><a href="publications.html">Publications</a></li><li><a href="collaborations.html">People</a></li></ul></nav>
     <button class="theme-btn" id="themeBtn" type="button" aria-label="Switch between light and dark theme">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 3v18"></path><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"></path></svg>
     </button>
@@ -62,6 +62,92 @@
     </figure>
   </section>
 
+<section class="gallery wrap" id="frameworks" aria-roledescription="carousel" aria-label="Selected frameworks">
+  <h2>Selected frameworks</h2>
+  <p class="gal-lede">Architectures and workflows from my papers. Select a figure to open it full size.</p>
+  <div class="track" tabindex="0" aria-label="Framework slides. Use the left and right arrow keys to change slide.">
+      <figure class="slide" role="group" aria-roledescription="slide" aria-label="1 of 8">
+        <a class="fig" href="https://raw.githubusercontent.com/TapasTripura/WNO/8133e13f36d66f04895571d1c5507b31972805cb/Github_page_images/WNN.png" target="_blank" rel="noopener" title="Open full size"><img src="https://raw.githubusercontent.com/TapasTripura/WNO/8133e13f36d66f04895571d1c5507b31972805cb/Github_page_images/WNN.png" alt="Architecture of the Wavelet Neural Operator: a lifting network, stacked wavelet integral layers and a projection network, with the wavelet decomposition, convolution and inverse transform shown in detail." width="1748" height="980" loading="eager" decoding="async"></a>
+        <figcaption>
+          <h3>Wavelet Neural Operator (WNO)</h3>
+          <p>Wavelet integral layers learn the solution operator of parametric PDEs, with features localized in both space and frequency.</p>
+          <div class="links"><span class="lab">Paper</span><ul><li><a href="https://doi.org/10.1016/j.cma.2022.115783" target="_blank" rel="noopener">WNO, CMAME 2023</a></li></ul></div>
+          <div class="links"><span class="lab"><svg class="gh" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>Code</span><ul><li><a href="https://github.com/TapasTripura/WNO" target="_blank" rel="noopener">WNO</a></li></ul></div>
+        </figcaption>
+      </figure>
+      <figure class="slide" role="group" aria-roledescription="slide" aria-label="2 of 8">
+        <a class="fig" href="https://raw.githubusercontent.com/TapasTripura/MFWNO/195c6c22b0b1253e44105088b884247fa6c62f79/MFWNO_Architecture.png" target="_blank" rel="noopener" title="Open full size"><img src="https://raw.githubusercontent.com/TapasTripura/MFWNO/195c6c22b0b1253e44105088b884247fa6c62f79/MFWNO_Architecture.png" alt="Architecture of the multi-fidelity wavelet neural operator: a low-fidelity WNO feeds a high-fidelity WNO that learns the residual solution." width="1185" height="727" loading="lazy" decoding="async"></a>
+        <figcaption>
+          <h3>Multi-fidelity WNO</h3>
+          <p>A low-fidelity wavelet operator is corrected by a high-fidelity residual operator, for fast reliability analysis.</p>
+          <div class="links"><span class="lab">Paper</span><ul><li><a href="https://doi.org/10.1016/j.probengmech.2024.103672" target="_blank" rel="noopener">MFWNO, PEM 2024</a></li></ul></div>
+          <div class="links"><span class="lab"><svg class="gh" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>Code</span><ul><li><a href="https://github.com/TapasTripura/MFWNO" target="_blank" rel="noopener">MFWNO</a></li></ul></div>
+        </figcaption>
+      </figure>
+      <figure class="slide" role="group" aria-roledescription="slide" aria-label="3 of 8">
+        <a class="fig" href="https://raw.githubusercontent.com/TapasTripura/NCWNO/3da40e3a2224858c2e84ea0790490b667fc9f35f/media/ncwno.jpg" target="_blank" rel="noopener" title="Open full size"><img src="https://raw.githubusercontent.com/TapasTripura/NCWNO/3da40e3a2224858c2e84ea0790490b667fc9f35f/media/ncwno.jpg" alt="Architecture of the Neural Combinatorial Wavelet Neural Operator: expert blocks with local wavelet integral blocks, combinatorial learning in each expert block, and a probability gate." width="1281" height="1020" loading="lazy" decoding="async"></a>
+        <figcaption>
+          <h3>Scientific foundation model (NCWNO)</h3>
+          <p>Expert wavelet blocks selected by a probability gate let one model learn many PDEs without catastrophic forgetting.</p>
+          <div class="links"><span class="lab">Paper</span><ul><li><a href="https://doi.org/10.1016/j.cpc.2025.109882" target="_blank" rel="noopener">NCWNO, CPC 2025</a></li></ul></div>
+          <div class="links"><span class="lab"><svg class="gh" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>Code</span><ul><li><a href="https://github.com/TapasTripura/NCWNO" target="_blank" rel="noopener">NCWNO</a></li></ul></div>
+        </figcaption>
+      </figure>
+      <figure class="slide" role="group" aria-roledescription="slide" aria-label="4 of 8">
+        <a class="fig" href="https://raw.githubusercontent.com/TapasTripura/WNO-elastography/44d050303f013db9224def044e7648f1e179bd29/WNO_elastography.png" target="_blank" rel="noopener" title="Open full size"><img src="https://raw.githubusercontent.com/TapasTripura/WNO-elastography/44d050303f013db9224def044e7648f1e179bd29/WNO_elastography.png" alt="Architecture of the WNO used for elastography: input fields pass through wavelet blocks with four-level wavelet decompositions and a final network that outputs a stiffness map." width="1261" height="709" loading="lazy" decoding="async"></a>
+        <figcaption>
+          <h3>Wavelet neural operator elastography</h3>
+          <p>Maps measured displacement fields to a stiffness map, to localize and quantify tumors.</p>
+          <div class="links"><span class="lab">Paper</span><ul><li><a href="https://doi.org/10.1016/j.cmpb.2023.107436" target="_blank" rel="noopener">Elastography, CMPB 2023</a></li></ul></div>
+          <div class="links"><span class="lab"><svg class="gh" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>Code</span><ul><li><a href="https://github.com/TapasTripura/WNO-elastography" target="_blank" rel="noopener">WNO-elastography</a></li></ul></div>
+        </figcaption>
+      </figure>
+      <figure class="slide" role="group" aria-roledescription="slide" aria-label="5 of 8">
+        <a class="fig" href="https://raw.githubusercontent.com/TapasTripura/Interpretable-DT/0ab9851f6fc8040a1ec2009a39ff66d2a1ced187/Predictive_DT.png" target="_blank" rel="noopener" title="Open full size"><img src="https://raw.githubusercontent.com/TapasTripura/Interpretable-DT/0ab9851f6fc8040a1ec2009a39ff66d2a1ced187/Predictive_DT.png" alt="Workflow of the predictive digital twin: a physical system and nominal model are updated using sparse Bayesian linear regression on collected data to support prediction and design." width="1134" height="642" loading="lazy" decoding="async"></a>
+        <figcaption>
+          <h3>Predictive and interpretable digital twin</h3>
+          <p>A probabilistic machine-learning twin that updates a nominal model from data and predicts future states.</p>
+          <div class="links"><span class="lab">Paper</span><ul><li><a href="https://doi.org/10.1016/j.compstruc.2023.107008" target="_blank" rel="noopener">Digital twin, C&amp;S 2023</a></li></ul></div>
+          <div class="links"><span class="lab"><svg class="gh" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>Code</span><ul><li><a href="https://github.com/TapasTripura/Interpretable-DT" target="_blank" rel="noopener">Interpretable-DT</a></li></ul></div>
+        </figcaption>
+      </figure>
+      <figure class="slide" role="group" aria-roledescription="slide" aria-label="6 of 8">
+        <a class="fig" href="https://raw.githubusercontent.com/TapasTripura/Lagrange_Discovery_CPC/0346600c5773e8fe8cf129b9da7c9f5d59df5313/framework.jpg" target="_blank" rel="noopener" title="Open full size"><img src="https://raw.githubusercontent.com/TapasTripura/Lagrange_Discovery_CPC/0346600c5773e8fe8cf129b9da7c9f5d59df5313/framework.jpg" alt="Framework for discovering Lagrangians: observed states, a dictionary, the Euler–Lagrange formula and sparse linear regression, with discovered equations of motion and conserved energy." width="3578" height="1991" loading="lazy" decoding="async"></a>
+        <figcaption>
+          <h3>Lagrangian discovery from data</h3>
+          <p>Sparse regression over an Euler–Lagrange library recovers interpretable Lagrangians and equations of motion.</p>
+          <div class="links"><span class="lab">Paper</span><ul><li><a href="https://doi.org/10.1016/j.cpc.2023.108960" target="_blank" rel="noopener">Lagrangian discovery, CPC 2024</a></li></ul></div>
+          <div class="links"><span class="lab"><svg class="gh" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>Code</span><ul><li><a href="https://github.com/TapasTripura/Lagrange_Discovery_CPC" target="_blank" rel="noopener">Lagrange_Discovery_CPC</a></li></ul></div>
+        </figcaption>
+      </figure>
+      <figure class="slide" role="group" aria-roledescription="slide" aria-label="7 of 8">
+        <a class="fig" href="https://raw.githubusercontent.com/TapasTripura/Bayesian-Lagrangian-Discovery/d712e54968ead1cbd3260c153b027305916b787d/Methodology_Lagrange.png" target="_blank" rel="noopener" title="Open full size"><img src="https://raw.githubusercontent.com/TapasTripura/Bayesian-Lagrangian-Discovery/d712e54968ead1cbd3260c153b027305916b787d/Methodology_Lagrange.png" alt="Methodology of Bayesian Lagrangian discovery: data collection, a design matrix from an Euler–Lagrange library, sparse Bayesian regression, and the identified Lagrangian and Hamiltonian densities." width="1280" height="720" loading="lazy" decoding="async"></a>
+        <figcaption>
+          <h3>Bayesian Lagrangian discovery</h3>
+          <p>A Bayesian version that discovers Lagrangian densities of PDE systems and reports uncertainty on each coefficient.</p>
+          <div class="links"><span class="lab">Paper</span><ul><li><a href="https://doi.org/10.1016/j.ymssp.2024.111737" target="_blank" rel="noopener">Bayesian Lagrangian, MSSP 2024</a></li></ul></div>
+          <div class="links"><span class="lab"><svg class="gh" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>Code</span><ul><li><a href="https://github.com/TapasTripura/Bayesian-Lagrangian-Discovery" target="_blank" rel="noopener">Bayesian-Lagrangian-Discovery</a></li></ul></div>
+        </figcaption>
+      </figure>
+      <figure class="slide" role="group" aria-roledescription="slide" aria-label="8 of 8">
+        <a class="fig" href="https://raw.githubusercontent.com/TapasTripura/RoMAn-Model-Predictive-Control/c83c197ef0869498812c7458fb11d2fb61a4925f/images/Identification_control.png" target="_blank" rel="noopener" title="Open full size"><img src="https://raw.githubusercontent.com/TapasTripura/RoMAn-Model-Predictive-Control/c83c197ef0869498812c7458fb11d2fb61a4925f/images/Identification_control.png" alt="Model identification for control: an ensemble of data builds a library and sparse Bayesian linear regression identifies the drift and diffusion terms used by the controller." width="1272" height="558" loading="lazy" decoding="async"></a>
+        <figcaption>
+          <h3>Model-agnostic predictive control (RoMAn)</h3>
+          <p>Sparse Bayesian identification of drift and diffusion feeds a model predictive controller for randomly excited systems.</p>
+          <div class="links"><span class="lab">Paper</span><ul><li><a href="https://doi.org/10.1016/j.probengmech.2023.103517" target="_blank" rel="noopener">RoMAn, PEM 2023</a></li></ul></div>
+          <div class="links"><span class="lab"><svg class="gh" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>Code</span><ul><li><a href="https://github.com/TapasTripura/RoMAn-Model-Predictive-Control" target="_blank" rel="noopener">RoMAn-Model-Predictive-Control</a></li></ul></div>
+        </figcaption>
+      </figure>
+  </div>
+  <div class="gal-ctrl">
+    <button type="button" class="nav-btn prev" aria-label="Previous slide"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button>
+    <button type="button" class="nav-btn next" aria-label="Next slide"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></button>
+    <div class="dots" role="group" aria-label="Choose a slide"></div>
+    <span class="gcount"></span>
+    <button type="button" class="play">Pause</button>
+  </div>
+</section>
+
 <div class="wrap">
 <section class="sec" id="explore" aria-labelledby="h-explore">
       <h2 id="h-explore">Explore</h2>
@@ -71,7 +157,7 @@
           <li><a href="research.html">Research</a><span>Physics discovery, predictive control, neural operators and digital twins, with papers and code.</span></li>
           <li><a href="foundation-model.html">Scientific foundation model</a><span>NCWNO, a pre-trained operator that adapts to new PDEs.</span></li>
           <li><a href="publications.html">Publications</a><span>Journal articles, conference papers and a book chapter, searchable.</span></li>
-          <li><a href="collaborations.html">Collaborators</a><span>Supervisor, co-authors and students.</span></li>
+          <li><a href="collaborations.html">People</a><span>Supervisor, co-authors and students.</span></li>
         </ul>
       </div>
     </section>

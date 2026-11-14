@@ -357,3 +357,28 @@ document.getElementById('yr').textContent = new Date().getFullYear();
   setInterval(function () { if (playing && visible && !hover && !document.hidden) go(idx + 1); }, 7000);
   sync(); paint();
 })();
+
+/* ---------- Institute icons ---------- */
+(function () {
+  const L = window.LOGOS; if (!L) return;
+  const rules = [
+    ['cornell', /Cornell University/],
+    ['iitd', /IIT Delhi|Indian Institute of Technology Delhi/],
+    ['iitg', /IIT Guwahati|Indian Institute of Technology Guwahati/],
+    ['nerist', /NERIST|North Eastern Regional Institute/],
+    ['ucd', /University College Dublin/],
+    ['iitbhu', /IIT BHU|IIT (BHU)/],
+    ['tcd', /Trinity College Dublin/]
+  ];
+  document.querySelectorAll('.timeline .where, .groups .role, dl.facts dd, #contact .body > p:not(.mail), .map-cap').forEach(function (el) {
+    const txt = el.textContent;
+    for (let i = 0; i < rules.length; i++) {
+      if (rules[i][1].test(txt) && L[rules[i][0]]) {
+        const im = document.createElement('img');
+        im.className = 'inst'; im.src = L[rules[i][0]]; im.alt = ''; im.width = 20; im.height = 20; im.decoding = 'async';
+        el.insertBefore(im, el.firstChild);
+        break;
+      }
+    }
+  });
+})();

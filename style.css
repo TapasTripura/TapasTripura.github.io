@@ -303,3 +303,13 @@ footer.foot .wrap { display: flex; flex-wrap: wrap; gap: 10px 28px; justify-cont
 .chips .chip:hover, .chips .chip:focus-visible { background: var(--teal); border-color: var(--teal); color: var(--teal-ink); transform: translateY(-1px); box-shadow: 0 3px 10px color-mix(in srgb, var(--ink) 16%, transparent); }
 .chips .chip:hover .k, .chips .chip:focus-visible .k { color: inherit; }
 @media (prefers-reduced-motion: reduce) { .chips .chip { transition: none; } .chips .chip:hover, .chips .chip:focus-visible { transform: none; } }
+
+/* Home: name and bio, no section heading */
+.hero { padding-bottom: 28px; }
+.hero h1 { margin-bottom: 0; }
+.bio { padding: 12px 0 64px; }
+.bio-grid { display: grid; grid-template-columns: 168px minmax(0, 1fr); gap: 36px; align-items: start; max-width: 58rem; }
+.bio-grid .portrait { width: 100%; height: auto; aspect-ratio: 1; }
+.bio-text p { margin: 0 0 1em; font-size: 1.125rem; line-height: 1.6; }
+.bio-text p:last-child { margin-bottom: 0; }
+@media (max-width: 700px) { .bio-grid { grid-template-columns: 1fr; gap: 20px; } .bio-grid .portrait { width: 128px; height: auto; } }

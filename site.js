@@ -185,11 +185,11 @@ document.getElementById('yr').textContent = new Date().getFullYear();
 (function () {
   // [year, type, authors, title, venue, doi]
   const P = [
-    [2026, 'journal', 'T. Tripura, S. Chakraborty', 'Learning to predict and control with sparse model discovery and deep temporal difference reinforcement learning', 'Mechanical Systems and Signal Processing, vol. 251, 114226', '10.1016/j.ymssp.2026.114226'],
+    [2026, 'journal', 'T. Tripura, S. Chakraborty', 'Learning to predict and control with sparse model discovery and deep temporal difference reinforcement learning', 'Mechanical Systems and Signal Processing, vol. 251, 114226', '10.1016/j.ymssp.2026.114226', ['csccm-iitd/MAPTD']],
     ['Submitted', 'submitted', 'T. Tripura, S. Chakraborty', 'FlowMARL: Model-agnostic reinforcement learning for active flow control', 'Manuscript submitted', ''],
 
     [2025, 'journal', 'T. Tripura, S. Chakraborty', 'Neural combinatorial wavelet neural operator for catastrophic forgetting free in-context operator learning of multiple partial differential equations', 'Computer Physics Communications, 109882', '10.1016/j.cpc.2025.109882', ['NCWNO']],
-    [2025, 'journal', 'H. Soin, T. Tripura, S. Chakraborty', 'Generative flow induced neural architecture search: Towards discovering optimal architecture in wavelet neural operator', 'Computer Physics Communications, 109755', '10.1016/j.cpc.2025.109755'],
+    [2025, 'journal', 'H. Soin, T. Tripura, S. Chakraborty', 'Generative flow induced neural architecture search: Towards discovering optimal architecture in wavelet neural operator', 'Computer Physics Communications, 109755', '10.1016/j.cpc.2025.109755', ['csccm-iitd/FWNO']],
     [2025, 'journal', 'J. Rani, T. Tripura, H. Kodamana, S. Chakraborty', 'Generative adversarial wavelet neural operator with applications to fault detection and isolation of multivariate time series data', 'Control Engineering Practice, vol. 165, 106548', '10.1016/j.conengprac.2025.106548'],
     [2025, 'journal', 'R. Kumar, T. Tripura, S. Chakraborty, S. Roy', 'Deep muscle electromyogram construction using a physics-integrated deep learning approach', 'Engineering Applications of Artificial Intelligence, vol. 159, 111613', '10.1016/j.engappai.2025.111613'],
 
@@ -207,7 +207,7 @@ document.getElementById('yr').textContent = new Date().getFullYear();
     [2023, 'journal', 'T. Tripura, S. Chakraborty', 'Robust model agnostic predictive control algorithm for randomly excited dynamical systems', 'Probabilistic Engineering Mechanics, vol. 74, 103517', '10.1016/j.probengmech.2023.103517', ['RoMAn-Model-Predictive-Control']],
     [2023, 'journal', 'T. Tripura, A. S. Desai, S. Adhikari, S. Chakraborty', 'Probabilistic machine learning based predictive and interpretable digital twin for dynamical systems', 'Computers & Structures, vol. 281, 107008', '10.1016/j.compstruc.2023.107008', ['Interpretable-DT']],
     [2023, 'journal', 'J. Rani, T. Tripura, H. Kodamana, S. Chakraborty, P. K. Tamboli', 'Fault detection and isolation using probabilistic wavelet neural operator auto-encoder with application to dynamic processes', 'Process Safety and Environmental Protection, vol. 173, pp. 215–228', '10.1016/j.psep.2023.02.078'],
-    [2023, 'journal', 'Y. C. Mathpati, K. S. More, T. Tripura, R. Nayek, S. Chakraborty', 'MAntRA: A framework for model agnostic reliability analysis', 'Reliability Engineering & System Safety, vol. 235, 109233', '10.1016/j.ress.2023.109233'],
+    [2023, 'journal', 'Y. C. Mathpati, K. S. More, T. Tripura, R. Nayek, S. Chakraborty', 'MAntRA: A framework for model agnostic reliability analysis', 'Reliability Engineering & System Safety, vol. 235, 109233', '10.1016/j.ress.2023.109233', ['csccm-iitd/MAntRA']],
     [2023, 'journal', 'K. S. More, T. Tripura, R. Nayek, S. Chakraborty', 'A Bayesian framework for learning governing partial differential equation from data', 'Physica D: Nonlinear Phenomena, vol. 456, 133927', '10.1016/j.physd.2023.133927', ['Bayesian-Discovery-of-PDEs']],
     [2023, 'journal', 'T. Tripura, B. Hazra, S. Chakraborty', 'Novel Girsanov correction based Milstein schemes for analysis of nonlinear multi-dimensional stochastic dynamical systems', 'Applied Mathematical Modelling, vol. 122, pp. 350–372', '10.1016/j.apm.2023.05.041'],
     [2023, 'chapter', 'T. Tripura, S. Garg, S. Chakraborty', 'Digital twin for dynamical systems', 'In Machine Learning in Modeling and Simulation: Methods and Applications, Springer, pp. 255–296', '10.1007/978-3-031-36644-4_7'],
@@ -243,7 +243,7 @@ document.getElementById('yr').textContent = new Date().getFullYear();
   const GH = '<svg class="gh" viewBox="0 0 16 16" width="13" height="13" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>';
   function ext(p) {
     const doi = p.d ? '<span class="doi">DOI: <a href="https://doi.org/' + p.d + '" target="_blank" rel="noopener">' + esc(p.d) + '</a></span>' : '';
-    const code = p.c.length ? '<span class="code">' + GH + 'Code: ' + p.c.map(function (r) { return '<a href="https://github.com/TapasTripura/' + r + '" target="_blank" rel="noopener">' + esc(r.split('---')[0]) + '</a>'; }).join(', ') + '</span>' : '';
+    const code = p.c.length ? '<span class="code">' + GH + 'Code: ' + p.c.map(function (r) { return '<a href="https://github.com/' + (r.indexOf('/') < 0 ? 'TapasTripura/' : '') + r + '" target="_blank" rel="noopener">' + esc(r.split('/').pop().split('---')[0]) + '</a>'; }).join(', ') + '</span>' : '';
     return (doi || code) ? '<span class="ext">' + doi + code + '</span>' : '';
   }
 

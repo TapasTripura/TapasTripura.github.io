@@ -67,8 +67,8 @@ document.getElementById('yr').textContent = new Date().getFullYear();
   const off = document.createElement('canvas'); off.width = N; off.height = NS;
   const octx = off.getContext('2d');
   const PAL = {
-    light: ['#F3F6F6', '#BFE0E2', '#4FA3AB', '#0E6E78', '#243A8C'],
-    dark:  ['#0F181C', '#16444D', '#2F8C95', '#6AD0D4', '#E8F8F9']
+    light: ['#F3F5F7', '#CFD6DD', '#8B9AAB', '#3F5166', '#1B2430'],
+    dark:  ['#12161B', '#1E2A38', '#3F5873', '#A9B8C9', '#F2F5F8']
   };
   const hex = h => [1, 3, 5].map(i => parseInt(h.slice(i, i + 2), 16));
   const ramp = (stops, u) => {
@@ -81,7 +81,7 @@ document.getElementById('yr').textContent = new Date().getFullYear();
   function theme() {
     const s = getComputedStyle(document.documentElement);
     const g = n => s.getPropertyValue(n).trim();
-    const dark = s.colorScheme.indexOf('dark') !== -1 || g('--paper').toLowerCase() === '#0f181c';
+    const dark = s.colorScheme.indexOf('dark') !== -1 || g('--paper').toLowerCase() === '#12161B';
     C = { ink: g('--ink'), muted: g('--muted'), paper: g('--paper'), surface: g('--surface'), indigo: g('--indigo'), line: g('--line') };
     const stops = dark ? PAL.dark : PAL.light;
     const img = octx.createImageData(N, NS);

@@ -360,25 +360,10 @@ document.getElementById('yr').textContent = new Date().getFullYear();
 
 /* ---------- Institute icons ---------- */
 (function () {
-  const L = window.LOGOS; if (!L) return;
-  const rules = [
-    ['cornell', /Cornell University/],
-    ['iitd', /IIT Delhi|Indian Institute of Technology Delhi/],
-    ['iitg', /IIT Guwahati|Indian Institute of Technology Guwahati/],
-    ['nerist', /NERIST|North Eastern Regional Institute/],
-    ['ucd', /University College Dublin/],
-    ['iitbhu', /IIT BHU|IIT (BHU)/],
-    ['tcd', /Trinity College Dublin/]
-  ];
+  const cols = [5.5, 9.8, 14.2, 18.5].map(function (c) { return '<rect x="' + (c - 0.9) + '" y="11.6" width="1.8" height="6.8"/><rect x="' + (c - 1.5) + '" y="10.5" width="3" height="1.2" rx=".4"/><rect x="' + (c - 1.5) + '" y="18.4" width="3" height="1"/>'; }).join('');
+  const ICON = '<svg class="inst" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M12 2.2L22 7.8H2z"/><path d="M12 4.5L17.9 7.2H6.1z" fill="none" stroke="var(--paper)" stroke-width=".7" stroke-linejoin="round"/><rect x="3" y="8.3" width="18" height="1.6" rx=".3"/>' + cols + '<rect x="3" y="19.8" width="18" height="1.3" rx=".3"/><rect x="2" y="21.3" width="20" height="1.5" rx=".3"/></svg>';
+  const isInst = /University|Institute|IIT|NERIST|College/;
   document.querySelectorAll('.timeline .where, .groups .role, dl.facts dd, #contact .body > p:not(.mail), .map-cap').forEach(function (el) {
-    const txt = el.textContent;
-    for (let i = 0; i < rules.length; i++) {
-      if (rules[i][1].test(txt) && L[rules[i][0]]) {
-        const im = document.createElement('img');
-        im.className = 'inst'; im.src = L[rules[i][0]]; im.alt = ''; im.width = 20; im.height = 20; im.decoding = 'async';
-        el.insertBefore(im, el.firstChild);
-        break;
-      }
-    }
+    if (isInst.test(el.textContent)) el.insertAdjacentHTML('afterbegin', ICON);
   });
 })();

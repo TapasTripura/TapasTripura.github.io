@@ -247,6 +247,44 @@ document.getElementById('yr').textContent = new Date().getFullYear();
     return (doi || code) ? '<span class="ext">' + doi + code + '</span>' : '';
   }
 
+  const ABBR = [['Computer Methods in Applied Mechanics and Engineering', 'CMAME'], ['Computer Physics Communications', 'CPC'], ['Mechanical Systems and Signal Processing', 'MSSP'], ['Probabilistic Engineering Mechanics', 'PEM'], ['Control Engineering Practice', 'CEP'], ['Engineering Applications of Artificial Intelligence', 'EAAI'], ['Computers & Structures', 'C&S'], ['Computer Methods and Programs in Biomedicine', 'CMPB'], ['Process Safety and Environmental Protection', 'PSEP'], ['Reliability Engineering & System Safety', 'RESS'], ['Physica D', 'Physica D'], ['Applied Mathematical Modelling', 'AMM'], ['Journal of Engineering Mechanics', 'JEM'], ['Structural Health Monitoring', 'SHM'], ['Journal of Vibration and Acoustics', 'JVA'], ['Journal of Sound and Vibration', 'JSV'], ['Applied Mechanics Reviews', 'AMR']];
+  function abbr(p) {
+    if (p.t === 'chapter') return 'Springer';
+    if (p.t === 'submitted') return 'Submitted';
+    for (let i = 0; i < ABBR.length; i++) if (p.v.indexOf(ABBR[i][0]) === 0) return ABBR[i][1];
+    const i = p.v.lastIndexOf('('), j = p.v.indexOf(' ', i);
+    return (i >= 0 && j > i) ? p.v.slice(i + 1, j) : p.v.split(' ')[0];
+  }
+  function kind(p) {
+    const s = p.ti.toLowerCase();
+    if (/digital twin/.test(s)) return 'twin';
+    if (/reliab/.test(s)) return 'reliab';
+    if (/reinforcement|control|predictive/.test(s)) return 'control';
+    if (/damage|modal|eigen|structural health|canonical correlation/.test(s)) return 'shm';
+    if (/operator|wavelet|wno/.test(s)) return 'operator';
+    if (/discover|lagrangian|governing|identif|sparse/.test(s)) return 'disc';
+    if (/stochastic|milstein|maruyama|taylor|girsanov/.test(s)) return 'stoch';
+    return 'gen';
+  }
+  function pts(f, a, b, n) { let d = ''; for (let i = 0; i <= n; i++) { const x = a + i * (b - a) / n; d += (i ? 'L' : 'M') + x.toFixed(1) + ' ' + f(x).toFixed(1); } return d; }
+  function walk(seed) { let s = seed, y = 50, d = 'M8 50'; for (let i = 1; i <= 28; i++) { s = (s * 16807) % 2147483647; y += (s / 2147483647 - 0.5) * 18; y = Math.max(18, Math.min(82, y)); d += 'L' + (8 + i * 3).toFixed(1) + ' ' + y.toFixed(1); } return d; }
+  const bell = function (x) { return 80 - 56 * Math.exp(-Math.pow((x - 42) / 17, 2)); };
+  const GL = {
+    operator: '<path d="M8 50H92" class="gl faint"/><path d="' + pts(function (x) { return 50 - 28 * Math.exp(-Math.pow((x - 50) / 15, 2)) * Math.cos((x - 50) * 0.62); }, 8, 92, 90) + '" class="ga2"/>',
+    disc: '<path d="M8 82H92" class="gl faint"/>' + [[14, 0.9], [26, 0], [38, 0.6], [50, 0], [62, 0.3], [74, 0], [86, 0.12]].map(function (s) { const y = 82 - 56 * s[1]; return '<path d="M' + s[0] + ' 82V' + y + '" class="gl"/><circle cx="' + s[0] + '" cy="' + y + '" r="3.2" class="ga"/>'; }).join(''),
+    control: '<rect x="10" y="18" width="32" height="22" rx="4" class="gl"/><rect x="58" y="18" width="32" height="22" rx="4" class="ga2"/><path d="M42 29H58M54 25L58 29L54 33" class="gl"/><path d="M90 29H96V72H26V40M22 36L26 40L30 36" class="gl"/>',
+    twin: '<rect x="10" y="30" width="32" height="32" rx="4" class="gl"/><rect x="58" y="30" width="32" height="32" rx="4" class="gl dash"/><path d="M45 46H55M51 42L55 46L51 50M49 42L45 46L49 50" class="ga2"/><circle cx="26" cy="46" r="4" class="ga"/>',
+    shm: '<path d="M28 18V82M72 18V82M28 34H72M28 54H72M28 74H72" class="gl"/><path d="M28 38l6 4-6 4 6 4-6 4" class="ga2"/>',
+    stoch: '<path d="' + walk(7) + '" class="gl faint"/><path d="' + walk(11) + '" class="gl faint"/><path d="' + walk(23) + '" class="ga2"/>',
+    reliab: '<path d="M8 80H92" class="gl faint"/><path d="' + pts(bell, 8, 92, 90) + '" class="gl"/><path d="M62 80' + pts(bell, 62, 92, 30).replace('M', 'L') + 'L92 80Z" class="gf"/><path d="M62 24V80" class="ga2 dash"/>',
+    gen: [20, 50, 80].map(function (y) { return [20, 50, 80].map(function (x) { const c = x === 50 && y === 50; return '<circle cx="' + x + '" cy="' + y + '" r="' + (c ? 5 : 3.2) + '" class="' + (c ? 'ga' : 'gd') + '"/>'; }).join(''); }).join('')
+  };
+  function thumb(p) {
+    const t = (window.THUMBS || {})[p.d || p.ti];
+    if (t) return '<a class="thumb real" href="' + t.f + '" target="_blank" rel="noopener" title="Open the figure full size"><img src="' + t.s + '" alt="' + esc('Main figure of the paper: ' + p.ti) + '" loading="lazy" decoding="async"></a>';
+    return '<span class="thumb tile" aria-hidden="true"><svg viewBox="0 0 100 100" focusable="false">' + GL[kind(p)] + '</svg><span class="tl">' + esc(abbr(p) + (typeof p.y === 'number' ? ' ' + p.y : '')) + '</span></span>';
+  }
+
   function render() {
     const term = q.value.trim().toLowerCase();
     const rows = P.filter(p => (type === 'all' || p.t === type) &&
@@ -256,7 +294,7 @@ document.getElementById('yr').textContent = new Date().getFullYear();
     const keys = [...groups.keys()].sort((a, b) => (a === 'Submitted') ? -1 : (b === 'Submitted') ? 1 : b - a);
     list.innerHTML = keys.map(k => '<h3>' + k + '</h3><ol>' + groups.get(k).map(p => {
       const title = p.d ? '<a href="https://doi.org/' + p.d + '" target="_blank" rel="noopener">' + esc(p.ti) + '</a>' : esc(p.ti);
-      return '<li><span class="ti">' + title + '</span><span class="au">' + authors(p.a) + '</span><span class="ve">' + esc(p.v) + '</span>' + ext(p) + '</li>';
+      return '<li class="pub">' + thumb(p) + '<div class="pb"><span class="ti">' + title + '</span><span class="au">' + authors(p.a) + '</span><span class="ve">' + esc(p.v) + '</span>' + ext(p) + '</div></li>';
     }).join('') + '</ol>').join('') || '<p class="empty">No publications match. Clear the search or choose another type.</p>';
     const n = rows.length;
     count.textContent = n + ' ' + (type === 'all' ? 'publication' : tl[type]) + (n === 1 ? '' : 's') + (term ? ' matching “' + q.value.trim() + '”' : '');

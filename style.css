@@ -259,3 +259,21 @@ footer.foot .wrap { display: flex; flex-wrap: wrap; gap: 10px 28px; justify-cont
 .pubs .chip-code:hover, .pubs .chip-code:focus-visible { background: var(--indigo); border-color: var(--indigo); color: var(--paper); }
 .pubs .chip:hover .k, .pubs .chip:focus-visible .k { color: inherit; }
 @media (prefers-reduced-motion: reduce) { .pubs .chip { transition: none; } .pubs .chip:hover, .pubs .chip:focus-visible { transform: none; } }
+
+/* Publication thumbnails */
+.pubs li.pub { display: grid; grid-template-columns: 168px minmax(0, 1fr); gap: 22px; align-items: start; }
+.pubs .thumb { display: block; width: 100%; aspect-ratio: 1; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; position: relative; }
+.pubs .thumb.real { background: #fff; padding: 6px; cursor: zoom-in; transition: border-color .18s ease, box-shadow .18s ease; }
+.pubs .thumb.real:hover, .pubs .thumb.real:focus-visible { border-color: var(--teal); box-shadow: 0 3px 12px color-mix(in srgb, var(--ink) 16%, transparent); }
+.pubs .thumb.real img { display: block; width: 100%; height: 100%; object-fit: contain; }
+.pubs .thumb.tile { background: var(--surface); color: var(--muted); }
+.pubs .thumb.tile svg { display: block; width: 66%; margin: 12% auto 0; }
+.pubs .thumb.tile .tl { position: absolute; left: 10px; right: 10px; bottom: 9px; font-family: var(--sans); font-size: 0.6875rem; letter-spacing: 0.02em; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.pubs .thumb svg .gl { fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+.pubs .thumb svg .faint { opacity: 0.4; }
+.pubs .thumb svg .dash { stroke-dasharray: 4 4; }
+.pubs .thumb svg .ga2 { fill: none; stroke: var(--teal); stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+.pubs .thumb svg .ga { fill: var(--teal); stroke: none; }
+.pubs .thumb svg .gd { fill: currentColor; opacity: 0.45; stroke: none; }
+.pubs .thumb svg .gf { fill: var(--teal); opacity: 0.28; stroke: none; }
+@media (max-width: 640px) { .pubs li.pub { grid-template-columns: 92px minmax(0, 1fr); gap: 14px; } .pubs .thumb.tile .tl { display: none; } .pubs .thumb.tile svg { width: 74%; margin-top: 13%; } }

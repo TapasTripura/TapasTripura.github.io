@@ -79,7 +79,7 @@ document.getElementById('yr').textContent = new Date().getFullYear();
 
   const list = document.getElementById('list'), count = document.getElementById('count');
   const q = document.getElementById('q'), seg = document.getElementById('seg');
-  if (!list) return;
+  const hasList = !!list;
   let type = 'all';
   const esc = s => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
   const authors = s => esc(s).replace(/T\. Tripura/g, '<strong>T. Tripura</strong>');
@@ -153,21 +153,41 @@ document.getElementById('yr').textContent = new Date().getFullYear();
     const n = rows.length;
     count.textContent = n + ' ' + (type === 'all' ? 'publication' : tl[type]) + (n === 1 ? '' : 's') + (term ? ' matching “' + q.value.trim() + '”' : '');
   }
-  list.addEventListener('click', function (e) {
+  if (hasList) list.addEventListener('click', function (e) {
     const b = e.target.closest('.chip-abs'); if (!b) return;
     const box = document.getElementById(b.getAttribute('aria-controls'));
     const open = b.getAttribute('aria-expanded') !== 'true';
     b.setAttribute('aria-expanded', String(open));
     box.classList.toggle('open', open);
   });
-  seg.addEventListener('click', function (e) {
+  if (hasList) seg.addEventListener('click', function (e) {
     const b = e.target.closest('button'); if (!b) return;
     type = b.dataset.t;
     seg.querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', String(x === b)));
     render();
   });
-  q.addEventListener('input', render);
-  render();
+  if (hasList) q.addEventListener('input', render);
+  if (hasList) render();
+
+  const featEl = document.getElementById('featured-list');
+  if (featEl) {
+    const FEAT = ['10.1016/j.cma.2022.115783', '10.1016/j.cpc.2025.109882', '10.1016/j.ymssp.2022.109939', '10.1016/j.ymssp.2024.111737', '10.1016/j.ymssp.2026.114226'];
+    const load = function (src) { return new Promise(function (res) { const s = document.createElement('script'); s.src = src; s.onload = res; s.onerror = res; document.head.appendChild(s); }); };
+    Promise.all([load('abstracts.js'), load('thumbs.js')]).then(function () {
+      featEl.innerHTML = FEAT.map(function (d) {
+        const p = P.find(function (x) { return x.d === d; }); if (!p) return '';
+        const title = '<a href="https://doi.org/' + p.d + '" target="_blank" rel="noopener">' + esc(p.ti) + '</a>';
+        return '<li class="pub">' + thumb(p) + '<div class="pb"><span class="ti">' + title + '</span><span class="au">' + authors(p.a) + '</span><span class="ve">' + esc(p.v) + '</span>' + ext(p) + panel(p) + '</div></li>';
+      }).join('');
+    });
+    featEl.addEventListener('click', function (e) {
+      const b = e.target.closest('.chip-abs'); if (!b) return;
+      const box = document.getElementById(b.getAttribute('aria-controls'));
+      const open = b.getAttribute('aria-expanded') !== 'true';
+      b.setAttribute('aria-expanded', String(open));
+      box.classList.toggle('open', open);
+    });
+  }
 })();
 
 /* ---------- Framework gallery ---------- */

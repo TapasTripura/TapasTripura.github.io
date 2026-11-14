@@ -1,26 +1,26 @@
 :root {
-  --paper: #F3F6F6;
+  --paper: #F3F5F7;
   --surface: #FFFFFF;
-  --ink: #14232B;
-  --muted: #55656D;
-  --line: #D5DEE0;
-  --teal: #0E6E78;
+  --ink: #1B2430;
+  --muted: #5B6672;
+  --line: #D9DEE3;
+  --teal: #3F5166;
   --teal-ink: #FFFFFF;
-  --indigo: #3A48A6;
+  --indigo: #5F6F80;
   --serif: "Newsreader", Georgia, "Times New Roman", serif;
   --sans: "Instrument Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   color-scheme: light;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --paper: #0F181C; --surface: #152227; --ink: #E3ECEE; --muted: #96A8AF;
-    --line: #26363C; --teal: #5CC4C9; --teal-ink: #0B1519; --indigo: #8E9BF0;
+    --paper: #12161B; --surface: #181E25; --ink: #E6EAEE; --muted: #9AA5B1;
+    --line: #29313A; --teal: #A9B8C9; --teal-ink: #12161B; --indigo: #7F90A3;
     color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
-  --paper: #0F181C; --surface: #152227; --ink: #E3ECEE; --muted: #96A8AF;
-  --line: #26363C; --teal: #5CC4C9; --teal-ink: #0B1519; --indigo: #8E9BF0;
+  --paper: #12161B; --surface: #181E25; --ink: #E6EAEE; --muted: #9AA5B1;
+  --line: #29313A; --teal: #A9B8C9; --teal-ink: #12161B; --indigo: #7F90A3;
   color-scheme: dark;
 }
 

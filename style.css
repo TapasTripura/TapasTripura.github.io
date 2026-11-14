@@ -313,3 +313,9 @@ footer.foot .wrap { display: flex; flex-wrap: wrap; gap: 10px 28px; justify-cont
 .bio-text p { margin: 0 0 1em; font-size: 1.125rem; line-height: 1.6; }
 .bio-text p:last-child { margin-bottom: 0; }
 @media (max-width: 700px) { .bio-grid { grid-template-columns: 1fr; gap: 20px; } .bio-grid .portrait { width: 128px; height: auto; } }
+
+/* Featured publications on Home */
+#featured .body { max-width: 52rem; }
+#featured-list { list-style: none; margin: 0; padding: 0; }
+#featured-list li.pub:first-child { padding-top: 0; }
+.feat-more { margin: 20px 0 0; font-family: var(--sans); font-size: 0.9375rem; }

@@ -280,3 +280,17 @@ footer.foot .wrap { display: flex; flex-wrap: wrap; gap: 10px 28px; justify-cont
 
 /* Institute icons */
 .inst { display: inline-block; flex: none; width: 1.3em; height: 1.3em; margin-right: 0.5em; vertical-align: -0.3em; fill: var(--teal); }
+
+/* Abstract chip and expandable panel */
+.pubs .chip-abs { cursor: pointer; border-color: color-mix(in srgb, var(--ink) 35%, var(--line)); }
+.pubs .chip-abs .k { color: var(--ink); }
+.pubs .chip-abs .cv { flex: none; transition: transform .2s ease; }
+.pubs .chip-abs[aria-expanded="true"] .cv { transform: rotate(180deg); }
+.pubs .chip-abs:hover, .pubs .chip-abs:focus-visible, .pubs .chip-abs[aria-expanded="true"] { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+.pubs .chip-abs:hover .k, .pubs .chip-abs:focus-visible .k, .pubs .chip-abs[aria-expanded="true"] .k { color: inherit; }
+.pubs .abs { display: grid; grid-template-rows: 0fr; visibility: hidden; transition: grid-template-rows .28s ease, visibility 0s linear .28s; }
+.pubs .abs.open { grid-template-rows: 1fr; visibility: visible; transition: grid-template-rows .28s ease, visibility 0s; }
+.pubs .abs-in { overflow: hidden; min-height: 0; }
+.pubs .abs-in p { margin: 12px 0 0; padding: 12px 14px; background: var(--surface); border-left: 3px solid var(--teal); border-radius: 0 8px 8px 0; font-size: 0.9375rem; line-height: 1.6; }
+.pubs .abs-more { display: inline-block; margin-top: 8px; font-family: var(--sans); font-size: 0.8125rem; }
+@media (prefers-reduced-motion: reduce) { .pubs .abs, .pubs .abs.open, .pubs .chip-abs .cv { transition: none; } }

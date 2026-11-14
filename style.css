@@ -294,3 +294,12 @@ footer.foot .wrap { display: flex; flex-wrap: wrap; gap: 10px 28px; justify-cont
 .pubs .abs-in p { margin: 12px 0 0; padding: 12px 14px; background: var(--surface); border-left: 3px solid var(--teal); border-radius: 0 8px 8px 0; font-size: 0.9375rem; line-height: 1.6; }
 .pubs .abs-more { display: inline-block; margin-top: 8px; font-family: var(--sans); font-size: 0.8125rem; }
 @media (prefers-reduced-motion: reduce) { .pubs .abs, .pubs .abs.open, .pubs .chip-abs .cv { transition: none; } }
+
+/* Chips outside the publication list (thesis link) */
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+.chips .chip { display: inline-flex; align-items: center; gap: 6px; padding: 5px 12px; border: 1px solid color-mix(in srgb, var(--teal) 45%, var(--line)); border-radius: 999px; background: var(--surface); color: var(--ink); font-family: var(--sans); font-size: 0.8125rem; line-height: 1.3; text-decoration: none; transition: background-color .18s ease, border-color .18s ease, color .18s ease, transform .18s ease, box-shadow .18s ease; }
+.chips .chip .k { font-weight: 600; color: var(--teal); }
+.chips .chip .ic { flex: none; }
+.chips .chip:hover, .chips .chip:focus-visible { background: var(--teal); border-color: var(--teal); color: var(--teal-ink); transform: translateY(-1px); box-shadow: 0 3px 10px color-mix(in srgb, var(--ink) 16%, transparent); }
+.chips .chip:hover .k, .chips .chip:focus-visible .k { color: inherit; }
+@media (prefers-reduced-motion: reduce) { .chips .chip { transition: none; } .chips .chip:hover, .chips .chip:focus-visible { transform: none; } }

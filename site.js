@@ -244,7 +244,9 @@ document.getElementById('yr').textContent = new Date().getFullYear();
   function ext(p) {
     const doi = p.d ? '<a class="chip chip-doi" href="https://doi.org/' + p.d + '" target="_blank" rel="noopener" title="Open the paper"><span class="k">DOI</span>' + esc(p.d) + '</a>' : '';
     const code = p.c.map(function (r) { return '<a class="chip chip-code" href="https://github.com/' + (r.indexOf('/') < 0 ? 'TapasTripura/' : '') + r + '" target="_blank" rel="noopener" title="Open the code on GitHub">' + GH + '<span class="k">Code</span>' + esc(r.split('/').pop().split('---')[0]) + '</a>'; }).join('');
-    return (doi || code) ? '<span class="ext">' + doi + code + '</span>' : '';
+    const ab = (window.ABSTRACTS || {})[p.d || p.ti];
+    const abs = ab ? '<button type="button" class="chip chip-abs" aria-expanded="false" aria-controls="abs-' + P.indexOf(p) + '" title="Show the abstract"><span class="k">ABS</span><svg class="cv" viewBox="0 0 12 12" width="10" height="10" aria-hidden="true"><path d="M2.5 4.5L6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>' : '';
+    return (doi || code || abs) ? '<span class="ext">' + doi + code + abs + '</span>' : '';
   }
 
   const ABBR = [['Computer Methods in Applied Mechanics and Engineering', 'CMAME'], ['Computer Physics Communications', 'CPC'], ['Mechanical Systems and Signal Processing', 'MSSP'], ['Probabilistic Engineering Mechanics', 'PEM'], ['Control Engineering Practice', 'CEP'], ['Engineering Applications of Artificial Intelligence', 'EAAI'], ['Computers & Structures', 'C&S'], ['Computer Methods and Programs in Biomedicine', 'CMPB'], ['Process Safety and Environmental Protection', 'PSEP'], ['Reliability Engineering & System Safety', 'RESS'], ['Physica D', 'Physica D'], ['Applied Mathematical Modelling', 'AMM'], ['Journal of Engineering Mechanics', 'JEM'], ['Structural Health Monitoring', 'SHM'], ['Journal of Vibration and Acoustics', 'JVA'], ['Journal of Sound and Vibration', 'JSV'], ['Applied Mechanics Reviews', 'AMR']];
@@ -285,6 +287,13 @@ document.getElementById('yr').textContent = new Date().getFullYear();
     return '<span class="thumb tile" aria-hidden="true"><svg viewBox="0 0 100 100" focusable="false">' + GL[kind(p)] + '</svg><span class="tl">' + esc(abbr(p) + (typeof p.y === 'number' ? ' ' + p.y : '')) + '</span></span>';
   }
 
+  function panel(p) {
+    const ab = (window.ABSTRACTS || {})[p.d || p.ti];
+    if (!ab) return '';
+    const more = (ab.c && p.d) ? '<a class="abs-more" href="https://doi.org/' + p.d + '" target="_blank" rel="noopener">Read the full abstract</a>' : '';
+    return '<div class="abs" id="abs-' + P.indexOf(p) + '" role="region" aria-label="Abstract"><div class="abs-in"><p>' + esc(ab.t) + '</p>' + more + '</div></div>';
+  }
+
   function render() {
     const term = q.value.trim().toLowerCase();
     const rows = P.filter(p => (type === 'all' || p.t === type) &&
@@ -294,11 +303,18 @@ document.getElementById('yr').textContent = new Date().getFullYear();
     const keys = [...groups.keys()].sort((a, b) => (a === 'Submitted') ? -1 : (b === 'Submitted') ? 1 : b - a);
     list.innerHTML = keys.map(k => '<h3>' + k + '</h3><ol>' + groups.get(k).map(p => {
       const title = p.d ? '<a href="https://doi.org/' + p.d + '" target="_blank" rel="noopener">' + esc(p.ti) + '</a>' : esc(p.ti);
-      return '<li class="pub">' + thumb(p) + '<div class="pb"><span class="ti">' + title + '</span><span class="au">' + authors(p.a) + '</span><span class="ve">' + esc(p.v) + '</span>' + ext(p) + '</div></li>';
+      return '<li class="pub">' + thumb(p) + '<div class="pb"><span class="ti">' + title + '</span><span class="au">' + authors(p.a) + '</span><span class="ve">' + esc(p.v) + '</span>' + ext(p) + panel(p) + '</div></li>';
     }).join('') + '</ol>').join('') || '<p class="empty">No publications match. Clear the search or choose another type.</p>';
     const n = rows.length;
     count.textContent = n + ' ' + (type === 'all' ? 'publication' : tl[type]) + (n === 1 ? '' : 's') + (term ? ' matching “' + q.value.trim() + '”' : '');
   }
+  list.addEventListener('click', function (e) {
+    const b = e.target.closest('.chip-abs'); if (!b) return;
+    const box = document.getElementById(b.getAttribute('aria-controls'));
+    const open = b.getAttribute('aria-expanded') !== 'true';
+    b.setAttribute('aria-expanded', String(open));
+    box.classList.toggle('open', open);
+  });
   seg.addEventListener('click', function (e) {
     const b = e.target.closest('button'); if (!b) return;
     type = b.dataset.t;

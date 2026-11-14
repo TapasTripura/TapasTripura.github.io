@@ -211,7 +211,6 @@ footer.foot .wrap { display: flex; flex-wrap: wrap; gap: 10px 28px; justify-cont
 .foot-links { display: flex; flex-wrap: wrap; gap: 6px 18px; list-style: none; margin: 0; padding: 0; }
 @media (max-width: 860px) { .sec > h1 { position: static; } .sec.first { padding-top: 36px; } }
 @media (max-width: 640px) { .explore li { grid-template-columns: 1fr; gap: 2px; } }
-.pubs .doi { font-family: var(--sans); font-size: 0.8125rem; color: var(--muted); display: block; margin-top: 2px; overflow-wrap: anywhere; }
 
 /* GitHub mark on Code labels */
 .links .lab .gh { width: 14px; height: 14px; margin-right: 6px; vertical-align: -2px; fill: currentColor; }
@@ -245,6 +244,18 @@ footer.foot .wrap { display: flex; flex-wrap: wrap; gap: 10px 28px; justify-cont
 .map-cap { margin: 10px 0 0; font-family: var(--sans); font-size: 0.8125rem; color: var(--muted); }
 @media (max-width: 640px) { .map iframe { height: 260px; } }
 @media print { .map iframe { display: none; } }
-.pubs .ext { display: flex; flex-wrap: wrap; gap: 2px 20px; margin-top: 2px; }
-.pubs .code { font-family: var(--sans); font-size: 0.8125rem; color: var(--muted); }
-.pubs .code .gh { width: 13px; height: 13px; margin-right: 5px; vertical-align: -2px; fill: currentColor; }
+
+/* Publication DOI and code chips */
+.pubs .ext { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+.pubs .chip { display: inline-flex; align-items: center; gap: 6px; max-width: 100%; padding: 5px 12px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); color: var(--ink); font-family: var(--sans); font-size: 0.8125rem; line-height: 1.3; text-decoration: none; overflow-wrap: anywhere; transition: background-color .18s ease, border-color .18s ease, color .18s ease, transform .18s ease, box-shadow .18s ease; }
+.pubs .chip .k { font-weight: 600; }
+.pubs .chip .gh { width: 14px; height: 14px; flex: none; fill: currentColor; }
+.pubs .chip-doi { border-color: color-mix(in srgb, var(--teal) 45%, var(--line)); }
+.pubs .chip-doi .k { color: var(--teal); }
+.pubs .chip-code { border-color: color-mix(in srgb, var(--indigo) 45%, var(--line)); }
+.pubs .chip-code .k { color: var(--indigo); }
+.pubs .chip:hover, .pubs .chip:focus-visible { transform: translateY(-1px); box-shadow: 0 3px 10px color-mix(in srgb, var(--ink) 16%, transparent); }
+.pubs .chip-doi:hover, .pubs .chip-doi:focus-visible { background: var(--teal); border-color: var(--teal); color: var(--teal-ink); }
+.pubs .chip-code:hover, .pubs .chip-code:focus-visible { background: var(--indigo); border-color: var(--indigo); color: var(--paper); }
+.pubs .chip:hover .k, .pubs .chip:focus-visible .k { color: inherit; }
+@media (prefers-reduced-motion: reduce) { .pubs .chip { transition: none; } .pubs .chip:hover, .pubs .chip:focus-visible { transform: none; } }

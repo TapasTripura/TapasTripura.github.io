@@ -238,3 +238,10 @@ footer.foot .wrap { display: flex; flex-wrap: wrap; gap: 10px 28px; justify-cont
 .play { font: inherit; min-width: 4.8em; padding: 6px 12px; border-radius: 999px; border: 1px solid var(--line); background: transparent; color: var(--ink); cursor: pointer; }
 .play:hover { border-color: var(--teal); }
 @media (max-width: 640px) { .gal-ctrl { flex-wrap: wrap; } .dots { order: 5; flex-basis: 100%; } .gallery { padding-top: 44px; } }
+
+/* Map */
+.map { margin-top: 28px; }
+.map iframe { display: block; width: 100%; height: 320px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); }
+.map-cap { margin: 10px 0 0; font-family: var(--sans); font-size: 0.8125rem; color: var(--muted); }
+@media (max-width: 640px) { .map iframe { height: 260px; } }
+@media print { .map iframe { display: none; } }

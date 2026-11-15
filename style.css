@@ -394,3 +394,10 @@ table.data td.best { font-weight: 600; color: var(--teal); }
 .body .go { margin: 26px 0 0; }
 .body .crumb { margin: 0 0 14px; }
 .thrust-page .feat-more { margin: 20px 0 0; }
+
+/* FlowMARL results */
+.fig-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; align-items: start; margin: 12px 0 0; }
+.fig-grid .post-fig { margin: 0; }
+.item .post-fig { margin: 16px 0 0; }
+.fig-grid .post-fig { margin: 0; }
+@media (max-width: 640px) { .fig-grid { grid-template-columns: 1fr; } }

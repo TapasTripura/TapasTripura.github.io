@@ -33,70 +33,133 @@
 <section class="sec first" id="research" aria-labelledby="h-research">
       <h1 id="h-research">Research</h1>
       <div class="body">
-        <article class="row">
-          <h3>Discovering physics from data</h3>
-          <p>Governing equations are rarely known for real systems. This work learns them from sparse, noisy, output-only measurements by combining stochastic calculus, sparse learning and Bayesian inference. It covers stochastic differential equations driven by Gaussian white noise, partial and stochastic partial differential equations, and interpretable Lagrangians of deterministic and stochastically excited systems.</p>
-          <div class="links"><span class="lab">Papers</span><ul>
-            <li><a href="https://doi.org/10.1016/j.ymssp.2022.109939" target="_blank" rel="noopener">Stochastic systems (MSSP 2023)</a></li>
-            <li><a href="https://doi.org/10.1016/j.cpc.2023.108960" target="_blank" rel="noopener">Lagrangian discovery (CPC 2024)</a></li>
-            <li><a href="https://doi.org/10.1016/j.ymssp.2024.111737" target="_blank" rel="noopener">Bayesian Lagrangian (MSSP 2024)</a></li>
-            <li><a href="https://doi.org/10.1016/j.physd.2023.133927" target="_blank" rel="noopener">PDE discovery (Physica D 2023)</a></li>
-            <li><a href="https://doi.org/10.1016/j.cma.2023.116512" target="_blank" rel="noopener">Stochastic PDEs (CMAME 2024)</a></li>
-            <li><a href="https://doi.org/10.1016/j.ress.2023.109233" target="_blank" rel="noopener">MAntRA (RESS 2023)</a></li>
-          </ul></div>
-          <div class="links"><span class="lab"><svg class="gh" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>Code</span><ul>
-            <li><a href="https://github.com/TapasTripura/Learning-physics-from-output-only-data" target="_blank" rel="noopener">Output-only physics learning</a></li>
-            <li><a href="https://github.com/TapasTripura/Lagrange_Discovery_CPC" target="_blank" rel="noopener">Lagrangian discovery</a></li>
-            <li><a href="https://github.com/TapasTripura/Bayesian-Lagrangian-Discovery" target="_blank" rel="noopener">Bayesian Lagrangian</a></li>
-            <li><a href="https://github.com/TapasTripura/Lagrangian-Discovery-Stochastic-Systems" target="_blank" rel="noopener">Stochastic Lagrangian</a></li>
-            <li><a href="https://github.com/TapasTripura/Bayesian-Discovery-of-PDEs" target="_blank" rel="noopener">Bayesian PDE discovery</a></li>
-            <li><a href="https://github.com/TapasTripura/Stochastic-PDE-Discovery" target="_blank" rel="noopener">Stochastic PDE discovery</a></li>
-            <li><a href="https://github.com/csccm-iitd/MAntRA" target="_blank" rel="noopener">MAntRA</a></li>
-          </ul></div>
-        </article>
+        <p>My research is organized into three thrusts. Each one has methods and developments, and applications.</p>
+        <ol class="thrust-nav">
+          <li><a href="#thrust-1">Discovering physics from data</a></li>
+          <li><a href="#thrust-2">Neural operators for computational mechanics</a></li>
+          <li><a href="#thrust-3">Predictive control without known physics</a></li>
+        </ol>
+      </div>
+    </section>
 
-        <article class="row">
-          <h3>Predictive control without known physics</h3>
-          <p>MAP-TD is a deep reinforcement learning method for controlling systems whose physics is unknown. A parsimonious dynamics model, discovered offline with sparse Bayesian learning, predicts long-horizon trajectories inside the agent, which improves sample efficiency and control quality. Demonstrations include deflection control of a cantilever beam, wind-induced vibration control of a 76-degree-of-freedom structure, and active flow control around a circular cylinder, with zero-shot transfer to a square cylinder.</p>
-          <div class="links"><span class="lab">Papers</span><ul>
-            <li><a href="https://doi.org/10.1016/j.ymssp.2026.114226" target="_blank" rel="noopener">MAP-TD (MSSP 2026)</a></li>
-            <li><a href="https://doi.org/10.1016/j.probengmech.2023.103517" target="_blank" rel="noopener">Robust predictive control (PEM 2023)</a></li>
-          </ul></div>
-          <div class="links"><span class="lab"><svg class="gh" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>Code</span><ul>
-            <li><a href="https://github.com/csccm-iitd/MAPTD" target="_blank" rel="noopener">MAP-TD</a></li>
-            <li><a href="https://github.com/TapasTripura/RoMAn-Model-Predictive-Control" target="_blank" rel="noopener">RoMAn predictive control</a></li>
-          </ul></div>
-        </article>
+    <section class="sec" id="thrust-1" aria-labelledby="h-thrust-1">
+      <h2 id="h-thrust-1">Thrust I</h2>
+      <div class="body">
+        <h3 class="thrust-title">Discovering physics from data</h3>
+        <p class="thrust-lede">Governing equations are rarely known for real systems. This thrust learns them from sparse, noisy, output-only measurements by combining stochastic calculus, sparse learning and Bayesian inference.</p>
+        <h4 class="subhead">Methods and developments</h4>
+        <article class="item">
+            <h5>Stochastic systems discovery</h5>
+            <p>Discovers the interpretable drift and diffusion terms of nonlinear stochastic dynamical systems driven by Gaussian white noise, using sparse Bayesian learning on output-only measurements.</p>
+            <div class="links"><span class="lab">Paper</span><ul><li><a href="https://doi.org/10.1016/j.ymssp.2022.109939" target="_blank" rel="noopener">MSSP 2023</a></li></ul></div><div class="links"><span class="lab"><svg class="gh" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>Code</span><ul><li><a href="https://github.com/TapasTripura/Learning-physics-from-output-only-data" target="_blank" rel="noopener">Output-only physics learning</a></li></ul></div>
+          </article>
+        <article class="item">
+            <h5>Lagrangian discovery</h5>
+            <p>Discovers the interpretable Lagrangian of a dynamical system directly from data, with a Bayesian version that reports uncertainty on the identified terms.</p>
+            <div class="links"><span class="lab">Papers</span><ul><li><a href="https://doi.org/10.1016/j.cpc.2023.108960" target="_blank" rel="noopener">CPC 2024</a></li><li><a href="https://doi.org/10.1016/j.ymssp.2024.111737" target="_blank" rel="noopener">Bayesian version, MSSP 2024</a></li></ul></div><div class="links"><span class="lab"><svg class="gh" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>Code</span><ul><li><a href="https://github.com/TapasTripura/Lagrange_Discovery_CPC" target="_blank" rel="noopener">Lagrangian discovery</a></li><li><a href="https://github.com/TapasTripura/Bayesian-Lagrangian-Discovery" target="_blank" rel="noopener">Bayesian Lagrangian</a></li></ul></div>
+          </article>
+        <article class="item">
+            <h5>SPDE discovery</h5>
+            <p>Discovers stochastic partial differential equations from limited data using variational Bayes inference, building on a Bayesian framework for learning deterministic PDEs.</p>
+            <div class="links"><span class="lab">Papers</span><ul><li><a href="https://doi.org/10.1016/j.cma.2023.116512" target="_blank" rel="noopener">SPDEs, CMAME 2024</a></li><li><a href="https://doi.org/10.1016/j.physd.2023.133927" target="_blank" rel="noopener">PDEs, Physica D 2023</a></li></ul></div><div class="links"><span class="lab"><svg class="gh" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>Code</span><ul><li><a href="https://github.com/TapasTripura/Stochastic-PDE-Discovery" target="_blank" rel="noopener">Stochastic PDE discovery</a></li><li><a href="https://github.com/TapasTripura/Bayesian-Discovery-of-PDEs" target="_blank" rel="noopener">Bayesian PDE discovery</a></li></ul></div>
+          </article>
+        <article class="item">
+            <h5>Stochastic Lagrangian discovery</h5>
+            <p>Discovers the Lagrangian of stochastically excited dynamical systems, including the interpretable diffusion coefficient of the stochastic excitation.</p>
+            <div class="links"><span class="lab">Paper</span><ul><li><a href="https://doi.org/10.1016/j.cma.2024.117032" target="_blank" rel="noopener">CMAME 2024</a></li></ul></div><div class="links"><span class="lab"><svg class="gh" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>Code</span><ul><li><a href="https://github.com/TapasTripura/Lagrangian-Discovery-Stochastic-Systems" target="_blank" rel="noopener">Stochastic Lagrangian</a></li></ul></div>
+          </article>
+        <h4 class="subhead">Applications</h4>
+        <article class="item">
+            <h5>MAntRA</h5>
+            <p>A framework for model-agnostic reliability analysis: it discovers equations from data, generates the random excitation, and evaluates the reliability of a system.</p>
+            <div class="links"><span class="lab">Paper</span><ul><li><a href="https://doi.org/10.1016/j.ress.2023.109233" target="_blank" rel="noopener">RESS 2023</a></li></ul></div><div class="links"><span class="lab"><svg class="gh" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>Code</span><ul><li><a href="https://github.com/csccm-iitd/MAntRA" target="_blank" rel="noopener">MAntRA</a></li></ul></div>
+          </article>
+        <article class="item">
+            <h5>Predictive digital twin</h5>
+            <p>A probabilistic machine-learning digital twin of a dynamical system that stays interpretable while predicting its future states.</p>
+            <div class="links"><span class="lab">Paper</span><ul><li><a href="https://doi.org/10.1016/j.compstruc.2023.107008" target="_blank" rel="noopener">Computers &amp; Structures 2023</a></li></ul></div><div class="links"><span class="lab"><svg class="gh" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>Code</span><ul><li><a href="https://github.com/TapasTripura/Interpretable-DT" target="_blank" rel="noopener">Interpretable digital twin</a></li></ul></div>
+          </article>
+        <article class="item">
+            <h5>Robust model-agnostic predictive control</h5>
+            <p>Model predictive control of randomly excited dynamical systems, where the model used by the controller is identified from data.</p>
+            <div class="links"><span class="lab">Paper</span><ul><li><a href="https://doi.org/10.1016/j.probengmech.2023.103517" target="_blank" rel="noopener">PEM 2023</a></li></ul></div><div class="links"><span class="lab"><svg class="gh" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>Code</span><ul><li><a href="https://github.com/TapasTripura/RoMAn-Model-Predictive-Control" target="_blank" rel="noopener">RoMAn predictive control</a></li></ul></div>
+          </article>
+      </div>
+    </section>
 
-        <article class="row">
-          <h3>Neural operators for computational mechanics</h3>
-          <p>The Wavelet Neural Operator (WNO) blends the integral kernel of a neural operator with a wavelet transform. Wavelets are localized in both space and frequency, so WNO tracks fine patterns in the parametric dependence of PDE solutions. It has been extended to physics-informed training, multi-fidelity reliability analysis, tumor elastography and fault detection, and has been applied to forecasting 24 hours of Cyclone Amphan’s wind field from the previous 24 hours.</p>
-          <div class="links"><span class="lab">Papers</span><ul>
-            <li><a href="https://doi.org/10.1016/j.cma.2022.115783" target="_blank" rel="noopener">WNO (CMAME 2023)</a></li>
-            <li><a href="https://doi.org/10.1016/j.cma.2023.116546" target="_blank" rel="noopener">Physics-informed WNO (CMAME 2024)</a></li>
-            <li><a href="https://doi.org/10.1016/j.probengmech.2024.103672" target="_blank" rel="noopener">Multi-fidelity WNO (PEM 2024)</a></li>
-            <li><a href="https://doi.org/10.1016/j.cmpb.2023.107436" target="_blank" rel="noopener">Elastography (CMPB 2023)</a></li>
-            <li><a href="https://doi.org/10.1016/j.psep.2023.02.078" target="_blank" rel="noopener">Fault detection (PSEP 2023)</a></li>
-          </ul></div>
-          <div class="links"><span class="lab"><svg class="gh" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>Code</span><ul>
-            <li><a href="https://github.com/TapasTripura/WNO" target="_blank" rel="noopener">WNO</a></li>
-            <li><a href="https://github.com/TapasTripura/WNO-V3" target="_blank" rel="noopener">WNO v3</a></li>
-            <li><a href="https://github.com/TapasTripura/PIWNO---Physics-Informed-Wavelet-Neural-Operator-" target="_blank" rel="noopener">Physics-informed WNO</a></li>
-            <li><a href="https://github.com/TapasTripura/MFWNO" target="_blank" rel="noopener">Multi-fidelity WNO</a></li>
-            <li><a href="https://github.com/TapasTripura/WNO-elastography" target="_blank" rel="noopener">WNO elastography</a></li>
-          </ul></div>
-        </article>
+    <section class="sec" id="thrust-2" aria-labelledby="h-thrust-2">
+      <h2 id="h-thrust-2">Thrust II</h2>
+      <div class="body">
+        <h3 class="thrust-title">Neural operators for computational mechanics</h3>
+        <p class="thrust-lede">Neural operators learn the map from the parameters of a PDE to its solution. Wavelets are localized in both space and frequency, so wavelet neural operators track fine patterns in how solutions depend on the parameters.</p>
+        <h4 class="subhead">Methods and developments</h4>
+        <article class="item">
+            <h5>Wavelet neural operator (WNO)</h5>
+            <p>Blends the integral kernel of a neural operator with a wavelet transform to learn the solution operator of parametric PDEs.</p>
+            <div class="links"><span class="lab">Paper</span><ul><li><a href="https://doi.org/10.1016/j.cma.2022.115783" target="_blank" rel="noopener">CMAME 2023</a></li></ul></div><div class="links"><span class="lab"><svg class="gh" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>Code</span><ul><li><a href="https://github.com/TapasTripura/WNO" target="_blank" rel="noopener">WNO</a></li><li><a href="https://github.com/TapasTripura/WNO-V3" target="_blank" rel="noopener">WNO v3</a></li></ul></div>
+          </article>
+        <article class="item">
+            <h5>Physics-informed WNO (PIWNO)</h5>
+            <p>A physics-informed version of the WNO that learns parametric PDE solution operators without labelled data.</p>
+            <div class="links"><span class="lab">Paper</span><ul><li><a href="https://doi.org/10.1016/j.cma.2023.116546" target="_blank" rel="noopener">CMAME 2024</a></li></ul></div><div class="links"><span class="lab"><svg class="gh" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>Code</span><ul><li><a href="https://github.com/TapasTripura/PIWNO---Physics-Informed-Wavelet-Neural-Operator-" target="_blank" rel="noopener">Physics-informed WNO</a></li></ul></div>
+          </article>
+        <article class="item">
+            <h5>Multi-fidelity WNO (MFWNO)</h5>
+            <p>Combines a low-fidelity and a high-fidelity wavelet operator for fast time-independent and time-dependent reliability analysis.</p>
+            <div class="links"><span class="lab">Paper</span><ul><li><a href="https://doi.org/10.1016/j.probengmech.2024.103672" target="_blank" rel="noopener">PEM 2024</a></li></ul></div><div class="links"><span class="lab"><svg class="gh" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>Code</span><ul><li><a href="https://github.com/TapasTripura/MFWNO" target="_blank" rel="noopener">Multi-fidelity WNO</a></li></ul></div>
+          </article>
+        <article class="item">
+            <h5>Neural combinatorial WNO (NCWNO)</h5>
+            <p>A scientific foundation model that learns many PDEs at once without catastrophic forgetting and adapts to unseen parametric PDEs.</p>
+            <div class="chips"><a class="chip" href="foundation-model.html" title="Open the scientific foundation model page"><svg class="ic" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M4 1.5h5.5L13 5v9.5H4z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M9.5 1.5V5H13M6 8.5h5M6 11h5" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="k">Page</span>Scientific foundation model</a></div>
+            <div class="links"><span class="lab">Paper</span><ul><li><a href="https://doi.org/10.1016/j.cpc.2025.109882" target="_blank" rel="noopener">CPC 2025</a></li></ul></div><div class="links"><span class="lab"><svg class="gh" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>Code</span><ul><li><a href="https://github.com/TapasTripura/NCWNO" target="_blank" rel="noopener">NCWNO</a></li></ul></div>
+          </article>
+        <article class="item">
+            <h5>Flow-induced architecture search</h5>
+            <p>Uses a generative flow network to search for the best architecture of a wavelet neural operator, so the design no longer has to be tuned by hand.</p>
+            <div class="links"><span class="lab">Paper</span><ul><li><a href="https://doi.org/10.1016/j.cpc.2025.109755" target="_blank" rel="noopener">CPC 2025</a></li></ul></div><div class="links"><span class="lab"><svg class="gh" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>Code</span><ul><li><a href="https://github.com/csccm-iitd/FWNO" target="_blank" rel="noopener">FWNO</a></li></ul></div>
+          </article>
+        <h4 class="subhead">Applications</h4>
+        <article class="item">
+            <h5>Elastography</h5>
+            <p>Maps measured displacement fields to a stiffness map, to localize and quantify tumors.</p>
+            <div class="links"><span class="lab">Paper</span><ul><li><a href="https://doi.org/10.1016/j.cmpb.2023.107436" target="_blank" rel="noopener">CMPB 2023</a></li></ul></div><div class="links"><span class="lab"><svg class="gh" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>Code</span><ul><li><a href="https://github.com/TapasTripura/WNO-elastography" target="_blank" rel="noopener">WNO elastography</a></li></ul></div>
+          </article>
+        <article class="item">
+            <h5>Generative adversarial WNO</h5>
+            <p>A generative adversarial wavelet neural operator for fault detection and isolation in multivariate time-series data.</p>
+            <div class="links"><span class="lab">Paper</span><ul><li><a href="https://doi.org/10.1016/j.conengprac.2025.106548" target="_blank" rel="noopener">CEP 2025</a></li></ul></div>
+          </article>
+        <article class="item">
+            <h5>Prediction of offshore structures</h5>
+            <p>Deep neural operators that predict the real-time response of floating offshore structures under irregular waves.</p>
+            <div class="links"><span class="lab">Paper</span><ul><li><a href="https://doi.org/10.1016/j.compstruc.2023.107228" target="_blank" rel="noopener">Computers &amp; Structures 2024</a></li></ul></div>
+          </article>
+        <article class="item">
+            <h5>Fault detection</h5>
+            <p>Fault detection and isolation for dynamic processes using a probabilistic wavelet neural operator auto-encoder.</p>
+            <div class="links"><span class="lab">Paper</span><ul><li><a href="https://doi.org/10.1016/j.psep.2023.02.078" target="_blank" rel="noopener">PSEP 2023</a></li></ul></div>
+          </article>
+      </div>
+    </section>
 
-        <article class="row">
-          <h3>Predictive digital twins</h3>
-          <p>A probabilistic machine-learning framework for digital twins of dynamical systems that stay interpretable while predicting future states. It is also covered in the book chapter “Digital twin for dynamical systems” (Springer, 2023).</p>
-          <div class="links"><span class="lab">Papers</span><ul>
-            <li><a href="https://doi.org/10.1016/j.compstruc.2023.107008" target="_blank" rel="noopener">Predictive digital twin (C&amp;S 2023)</a></li>
-          </ul></div>
-          <div class="links"><span class="lab"><svg class="gh" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>Code</span><ul>
-            <li><a href="https://github.com/TapasTripura/Interpretable-DT" target="_blank" rel="noopener">Interpretable digital twin</a></li>
-          </ul></div>
-        </article>
+    <section class="sec" id="thrust-3" aria-labelledby="h-thrust-3">
+      <h2 id="h-thrust-3">Thrust III</h2>
+      <div class="body">
+        <h3 class="thrust-title">Predictive control without known physics</h3>
+        <p class="thrust-lede">Learning effective control policies for systems whose physics is unknown, with high sample efficiency, which matters most where trial-and-error interaction is infeasible.</p>
+        <h4 class="subhead">Methods and developments</h4>
+        <article class="item">
+            <h5>MAP-TD</h5>
+            <p>A deep reinforcement learning method for controlling systems whose physics is unknown. A parsimonious dynamics model, discovered offline with sparse Bayesian learning, predicts long-horizon trajectories inside the agent, which improves sample efficiency and control quality. Demonstrations include deflection control of a cantilever beam, wind-induced vibration control of a 76-degree-of-freedom structure, and active flow control around a circular cylinder, with zero-shot transfer to a square cylinder.</p>
+            <div class="links"><span class="lab">Paper</span><ul><li><a href="https://doi.org/10.1016/j.ymssp.2026.114226" target="_blank" rel="noopener">MSSP 2026</a></li></ul></div><div class="links"><span class="lab"><svg class="gh" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>Code</span><ul><li><a href="https://github.com/csccm-iitd/MAPTD" target="_blank" rel="noopener">MAP-TD</a></li></ul></div>
+          </article>
+        <h4 class="subhead">Applications</h4>
+        <article class="item">
+            <h5>FlowMARL</h5>
+            <p>Model-agnostic reinforcement learning for active flow control. Manuscript submitted.</p>
+            
+          </article>
       </div>
     </section>
 </div>

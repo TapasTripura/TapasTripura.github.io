@@ -186,9 +186,22 @@
           </article>
         <article class="item" id="spde-discovery">
             <h3>SPDE discovery</h3>
-            <p>Discovers stochastic partial differential equations from limited data using variational Bayes inference, building on a Bayesian framework for learning deterministic PDEs.</p>
+            <p>Discovers stochastic partial differential equations (SPDEs) from data, the first attempt of its kind. The framework combines stochastic calculus, variational Bayes theory and sparse learning. An extended Kramers–Moyal expansion expresses the drift and diffusion of an SPDE in terms of the state responses, and spike-and-slab priors select the governing terms. It identifies the underlying SPDEs accurately from limited data, which matters in climate modeling, financial forecasting and chemical kinetics, where little is known about the external disturbances.</p>
             <div class="links"><span class="lab">Papers</span><ul><li><a href="https://doi.org/10.1016/j.cma.2023.116512" target="_blank" rel="noopener">SPDEs, CMAME 2024</a></li><li><a href="https://doi.org/10.1016/j.physd.2023.133927" target="_blank" rel="noopener">PDEs, Physica D 2023</a></li></ul></div><div class="links"><span class="lab"><svg class="gh" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>Code</span><ul><li><a href="https://github.com/TapasTripura/Stochastic-PDE-Discovery" target="_blank" rel="noopener">Stochastic PDE discovery</a></li><li><a href="https://github.com/TapasTripura/Bayesian-Discovery-of-PDEs" target="_blank" rel="noopener">Bayesian PDE discovery</a></li></ul></div>
-          </article>
+          <p class="topic-label">Results</p>
+<figure class="post-fig">
+<div class="frame"><img src="https://lh3.googleusercontent.com/d/1NxZLGK2uobN5IE8Kksr09u28AZxz4Dhd" alt="Posterior inclusion probability of each library term for the stochastic heat, Allen–Cahn and Nagumo equations, with the discovered and true equations printed in each panel." loading="lazy" decoding="async" onerror="this.closest('figure').hidden=true"></div>
+<figcaption>Identification of three stochastic equations. Each stem is a library term and its height is its posterior inclusion probability (PIP). Blue marks the drift, red the diffusion, and the dashed line is the 0.5 cutoff. The discovered equations, printed in the panels, are close to the true ones for the stochastic heat, Allen–Cahn and Nagumo equations.</figcaption>
+</figure>
+<figure class="post-fig">
+<div class="frame"><img src="https://lh3.googleusercontent.com/d/1sQxNfC3CkSTruhm-7O2-_Dx4Bun51rrE" alt="Space-time fields for the stochastic Nagumo equation: ground truth, prediction, absolute error and predictive uncertainty." loading="lazy" decoding="async" onerror="this.closest('figure').hidden=true"></div>
+<figcaption>Prediction for the stochastic Nagumo equation over 20 s. (a) Ground truth. (b) Prediction from the discovered SPDE. (c) Absolute error, on a scale of 0 to 0.1 against a solution that ranges over about ±2. (d) Predictive uncertainty, near zero on a scale of ±0.01.</figcaption>
+</figure>
+<figure class="post-fig">
+<div class="frame"><img src="https://lh3.googleusercontent.com/d/1hONuehwCBrnYBDixBteEyj0hsCDHBfX2" alt="Space-time fields for the stochastic Allen–Cahn equation: ground truth, prediction, absolute error and predictive uncertainty." loading="lazy" decoding="async" onerror="this.closest('figure').hidden=true"></div>
+<figcaption>Prediction for the stochastic Allen–Cahn equation over 20 s, with the same four panels. The absolute error again stays within 0 to 0.1, and the predictive uncertainty is near zero on a scale of ±0.01.</figcaption>
+</figure>
+</article>
         <article class="item" id="stochastic-lagrangian-discovery">
             <h3>Stochastic Lagrangian discovery</h3>
             <p>Discovers the Lagrangian of stochastically excited dynamical systems, including the interpretable diffusion coefficient of the stochastic excitation.</p>

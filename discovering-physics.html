@@ -15,6 +15,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&amp;family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&amp;display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js" onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\(',right:'\\)',display:false}],throwOnError:false})"></script>
 
 </head>
 <body>
@@ -44,7 +47,142 @@
             <h3>Stochastic systems discovery</h3>
             <p>Discovers the interpretable drift and diffusion terms of nonlinear stochastic dynamical systems driven by Gaussian white noise, using sparse Bayesian learning on output-only measurements.</p>
             <div class="links"><span class="lab">Paper</span><ul><li><a href="https://doi.org/10.1016/j.ymssp.2022.109939" target="_blank" rel="noopener">MSSP 2023</a></li></ul></div><div class="links"><span class="lab"><svg class="gh" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>Code</span><ul><li><a href="https://github.com/TapasTripura/Learning-physics-from-output-only-data" target="_blank" rel="noopener">Output-only physics learning</a></li></ul></div>
-          </article>
+          
+<p class="topic-label">Walkthrough</p>
+<div class="mini-blog">
+<h4 class="mini-h">The problem</h4>
+<p>Many structures are shaken by forces nobody measures: wind on a tower, waves on a platform, noise in a market. What we have is a noisy record of the response. The aim is to recover the governing stochastic differential equation (SDE) from that record alone, with no measurement of the input, and to keep it interpretable: a few named terms, each with an uncertainty.</p>
+<div class="eq">$$d\mathbf X_t=\mathbf f(\mathbf X_t,t)\,dt+\mathbf g(\mathbf X_t,t)\,d\mathbf B(t)$$</div>
+<p>The drift \(\mathbf f\) carries the deterministic dynamics. The diffusion \(\mathbf g\) carries the effect of the unknown force, modeled as Gaussian white noise. Discovery means finding both from noisy measurements of \(\mathbf X\) only.</p>
+<h4 class="mini-h">How it works</h4>
+<figure class="post-fig">
+<div class="frame"><img src="https://lh3.googleusercontent.com/d/16CUysHe1up8fnH6oa1EFLNt86WFiGQfj" alt="Schematic of the Bayesian SDE discovery framework: an ensemble of data, a library of candidate functions, Kramers–Moyal targets from linear and quadratic variation, and two sparse Bayesian regressions for drift and diffusion." loading="lazy" decoding="async" onerror="this.closest('figure').hidden=true"></div>
+<figcaption>The framework. An ensemble of response records gives the target vectors through the Kramers–Moyal formulas and, at the same time, a library of candidate functions. Two sparse Bayesian regressions, one for the drift and one for the diffusion, select the active terms.</figcaption>
+</figure>
+<p><strong>1. Targets from the data.</strong> Brownian motion is not differentiable, so the derivative cannot be taken directly. The Kramers–Moyal formulas read the drift from the average increment of the sample paths (the linear variation) and the diffusion covariance \(\boldsymbol\Gamma=\mathbf g\mathbf g^{\top}\) from the average product of increments (the quadratic variation). With time step \(\Delta t\), and averaged over an ensemble of trajectories, the targets are</p>
+<div class="eq">$$\begin{aligned}Y_i&amp;=\frac{X_i(t+\Delta t)-X_i(t)}{\Delta t}\\ Y_{ij}&amp;=\frac{\big(X_i(t+\Delta t)-X_i(t)\big)\big(X_j(t+\Delta t)-X_j(t)\big)}{\Delta t}\end{aligned}$$</div>
+<p><strong>2. A library of candidate functions.</strong> The same records are evaluated on a dictionary: a constant, polynomials of the states, and the non-smooth terms \(\mathrm{sgn}(X)\), \(|X|\) and \(X|X|\). The ensemble-averaged library \(\mathbf L\in\mathbb R^{N\times K}\) has \(K\) columns: 36 for the Duffing oscillator and 58 for the two-degree-of-freedom building below.</p>
+<p><strong>3. Sparse Bayesian regression.</strong> Each target is explained as a sparse combination of library columns, \(\mathbf Y=\mathbf L\boldsymbol\theta+\boldsymbol\epsilon\). An \(m\)-dimensional process needs \(m\) regressions for the drift and \(m(m+1)/2\) for the diffusion covariance, and all of them are independent.</p>
+<h4 class="mini-h">A hierarchical prior that switches terms on and off</h4>
+<p>To keep only the few terms that matter, every weight gets a discontinuous spike-and-slab prior. A latent switch \(Z_k\in\{0,1\}\) decides whether weight \(\theta_k\) sits in the spike, exactly zero so the term is out, or in the slab, a Gaussian so the term is in.</p>
+<div class="eq">$$\begin{aligned}p(\boldsymbol\theta\mid\mathbf Z)&amp;=p_{\text{slab}}(\boldsymbol\theta_r)\prod_{k:\,Z_k=0}p_{\text{spike}}(\theta_k)\\ p_{\text{spike}}(\theta_k)&amp;=\delta_0,\qquad p_{\text{slab}}(\boldsymbol\theta_r)=\mathcal N\big(\mathbf 0,\sigma^2\vartheta_s\mathbf I\big)\end{aligned}$$</div>
+<p>Here \(\boldsymbol\theta_r\) collects the weights whose switch is on. The slab variance \(\vartheta_s\) and the noise variance \(\sigma^2\) are treated as random too, which helps the sampler converge to a sparse solution, and the switch probability \(p_0\) gets its own Beta prior:</p>
+<div class="eq">$$\begin{aligned}\vartheta_s&amp;\sim\mathrm{IG}(\alpha_\vartheta,\beta_\vartheta),\qquad \sigma^2\sim\mathrm{IG}(\alpha_\sigma,\beta_\sigma)\\ Z_k\mid p_0&amp;\sim\mathrm{Bern}(p_0),\qquad p_0\sim\mathrm{Beta}(\alpha_p,\beta_p)\end{aligned}$$</div>
+<p>With the Gaussian likelihood \(\mathbf Y\mid\boldsymbol\theta,\sigma^2\sim\mathcal N(\mathbf L\boldsymbol\theta,\sigma^2\mathbf I)\), the chain of dependencies is the network below.</p>
+<figure class="post-fig">
+<svg viewBox="0 0 520 330" role="img" aria-label="Hierarchical Bayesian network of the spike and slab model" style="display:block;width:100%;height:auto;max-width:520px;margin:0 auto;color:var(--ink)" font-family="'Times New Roman', Times, serif" font-size="15">
+<defs><marker id="dagar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="currentColor"/></marker></defs>
+<g fill="none" stroke="currentColor" stroke-width="1.4" marker-end="url(#dagar)">
+<line x1="52" y1="41" x2="69" y2="83"/><line x1="102" y1="41" x2="85" y2="83"/>
+<line x1="200" y1="41" x2="216" y2="83"/><line x1="250" y1="41" x2="234" y2="83"/>
+<line x1="390" y1="41" x2="406" y2="83"/><line x1="440" y1="41" x2="424" y2="83"/>
+<line x1="77" y1="118" x2="77" y2="151"/>
+<line x1="94" y1="176" x2="205" y2="183"/>
+<line x1="225" y1="118" x2="225" y2="166"/>
+<line x1="402" y1="112" x2="242" y2="176"/>
+<line x1="225" y1="203" x2="225" y2="226"/>
+<line x1="225" y1="263" x2="225" y2="287"/>
+<line x1="138" y1="273" x2="208" y2="297"/>
+<line x1="413" y1="118" x2="241" y2="293"/>
+</g>
+<g stroke="currentColor" stroke-width="1.4" style="fill:var(--teal);fill-opacity:.12">
+<rect x="35" y="15" width="34" height="26" rx="2"/><rect x="85" y="15" width="34" height="26" rx="2"/>
+<rect x="183" y="15" width="34" height="26" rx="2"/><rect x="233" y="15" width="34" height="26" rx="2"/>
+<rect x="373" y="15" width="34" height="26" rx="2"/><rect x="423" y="15" width="34" height="26" rx="2"/>
+<rect x="108" y="249" width="30" height="26" rx="2"/>
+</g>
+<g stroke="currentColor" stroke-width="1.4" fill="none">
+<circle cx="77" cy="100" r="18"/><circle cx="225" cy="100" r="18"/><circle cx="415" cy="100" r="18"/>
+<circle cx="77" cy="170" r="18"/><circle cx="225" cy="185" r="18"/><circle cx="225" cy="245" r="18"/>
+</g>
+<circle cx="225" cy="306" r="18" stroke="currentColor" stroke-width="1.4" style="fill:var(--teal);fill-opacity:.25"/>
+<g fill="currentColor" text-anchor="middle" dominant-baseline="central">
+<text x="52" y="28">α<tspan dy="4" font-size="11">p</tspan></text><text x="102" y="28">β<tspan dy="4" font-size="11">p</tspan></text>
+<text x="200" y="28">α<tspan dy="4" font-size="11">ϑ</tspan></text><text x="250" y="28">β<tspan dy="4" font-size="11">ϑ</tspan></text>
+<text x="390" y="28">α<tspan dy="4" font-size="11">σ</tspan></text><text x="440" y="28">β<tspan dy="4" font-size="11">σ</tspan></text>
+<text x="77" y="100">p<tspan dy="4" font-size="11">0</tspan></text>
+<text x="225" y="100">ϑ<tspan dy="4" font-size="11">s</tspan></text>
+<text x="415" y="100">σ<tspan dy="-6" font-size="11">2</tspan></text>
+<text x="77" y="170" font-weight="bold">Z</text>
+<text x="225" y="185">θ<tspan dy="4" font-size="11">r</tspan></text>
+<text x="225" y="245">θ</text>
+<text x="123" y="262" font-weight="bold">L</text>
+<text x="225" y="306" font-style="italic">y</text>
+</g>
+</svg>
+<figcaption>The hierarchical Bayesian network of the spike and slab model. Shaded squares are fixed hyperparameters, circles are random variables, and the shaded circle is the observed target vector \(\mathbf Y\).</figcaption>
+</figure>
+<p>The joint posterior is the product of the factors along the network:</p>
+<div class="eq">$$\begin{aligned}p(\boldsymbol\theta,\mathbf Z,\vartheta_s,\sigma^2,p_0\mid\mathbf Y)&amp;\propto p(\mathbf Y\mid\boldsymbol\theta,\sigma^2)\,p(\boldsymbol\theta\mid\mathbf Z,\vartheta_s,\sigma^2)\\&amp;\quad\times p(\mathbf Z\mid p_0)\,p(\vartheta_s)\,p(\sigma^2)\,p(p_0)\end{aligned}$$</div>
+<h4 class="mini-h">Sampling the posterior with a Gibbs sampler</h4>
+<p>The spike makes the joint posterior impossible to sample directly. A Gibbs sampler draws each unknown from its conditional distribution given the others (left of the figure). Because of the network structure, each conditional has a standard form, so every step is cheap.</p>
+<figure class="post-fig">
+<div class="frame"><img src="https://lh3.googleusercontent.com/d/1bhFaCI2rxlW65FxgV6myid_aGJMHXHDB" alt="Gibbs sampling: five conditional distributions feed a Gibbs sampler that returns the joint posterior of the weights, switches and hyperparameters." loading="lazy" decoding="async" onerror="this.closest('figure').hidden=true"></div>
+<figcaption>Gibbs sampling. The five conditional distributions (left) are sampled in turn. After burn-in, the samples represent the joint posterior of the weights, the switches and the hyperparameters (right).</figcaption>
+</figure>
+<p>One sweep repeats five draws, where \(h_z=\sum_kZ_k\) is the number of active terms:</p>
+<div class="eq">$$\begin{aligned}\boldsymbol\theta_r&amp;\sim\mathcal N\big(\boldsymbol\mu,\ \sigma^2\boldsymbol\Sigma\big),\quad \boldsymbol\Sigma=\big(\mathbf L_r^{\top}\mathbf L_r+\vartheta_s^{-1}\mathbf I\big)^{-1},\ \boldsymbol\mu=\boldsymbol\Sigma\mathbf L_r^{\top}\mathbf Y\\ Z_k&amp;\sim\mathrm{Bern}(u_k),\quad u_k=\frac{p_0}{p_0+\lambda_k(1-p_0)},\ \lambda_k=\frac{p(\mathbf Y\mid Z_k=0,\mathbf Z_{-k},\vartheta_s)}{p(\mathbf Y\mid Z_k=1,\mathbf Z_{-k},\vartheta_s)}\\ \sigma^2&amp;\sim\mathrm{IG}\Big(\alpha_\sigma+\tfrac N2,\ \beta_\sigma+\tfrac12\big(\mathbf Y^{\top}\mathbf Y-\boldsymbol\mu^{\top}\boldsymbol\Sigma^{-1}\boldsymbol\mu\big)\Big)\\ \vartheta_s&amp;\sim\mathrm{IG}\Big(\alpha_\vartheta+\tfrac{h_z}{2},\ \beta_\vartheta+\tfrac{1}{2\sigma^2}\boldsymbol\theta_r^{\top}\boldsymbol\theta_r\Big)\\ p_0&amp;\sim\mathrm{Beta}\big(\alpha_p+h_z,\ \beta_p+K-h_z\big)\end{aligned}$$</div>
+<p>The chain has 3,000 samples and the first 1,000 are discarded as burn-in. From the remaining samples, the fraction in which a term’s switch is on is its marginal posterior inclusion probability (PIP):</p>
+<div class="eq">$$\mathrm{PIP}_k=p(Z_k=1\mid\mathbf Y)\approx\frac1{N_s}\sum_{j=1}^{N_s}Z_k^{(j)}$$</div>
+<p>Terms with a PIP above 0.5 enter the final model. The mean of the retained weights gives each coefficient, and their covariance gives its uncertainty, so the output is an equation with error bars. The method is autonomous: it needs no manual calibration or cross-validation.</p>
+<h4 class="mini-h">Test systems</h4>
+<p>The framework is tested on a Black–Scholes SDE, a parametrically excited Duffing oscillator, a two-degree-of-freedom base-isolated shear building with a Coulomb friction isolator, and, further below, a Bouc–Wen oscillator. In every case the input is unknown and only noisy measurements of the states are used. Each data set is 500 trajectories of 1 s sampled at 1,000 Hz with the Euler–Maruyama scheme, corrupted with 5% Gaussian noise.</p>
+<h4 class="mini-h">Drift identification</h4>
+<figure class="post-fig">
+<div class="frame"><img src="https://lh3.googleusercontent.com/d/1eCpaXmM4UrlTl8WGBNnaQ6EIQak3ppm-" alt="Posterior inclusion probability of each library term for the drift of the Black–Scholes SDE with and without modulus terms, the Duffing oscillator, and the two floors of the base-isolated building." loading="lazy" decoding="async" onerror="this.closest('figure').hidden=true"></div>
+<figcaption>Posterior inclusion probability of every library term for the drift. Each stem is one candidate function and the dashed red line is the 0.5 cutoff. (a) Black–Scholes with |X| and X|X| in the library, (b) Black–Scholes without them, (c) Duffing oscillator, (d) first floor and (e) second floor of the base-isolated building.</figcaption>
+</figure>
+<p>For the Duffing oscillator, three terms stand out from 36 candidates, \(X_1\), \(X_2\) and \(X_1^3\), and nothing else comes close. For the building, the four linear terms and the Coulomb friction term are found in a library of 58 for the first floor, and the four linear terms for the second.</p>
+<p>The Black–Scholes panels carry a lesson about the library. With \(|X|\) and \(X|X|\) included, the probability is shared between \(X\) and \(|X|\), each sitting near the cutoff, because a geometric Brownian motion stays positive and the two functions are then identical. Remove the redundant columns and the correct term, \(X\), is selected with probability close to one.</p>
+<h4 class="mini-h">Diffusion identification</h4>
+<figure class="post-fig">
+<div class="frame"><img src="https://lh3.googleusercontent.com/d/1D1sNpZjzxHLEVqizOlnRwgkzaTr0wy0x" alt="Posterior inclusion probability of each library term for the diffusion covariance of the Black–Scholes SDE, the Duffing oscillator, and the two floors of the base-isolated building." loading="lazy" decoding="async" onerror="this.closest('figure').hidden=true"></div>
+<figcaption>The same plots for the diffusion covariance, with panels (a) to (e) as above. For the building the selected term is the constant, because the noise strength is constant on each floor.</figcaption>
+</figure>
+<p>The diffusion is the harder half, because it is invisible in the average motion and only appears in the covariance of the increments. The framework finds \(X^2\) for Black–Scholes (shared with \(X|X|\) when the redundant columns are present, as for the drift), \(X_1^2\) for the Duffing oscillator, and a constant for each floor of the building. This is exactly the structure of the equations that generated the data. Taking the square root of the identified covariance recovers the noise strength: \(\sigma\approx10.3\) for the Duffing oscillator, against a true value of 10.</p>
+<p>The identified coefficients, with the posterior standard deviation next to each mean:</p>
+<div class="table-wrap"><table class="data wrap-head">
+<thead><tr><th>System</th><th>Term</th><th>True</th><th>Identified (mean ± std)</th></tr></thead>
+<tbody>
+<tr><td>Black–Scholes</td><td>drift, \(X\)</td><td>2</td><td>2.05 ± 0.06</td></tr>
+<tr><td>Black–Scholes</td><td>diffusion, \(X\)</td><td>1</td><td>1.02 ± 0.16</td></tr>
+<tr><td>Duffing</td><td>drift, \(X_1\)</td><td>−1000</td><td>−1000.02 ± 2.03</td></tr>
+<tr><td>Duffing</td><td>drift, \(X_2\)</td><td>−2</td><td>−1.99 ± 0.02</td></tr>
+<tr><td>Duffing</td><td>drift, \(X_1^3\)</td><td>−100000</td><td>−99885.10 ± 1402.64</td></tr>
+<tr><td>Duffing</td><td>diffusion, \(X\)</td><td>10</td><td>10.31 ± 2.38</td></tr>
+<tr><td>Building, first floor</td><td>drift, \(Y_1\)</td><td>−6000</td><td>−6000.30 ± 2.21</td></tr>
+<tr><td>Building, first floor</td><td>drift, \(Y_2\)</td><td>−4</td><td>−3.97 ± 0.06</td></tr>
+<tr><td>Building, first floor</td><td>drift, friction \(\mathrm{sgn}(Y_2)\)</td><td>−9.81</td><td>−9.89 ± 2.07</td></tr>
+<tr><td>Building, first floor</td><td>drift, \(Y_3\)</td><td>2000</td><td>1999.73 ± 3.90</td></tr>
+<tr><td>Building, first floor</td><td>drift, \(Y_4\)</td><td>2</td><td>2.09 ± 0.11</td></tr>
+<tr><td>Building, first floor</td><td>diffusion, constant</td><td>10</td><td>10.03 ± 1.34</td></tr>
+</tbody></table></div>
+<p class="table-note">For the building, \(Y_1,\dots,Y_4\) are the displacement and velocity of the two floors. Signs follow the discovered drift.</p>
+<h4 class="mini-h">A partially observed system: Bouc–Wen</h4>
+<p>Not every state can be measured. A Bouc–Wen oscillator models a hysteretic base isolator through a hidden state \(Z(t)\), which is practically impossible to measure, so the framework sees only displacement and velocity:</p>
+<div class="eq">$$\begin{aligned}m\ddot X+c\dot X+k\lambda X+k(1-\lambda)Z&amp;=\sigma\dot B(t)\\ \dot Z&amp;=-A_1Z|\dot X||Z|^{\bar n-1}-A_2\dot X|Z|^{\bar n}+A_3\dot X\end{aligned}$$</div>
+<p>The data are generated with \(m=1\), \(k=10^4\), \(c=20\), \(\lambda=0.5\), \(A_1=A_2=0.5\), \(A_3=1\), \(\bar n=3\) and \(\sigma=2\). With the state vector \([X_1,X_2,X_3]=[X,\dot X,Z]\), the system is</p>
+<div class="eq">$$d\begin{bmatrix}X_1\\X_2\\X_3\end{bmatrix}=\begin{bmatrix}X_2\\[8pt]-\frac1m\big(k\lambda X_1+cX_2+k(1-\lambda)X_3\big)\\[8pt]-A_1X_3|X_2||X_3|^{\bar n-1}-A_2X_2|X_3|^{\bar n}+A_3X_2\end{bmatrix}dt+\begin{bmatrix}0\\\sigma/m\\0\end{bmatrix}dB$$</div>
+<p>Only \(X_1\) and \(X_2\) are given to the algorithm. The true drift involves \(X_3\), so it cannot appear in the library. The framework instead selects extra terms that stand in for the hidden state: 11 drift terms from a library of 36, and three diffusion terms, \(1\), \(X_1\) and \(|X_1|\). The damping term comes out as 20, the true value of \(c\). The identified effective drift and diffusion are</p>
+<div class="eq">$$\begin{aligned}f&amp;=-46.4-5246X_1-20X_2-614X_1^2-2328X_1^3+1829X_1^4\\&amp;\quad+10.64\,\mathrm{sgn}(X_1)+159|X_1|+1.63|X_2|+1439X_1|X_1|\\ g^2&amp;=4.65-4.872X_1+6.786|X_1|\end{aligned}$$</div>
+<p>after dropping one term, \(0.05X_2^2\), whose weight is not significant. These are effective coefficients in the observed state space, so they differ from the first-principles equation, as they must. To test them, the identified model is trained on only 1 s of data and then simulated 500 s ahead in an unseen scenario: a new initial condition \(\mathbf X_0=[0.1,0]\) and a noise intensity of 6, three times the training value. Its predicted mean response and 95% confidence band stay close to the actual system.</p>
+<h4 class="mini-h">Against stochastic SINDy</h4>
+<p>The only other method that identifies SDEs from data is stochastic SINDy, a frequentist least-squares approach that relies on a threshold to select terms. Both methods are given the same 1 s of data with 5% noise. The table reports the parameter estimation error \(e_\theta=\lVert\boldsymbol\theta^{*}-\boldsymbol\theta\rVert_2/\lVert\boldsymbol\theta\rVert_2\), where \(\boldsymbol\theta^{*}\) is the posterior mean for the proposed method and the least-squares weights for SINDy. Lower is better.</p>
+<div class="table-wrap"><table class="data wrap-head">
+<thead>
+<tr><th rowspan="2">Method</th><th colspan="4" style="text-align:center">Drift</th><th colspan="4" style="text-align:center">Diffusion</th></tr>
+<tr><th>Black–Scholes</th><th>Duffing</th><th>2-DOF, floor 1</th><th>2-DOF, floor 2</th><th>Black–Scholes</th><th>Duffing</th><th>2-DOF, floor 1</th><th>2-DOF, floor 2</th></tr>
+</thead>
+<tbody>
+<tr><td>Proposed</td><td class="best">0.0065</td><td class="best">0.0019</td><td class="best">4.52×10<sup>−7</sup></td><td class="best">1.64×10<sup>−5</sup></td><td class="best">1.29×10<sup>−5</sup></td><td class="best">0.00094</td><td class="best">0.4668</td><td class="best">0.4651</td></tr>
+<tr><td>Stochastic SINDy</td><td>0.1730</td><td>5.19×10<sup>6</sup></td><td>0.6493</td><td>3.2617</td><td>0.1613</td><td>3.26×10<sup>4</sup></td><td>6.5015</td><td>5.0634</td></tr>
+</tbody></table></div>
+<p class="table-note">Parameter estimation error \(e_\theta\) at 5% measurement noise.</p>
+<p>For Black–Scholes both methods find the right terms, but the SINDy coefficients are slightly off. For the Duffing oscillator and the building, SINDy picks up many extra terms, which explains the large errors and why its predictions drift away once new random forcing excites the system. The Bayesian approach finds the correct terms, so its predictions stay close to the truth. SINDy is cheaper to compute, and the paper notes it may improve with much more data: its original study used \(10^7\) steps.</p>
+<h4 class="mini-h">What to keep in mind</h4>
+<p>Correlated library terms can split the probability and return an equivalent but different law, as the Black–Scholes example shows. The sampler costs more than least-squares methods. Noise matters too: for Black–Scholes the proposed method stays accurate up to 30% noise, while for the Duffing oscillator the paper reports degraded performance at 15% and above. And the excitation is assumed to be Gaussian white noise, so non-Gaussian excitation is left for future work.</p>
+</div>
+</article>
         <article class="item" id="lagrangian-discovery">
             <h3>Lagrangian discovery</h3>
             <p>Discovers the interpretable Lagrangian of a dynamical system directly from data, with a Bayesian version that reports uncertainty on the identified terms.</p>

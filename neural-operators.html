@@ -16,6 +16,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&amp;family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&amp;display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js" onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\(',right:'\\)',display:false}],throwOnError:false})"></script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -82,8 +85,25 @@
           </article>
         <article class="item" id="multi-fidelity-wno-mfwno">
             <h3>Multi-fidelity WNO (MFWNO)</h3>
-            <p>Combines a low-fidelity and a high-fidelity wavelet operator for fast time-independent and time-dependent reliability analysis.</p>
+            <p>Neural operators need a lot of high-fidelity (HF) data to train, and HF data is expensive: it comes from fine-grid simulations or physical experiments. Low-fidelity (LF) data, from coarse grids or simplified models, is cheap and easy to get in large amounts. The multi-fidelity WNO (MF-WNO) learns the HF solution operator from a large LF dataset and only a small HF dataset. It is used as a fast surrogate for reliability analysis of dynamical systems, where thousands of model evaluations are needed.</p>
+            <p>It works in two steps. First, a WNO is trained on the large LF dataset, or replaced by an LF solver if one is available. Second, a separate HF-WNO takes the HF input together with the LF solution, and learns only the residual, the difference between the HF and LF solutions. The HF prediction is the LF solution plus the learned residual. This is easier than learning the HF operator directly from a few samples, because the LF solution already carries the rough shape of the answer:</p>
+            <div class="eq">$$\mathcal S_H(a)(x)=\mathcal S_L(\bar a)(\bar x)+\mathcal R(a)(x)$$</div>
+            <p>Here \(\mathcal S_H\) and \(\mathcal S_L\) are the HF and LF solution operators, \(\bar a\) is the LF input, and \(\mathcal R\) is the residual operator learned by the HF-WNO. The LF-WNO is not trained together with the HF-WNO: its output is only an extra input to the second network.</p>
+            <p>Once trained, the surrogate replaces the numerical solver in a Monte Carlo reliability analysis. The failure probability is the probability that a limit state function \(g\) falls below a threshold \(e_h\):</p>
+            <div class="eq">$$p_f=\mathbb P\big(g(\boldsymbol\Theta,\boldsymbol x)&lt;e_h(\boldsymbol x)\big)=\int_{\Omega}\mathbb I_{\Omega^f}(\gamma)\,dF_{\boldsymbol\Theta}(\gamma)(\boldsymbol x)$$</div>
+            <p>Here \(\boldsymbol\Theta\) holds the random inputs, and the indicator \(\mathbb I_{\Omega^f}\) is 1 for a failure and 0 otherwise. In practice, the surrogate is evaluated on thousands of random inputs and the fraction that fail is counted.</p>
+            <p>The paper tests the MF-WNO on a 1D Poisson equation, a 2D Darcy flow in a triangular domain with a notch, and the time-dependent 2D Allen&ndash;Cahn equation. It is compared with a WNO trained on HF data only and with a multi-fidelity DeepONet. On Poisson and Darcy, the MF-WNO has the lowest error at every training size. On Darcy, its failure probability matches the Monte Carlo value from the true solver (0.125) at every training size, while the other two do not. On Allen&ndash;Cahn with 200 training samples, its failure probability (0.28) is close to the Monte Carlo value (0.29).</p>
             <div class="links"><span class="lab">Paper</span><ul><li><a href="https://doi.org/10.1016/j.probengmech.2024.103672" target="_blank" rel="noopener">PEM 2024</a></li></ul></div><div class="links"><span class="lab"><svg class="gh" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>Code</span><ul><li><a href="https://github.com/TapasTripura/MFWNO" target="_blank" rel="noopener">Multi-fidelity WNO</a></li></ul></div>
+          
+            <p class="topic-label">Figures</p>
+            <figure class="post-fig">
+              <a class="frame" href="https://drive.google.com/file/d/1B8PBJEVxclZ2fLXZ0yOE7K4ox4HCXlsU/view" target="_blank" rel="noopener" title="Open full size"><img src="https://lh3.googleusercontent.com/d/1B8PBJEVxclZ2fLXZ0yOE7K4ox4HCXlsU" alt="Diagram of the multi-fidelity wavelet neural operator: a low-fidelity WNO, then a high-fidelity WNO that learns the residual, with the two solutions added." loading="lazy" decoding="async" onerror="this.closest('figure').hidden=true"></a>
+              <figcaption>The MF-WNO. (I) A WNO is trained on the large low-fidelity (LF) dataset. (II) A second WNO takes the high-fidelity (HF) input together with the LF solution and learns the residual. Adding the residual to the LF solution gives the HF solution. The inset shows a wavelet integral block.</figcaption>
+            </figure>
+            <figure class="post-fig">
+              <a class="frame" href="https://drive.google.com/file/d/1UcdoBrLK0fSm3Czfuo91MP1tMp4DQ3vB/view" target="_blank" rel="noopener" title="Open full size"><img src="https://lh3.googleusercontent.com/d/1UcdoBrLK0fSm3Czfuo91MP1tMp4DQ3vB" alt="Predicted pressure fields and error maps on a triangular domain for HF-WNO, MF-DeepONet and MF-WNO." loading="lazy" decoding="async" onerror="this.closest('figure').hidden=true"></a>
+              <figcaption>Darcy flow in a triangular domain with a notch, for one boundary condition, with models trained on 50 samples. The input boundary condition is on the left. For HF-WNO, MF-DeepONet and MF-WNO, the top row is the predicted field and the bottom row is the error.</figcaption>
+            </figure>
           </article>
         <article class="item" id="neural-combinatorial-wno-ncwno">
             <h3>Neural combinatorial WNO (NCWNO)</h3>

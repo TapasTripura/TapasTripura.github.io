@@ -366,3 +366,11 @@ table.data td.best { font-weight: 600; color: var(--teal); }
   .toc ol { display: flex; flex-wrap: wrap; gap: 2px 16px; border-left: 0; }
   .toc li a { padding: 4px 0; margin: 0; border-left: 0; }
 }
+
+/* Research page: thrust illustrations */
+.thrust-fig { margin: 6px 0 20px; }
+.thrust-fig svg { display: block; width: 100%; height: auto; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; }
+.thrust-fig text { fill: var(--muted); font-family: var(--sans); font-size: 15px; }
+.thrust-fig text.sm { font-size: 13px; }
+.thrust-fig text.it { font-style: italic; }
+.thrust-fig text.eqt { fill: var(--ink); font-family: var(--serif); font-style: italic; font-size: 17px; }

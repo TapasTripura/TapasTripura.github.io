@@ -417,3 +417,20 @@ table.data.wrap-head td { padding-left: 6px; padding-right: 6px; }
 .item .video { position: relative; aspect-ratio: 16 / 9; background: #000; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
 .item .video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
 .item .video-fig { margin-top: 16px; }
+
+/* Home: carousel with an updates column */
+.gal-layout { display: grid; grid-template-columns: minmax(0, 1fr) 280px; gap: 28px; align-items: stretch; }
+.gal-main { min-width: 0; }
+.gal-layout .fig { height: clamp(220px, 36vw, 380px); }
+.updates { display: flex; flex-direction: column; min-height: 0; overflow: hidden; contain: size; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 16px 18px 6px; }
+.updates h3 { font-family: var(--sans); font-size: 0.9375rem; font-weight: 600; margin: 0 0 8px; }
+.updates ul { list-style: none; margin: 0; padding: 0; flex: 1; min-height: 0; overflow-y: auto; }
+.updates li { padding: 12px 0; border-top: 1px solid var(--line); }
+.updates .u-date { display: block; font-family: var(--sans); font-size: 0.75rem; color: var(--muted); margin-bottom: 3px; }
+.updates .u-text { display: block; font-size: 0.95rem; line-height: 1.45; }
+@media (max-width: 860px) {
+  .gal-layout { grid-template-columns: 1fr; gap: 22px; }
+  .gal-layout .fig { height: clamp(240px, 50vw, 500px); }
+  .updates { contain: none; overflow: visible; }
+  .updates ul { overflow: visible; }
+}

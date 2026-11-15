@@ -120,8 +120,6 @@
 <div class="frame"><img src="https://lh3.googleusercontent.com/d/1bhFaCI2rxlW65FxgV6myid_aGJMHXHDB" alt="Gibbs sampling: five conditional distributions feed a Gibbs sampler that returns the joint posterior of the weights, switches and hyperparameters." loading="lazy" decoding="async" onerror="this.closest('figure').hidden=true"></div>
 <figcaption>Gibbs sampling. The five conditional distributions (left) are sampled in turn. After burn-in, the samples represent the joint posterior of the weights, the switches and the hyperparameters (right).</figcaption>
 </figure>
-<p>One sweep repeats five draws, where \(h_z=\sum_kZ_k\) is the number of active terms:</p>
-<div class="eq">$$\begin{aligned}\boldsymbol\theta_r&amp;\sim\mathcal N\big(\boldsymbol\mu,\ \sigma^2\boldsymbol\Sigma\big),\quad \boldsymbol\Sigma=\big(\mathbf L_r^{\top}\mathbf L_r+\vartheta_s^{-1}\mathbf I\big)^{-1},\ \boldsymbol\mu=\boldsymbol\Sigma\mathbf L_r^{\top}\mathbf Y\\ Z_k&amp;\sim\mathrm{Bern}(u_k),\quad u_k=\frac{p_0}{p_0+\lambda_k(1-p_0)},\ \lambda_k=\frac{p(\mathbf Y\mid Z_k=0,\mathbf Z_{-k},\vartheta_s)}{p(\mathbf Y\mid Z_k=1,\mathbf Z_{-k},\vartheta_s)}\\ \sigma^2&amp;\sim\mathrm{IG}\Big(\alpha_\sigma+\tfrac N2,\ \beta_\sigma+\tfrac12\big(\mathbf Y^{\top}\mathbf Y-\boldsymbol\mu^{\top}\boldsymbol\Sigma^{-1}\boldsymbol\mu\big)\Big)\\ \vartheta_s&amp;\sim\mathrm{IG}\Big(\alpha_\vartheta+\tfrac{h_z}{2},\ \beta_\vartheta+\tfrac{1}{2\sigma^2}\boldsymbol\theta_r^{\top}\boldsymbol\theta_r\Big)\\ p_0&amp;\sim\mathrm{Beta}\big(\alpha_p+h_z,\ \beta_p+K-h_z\big)\end{aligned}$$</div>
 <p>The chain has 3,000 samples and the first 1,000 are discarded as burn-in. From the remaining samples, the fraction in which a term’s switch is on is its marginal posterior inclusion probability (PIP):</p>
 <div class="eq">$$\mathrm{PIP}_k=p(Z_k=1\mid\mathbf Y)\approx\frac1{N_s}\sum_{j=1}^{N_s}Z_k^{(j)}$$</div>
 <p>Terms with a PIP above 0.5 enter the final model. The mean of the retained weights gives each coefficient, and their covariance gives its uncertainty, so the output is an equation with error bars. The method is autonomous: it needs no manual calibration or cross-validation.</p>
@@ -179,8 +177,6 @@
 </tbody></table></div>
 <p class="table-note">Parameter estimation error \(e_\theta\) at 5% measurement noise.</p>
 <p>For Black–Scholes both methods find the right terms, but the SINDy coefficients are slightly off. For the Duffing oscillator and the building, SINDy picks up many extra terms, which explains the large errors and why its predictions drift away once new random forcing excites the system. The Bayesian approach finds the correct terms, so its predictions stay close to the truth. SINDy is cheaper to compute, and the paper notes it may improve with much more data: its original study used \(10^7\) steps.</p>
-<h4 class="mini-h">What to keep in mind</h4>
-<p>Correlated library terms can split the probability and return an equivalent but different law, as the Black–Scholes example shows. The sampler costs more than least-squares methods. Noise matters too: for Black–Scholes the proposed method stays accurate up to 30% noise, while for the Duffing oscillator the paper reports degraded performance at 15% and above. And the excitation is assumed to be Gaussian white noise, so non-Gaussian excitation is left for future work.</p>
 </div>
 </article>
         <article class="item" id="lagrangian-discovery">

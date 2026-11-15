@@ -401,3 +401,14 @@ table.data td.best { font-weight: 600; color: var(--teal); }
 .item .post-fig { margin: 16px 0 0; }
 .fig-grid .post-fig { margin: 0; }
 @media (max-width: 640px) { .fig-grid { grid-template-columns: 1fr; } }
+
+/* Mini write-up inside an item */
+.item .mini-h { font-family: var(--serif); font-weight: 600; font-size: 1.1rem; letter-spacing: -0.005em; margin: 28px 0 6px; }
+.item .eq { overflow-x: auto; margin: 6px 0 14px; }
+.item .eq .katex-display { margin: 0.5em 0; }
+.item .post-fig.narrow { max-width: 340px; }
+
+.item .mini-blog .post-fig { margin: 18px 0 20px; }
+table.data.wrap-head th { white-space: normal; vertical-align: bottom; line-height: 1.3; padding-left: 6px; padding-right: 6px; }
+table.data.wrap-head td { padding-left: 6px; padding-right: 6px; }
+.item .mini-blog .table-wrap { margin: 14px 0 12px; }

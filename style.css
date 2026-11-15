@@ -367,10 +367,11 @@ table.data td.best { font-weight: 600; color: var(--teal); }
   .toc li a { padding: 4px 0; margin: 0; border-left: 0; }
 }
 
-/* Research page: thrust illustrations */
-.thrust-fig { margin: 6px 0 20px; }
-.thrust-fig svg { display: block; width: 100%; height: auto; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; }
-.thrust-fig text { fill: var(--muted); font-family: var(--sans); font-size: 15px; }
-.thrust-fig text.sm { font-size: 13px; }
-.thrust-fig text.it { font-style: italic; }
-.thrust-fig text.eqt { fill: var(--ink); font-family: var(--serif); font-style: italic; font-size: 17px; }
+/* Research page: vertical thrust illustrations in the left column */
+.side h2 { font-family: var(--serif); font-weight: 600; font-size: 1.5rem; letter-spacing: -0.01em; line-height: 1.2; margin: 0; }
+.thrust-art { margin: 18px 0 0; }
+.thrust-art svg { display: block; width: 100%; max-width: 200px; height: auto; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; }
+.thrust-art text { fill: var(--muted); font-family: var(--sans); font-size: 12px; }
+.thrust-art text.sm { font-size: 10.5px; }
+.thrust-art text.it { font-style: italic; }
+.thrust-art text.eqt { fill: var(--ink); font-family: var(--serif); font-style: italic; font-size: 13.5px; }

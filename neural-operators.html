@@ -42,8 +42,28 @@
         <h2 class="subhead">Methods and developments</h2>
         <article class="item" id="wavelet-neural-operator-wno">
             <h3>Wavelet neural operator (WNO)</h3>
-            <p>Blends the integral kernel of a neural operator with a wavelet transform to learn the solution operator of parametric PDEs.</p>
+            <p>Here, we introduce the Wavelet Neural Operator (WNO) for learning the parametric mapping between input and output function spaces. The WNO blends conventional neural network integral kernels with wavelet transformation. WNO harnesses the superiority of wavelets in space-frequency localization of functions, enabling accurate tracking of patterns in the spatial domain and effective learning of functional mappings. Since the wavelets are localized in both time and space, as well as in frequency, WNO can provide high spatial and frequency resolution. This offers the learning of the finer details of the parametric dependencies in solving complex problems.</p>
             <div class="links"><span class="lab">Paper</span><ul><li><a href="https://doi.org/10.1016/j.cma.2022.115783" target="_blank" rel="noopener">CMAME 2023</a></li></ul></div><div class="links"><span class="lab"><svg class="gh" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>Code</span><ul><li><a href="https://github.com/TapasTripura/WNO" target="_blank" rel="noopener">WNO</a></li><li><a href="https://github.com/TapasTripura/WNO-V3" target="_blank" rel="noopener">WNO v3</a></li></ul></div>
+          
+            <p class="topic-label">Figures</p>
+            <figure class="post-fig">
+              <a class="frame" href="https://drive.google.com/file/d/1XQ7s_ULF-7DE6pwz3kxYQn7cVPkKost8/view" target="_blank" rel="noopener" title="Open full size"><img src="https://lh3.googleusercontent.com/d/1XQ7s_ULF-7DE6pwz3kxYQn7cVPkKost8" alt="Diagram of the wavelet neural operator and of the wavelet integral block." loading="lazy" decoding="async" onerror="this.closest('figure').hidden=true"></a>
+              <figcaption>The WNO. An MLP lifts the input function and the grid, a chain of wavelet integral blocks (WIB) updates the features, and an MLP maps them to the output function. Inside a block, the input is wavelet-transformed, convolved with learned kernels for the approximate and detailed coefficients, transformed back, and added to a skip connection.</figcaption>
+            </figure>
+            <div class="fig-grid">
+            <figure class="post-fig">
+              <a class="frame" href="https://drive.google.com/file/d/1YYSrkAn8Tj_RrOlTlvR1zX7LGxPKFvX8/view" target="_blank" rel="noopener" title="Open full size"><img src="https://lh3.googleusercontent.com/d/1YYSrkAn8Tj_RrOlTlvR1zX7LGxPKFvX8" alt="Animated vorticity fields on a 64 by 64 grid, ground truth next to the WNO prediction." loading="lazy" decoding="async" onerror="this.closest('figure').hidden=true"></a>
+              <figcaption>Prediction of the incompressible Navier–Stokes vorticity field on a 64 × 64 grid, with the model trained at this low resolution: ground truth against WNO.</figcaption>
+            </figure>
+            <figure class="post-fig">
+              <a class="frame" href="https://drive.google.com/file/d/1CbaMyFYh22nQvyuwbfa179k5afh2cPIS/view" target="_blank" rel="noopener" title="Open full size"><img src="https://lh3.googleusercontent.com/d/1CbaMyFYh22nQvyuwbfa179k5afh2cPIS" alt="Animated vorticity fields on a 256 by 256 grid, ground truth next to the WNO prediction." loading="lazy" decoding="async" onerror="this.closest('figure').hidden=true"></a>
+              <figcaption>Zero-shot super-resolution of the Navier–Stokes vorticity field on a 256 × 256 grid: ground truth against WNO.</figcaption>
+            </figure>
+            </div>
+            <figure class="post-fig video-fig">
+              <div class="video"><iframe src="https://www.youtube-nocookie.com/embed/21BsaLe3YQQ" title="Prediction of the 24-hour activity of Cyclone Amphan with the WNO" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; fullscreen" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+              <figcaption>Prediction of the 24-hour activity of Cyclone Amphan from the previous 24 hours of wind-velocity data.</figcaption>
+            </figure>
           </article>
         <article class="item" id="physics-informed-wno-piwno">
             <h3>Physics-informed WNO (PIWNO)</h3>
@@ -69,8 +89,19 @@
         <h2 class="subhead">Applications</h2>
         <article class="item" id="elastography">
             <h3>Elastography</h3>
-            <p>Maps measured displacement fields to a stiffness map, to localize and quantify tumors.</p>
+            <p>Elastography is an imaging modality where an inverse problem is solved to extract the elastic properties of tissues and subsequently mapped to anatomical images for diagnostic purposes. In the present work, we propose a wavelet neural operator-based approach for correctly learning the non-linear mapping of elastic properties directly from measured displacement field data.</p>
+            <p>The proposed framework learns the underlying operator behind the elastic mapping and thus can map any displacement data from a family to the elastic properties. The displacement fields are first uplifted to a high-dimensional space using a fully connected neural network. On the lifted data, certain iterations are performed using wavelet neural blocks. The mapping between the displacement and the elasticity using wavelets is unique and remains stable during training. The proposed framework is tested on several artificially fabricated numerical examples, including a benign-cum-malignant tumor prediction problem.</p>
             <div class="links"><span class="lab">Paper</span><ul><li><a href="https://doi.org/10.1016/j.cmpb.2023.107436" target="_blank" rel="noopener">CMPB 2023</a></li></ul></div><div class="links"><span class="lab"><svg class="gh" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>Code</span><ul><li><a href="https://github.com/TapasTripura/WNO-elastography" target="_blank" rel="noopener">WNO elastography</a></li></ul></div>
+          
+            <p class="topic-label">Results</p>
+            <figure class="post-fig">
+              <a class="frame" href="https://drive.google.com/file/d/1a9KHPVdENJnXkzezZ4aSKzkJgZGvEfDu/view" target="_blank" rel="noopener" title="Open full size"><img src="https://lh3.googleusercontent.com/d/1a9KHPVdENJnXkzezZ4aSKzkJgZGvEfDu" alt="Five tumor test cases showing actual elasticity, WNO-predicted elasticity and the error." loading="lazy" decoding="async" onerror="this.closest('figure').hidden=true"></a>
+              <figcaption>Test cases of the benign and malignant tumor classes. The reference (actual) elasticity is in the top row, the WNO prediction in the middle row, and the error in the bottom row. All axes are in mm.</figcaption>
+            </figure>
+            <figure class="post-fig">
+              <a class="frame" href="https://drive.google.com/file/d/1wp49Y8vZeVKOsaJpmQqjIhxj2vi1d0Dt/view" target="_blank" rel="noopener" title="Open full size"><img src="https://lh3.googleusercontent.com/d/1wp49Y8vZeVKOsaJpmQqjIhxj2vi1d0Dt" alt="Animated stiffness slices at 30, 50 and 70 hertz, ground truth above and prediction below." loading="lazy" decoding="async" onerror="this.closest('figure').hidden=true"></a>
+              <figcaption>Shear stiffness prediction on the MRE dataset with a single wavelet expert (FWNO-MRE). Stiffness slices at the three excitation frequencies, 30, 50 and 70 Hz, for a single test subject: the ground truth from nonlinear inversion (NLI) in the top row and the prediction in the bottom row.</figcaption>
+            </figure>
           </article>
         <article class="item" id="generative-adversarial-wno">
             <h3>Generative adversarial WNO</h3>

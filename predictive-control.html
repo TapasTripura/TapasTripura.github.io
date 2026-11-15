@@ -16,6 +16,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&amp;family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&amp;display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js" onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\(',right:'\\)',display:false}],throwOnError:false})"></script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -44,6 +47,79 @@
             <h3>MAP-TD</h3>
             <p>A deep reinforcement learning method for controlling systems whose physics is unknown. A parsimonious dynamics model, discovered offline with sparse Bayesian learning, predicts long-horizon trajectories inside the agent, which improves sample efficiency and control quality. Demonstrations include deflection control of a cantilever beam, wind-induced vibration control of a 76-degree-of-freedom structure, and active flow control around a circular cylinder, with zero-shot transfer to a square cylinder.</p>
             <div class="links"><span class="lab">Paper</span><ul><li><a href="https://doi.org/10.1016/j.ymssp.2026.114226" target="_blank" rel="noopener">MSSP 2026</a></li></ul></div><div class="links"><span class="lab"><svg class="gh" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>Code</span><ul><li><a href="https://github.com/csccm-iitd/MAPTD" target="_blank" rel="noopener">MAP-TD</a></li></ul></div>
+          
+            <p class="topic-label">Walkthrough</p>
+            <div class="mini-blog">
+            <h4 class="mini-h">Why a discovered model?</h4>
+            <p>Reinforcement learning on its own needs a huge amount of interaction with the system, which is not realistic for structures. Model-based methods save data by learning a dynamics model, but errors in a learned model pile up over long horizons and spoil the control. Classical model predictive control (MPC) needs an accurate model and an optimization at every step, which is slow. MAP-TD takes a different route: it discovers a small, interpretable model once, offline, from a single noisy trajectory, and then learns a policy that plans over a predictive horizon with that model.</p>
+
+            <h4 class="mini-h">How it works</h4>
+            <figure class="post-fig">
+              <a class="frame" href="https://drive.google.com/file/d/1meZnRrrMx51hMey_uUOKqJ_nX4f1jW6R/view" target="_blank" rel="noopener" title="Open full size"><img src="https://lh3.googleusercontent.com/d/1meZnRrrMx51hMey_uUOKqJ_nX4f1jW6R" alt="Schematic of MAP-TD: sparse Bayesian learning, a neural operator surrogate, and a temporal-difference agent with model predictive planning in a loop with the environment." loading="lazy" decoding="async" onerror="this.closest('figure').hidden=true"></a>
+              <figcaption>The MAP-TD framework. (I) Data are turned into a physical model by sparse Bayesian learning. (II) A neural operator surrogate is trained on that model. (III) The agent plans with the model and learns its policy and value function by temporal-difference learning.</figcaption>
+            </figure>
+            <p><strong>1. Discover the physics.</strong> Sparse Bayesian learning with a spike-and-slab prior picks a few terms from a library of candidate functions, using one noisy trajectory. Terms with a marginal posterior inclusion probability above 0.5 are kept. The action then enters the discovered model as an external force:</p>
+            <div class="eq">$$\dot{\mathbf s}=\mathbf D(\mathbf s_t,t)\,\boldsymbol\theta^{s}+\mathbf f(\mathbf s_t,t)+\mathbf a_{\Pi_\theta}(\mathbf s_t,t)$$</div>
+            <p>Here \(\mathbf D\) is the library of candidate functions, \(\boldsymbol\theta^{s}\) is the sparse weight vector found by the Bayesian step, and \(\mathbf f\) is the external disturbance.</p>
+            <p><strong>2. Build a fast surrogate.</strong> Solving the discovered model with a physics solver is slow inside a training loop. So a coarse machine-learning solver is trained on the discovered model: a wavelet neural operator for the beam, and an MLP for the tower. Training alternates between the fine and the coarse solver, which makes it faster without drifting away from the discovered physics.</p>
+            <p><strong>3. Plan and learn.</strong> At each step the agent samples action sequences, rolls them through the model over a short horizon, and adds a learned terminal value for the long-term return. A policy network guides the sampling and gives fast inference. The value function and the policy are trained together by temporal-difference learning.</p>
+            <div class="eq">$$R_{\wp}(\mathbf s_t)=\gamma^{t+N_c}\,Q_{\theta^{q}}\big(\mathbf s_{t+N_c},\mathbf a_{t+N_c}\big)+\sum_{i=0}^{N_c-1}\gamma^{t+i}\,\mathcal R\big(\mathbf s_{t+i},\mathbf a_{t+i}\big)$$</div>
+            <p>The first term is the learned terminal value. The sum is the reward collected along the predicted trajectory.</p>
+
+            <h4 class="mini-h">Example 1: a cantilever beam</h4>
+            <p>The goal is to suppress the tip deflection of a beam under a distributed harmonic load, using a piezoelectric patch as the actuator, without knowing the beam equation. From a single noisy trajectory of one second, the Bayesian step finds that, apart from the forcing, only the fourth-order spatial term is present among 19 candidates, and recovers:</p>
+            <div class="eq">$$\partial_{tt}u=8.5494\pm0.1922\,\partial_{xxxx}u+0.9772\pm0.003\,f(x,t)$$</div>
+            <p>This matches the equation used to generate the data. The coarse solver is a wavelet neural operator, with an average rollout error of 1.15% over 500 time steps.</p>
+            <figure class="post-fig">
+              <a class="frame" href="https://drive.google.com/file/d/1OcwAmL2BbuPWe_AbGC-gHDJvgSzxSVFb/view" target="_blank" rel="noopener" title="Open full size"><img src="https://lh3.googleusercontent.com/d/1OcwAmL2BbuPWe_AbGC-gHDJvgSzxSVFb" alt="Drawing of a cantilever beam with a fixed support, a distributed load, a piezoelectric patch and a free end." loading="lazy" decoding="async" onerror="this.closest('figure').hidden=true"></a>
+              <figcaption>Setup of the cantilever beam. The red strip is the piezoelectric patch that applies the control, and a distributed load acts on the beam (lengths in meters).</figcaption>
+            </figure>
+
+            <h4 class="mini-h">Example 2: a 76-storey tower</h4>
+            <p>The second benchmark is a 76-storey, 306.1 m tower under wind load, with twelve actuators, a tuned mass damper at the top, and nonlinearity added to some floors. The form of that nonlinearity is treated as unknown. The Bayesian step searches 774 candidate functions (466 once the nonlinearity is assumed to depend on displacement only) and finds the missing physics from one noisy trajectory. The coarse solver is an MLP, with a rollout error of about 11.9%. Because the policy search is guided by the discovered model, that surrogate error does not carry into the policy.</p>
+            <figure class="post-fig narrow">
+              <a class="frame" href="https://drive.google.com/file/d/1zv7EVO-Hcw0TzIIn-5KVCvXiZ8yV2iOd/view" target="_blank" rel="noopener" title="Open full size"><img src="https://lh3.googleusercontent.com/d/1zv7EVO-Hcw0TzIIn-5KVCvXiZ8yV2iOd" alt="Drawing of a 76-storey tower with wind load, nonlinear floors and actuator floors marked." loading="lazy" decoding="async" onerror="this.closest('figure').hidden=true"></a>
+              <figcaption>Setup of the 76-storey tower under lateral wind load. The nonlinear floors are in blue and the floors with actuators are in red.</figcaption>
+            </figure>
+
+            <h4 class="mini-h">Learning the policy</h4>
+            <p>MAP-TD is compared with two Baseline-MPC controllers that use the true equations (a gradient-based one and a derivative-free one using the cross-entropy method), with TDMPC, which learns a latent model, and with MAP-TD variants whose model is a neural network. On the beam, MAP-TD reaches the return of the gradient-based Baseline-MPC within 0.1 million environment steps. On the tower it gets close to that return after about 300 episodes. TDMPC and the neural-network variants improve only a little, which the paper attributes to errors in their neural dynamics models that carry into the policy.</p>
+            <figure class="post-fig">
+              <a class="frame" href="https://drive.google.com/file/d/1HHveyOixfdQwt2MME-5EgemOIDLScYf1/view" target="_blank" rel="noopener" title="Open full size"><img src="https://lh3.googleusercontent.com/d/1HHveyOixfdQwt2MME-5EgemOIDLScYf1" alt="Plots of episodic return against environment steps for MAP-TD, TDMPC, neural-network variants and Baseline-MPC, for the beam and the tower." loading="lazy" decoding="async" onerror="this.closest('figure').hidden=true"></a>
+              <figcaption>Episodic return during training for (a) the cantilever beam and (b) the 76-DOF tower. The dashed lines are the Baseline-MPC returns. The black MAP-TD curve is a variant that updates its model online.</figcaption>
+            </figure>
+
+            <h4 class="mini-h">Control results</h4>
+            <p>On the beam, Baseline-MPC holds the deflection near zero and MAP-TD stays close to it, with some residual oscillation, while TDMPC behaves much like the uncontrolled beam. On the tower, MAP-TD and Baseline-MPC both reduce the displacement and keep the velocity within the target bounds, with only small, occasional violations.</p>
+            <figure class="post-fig">
+              <a class="frame" href="https://drive.google.com/file/d/1n-AqUpLjDRFQhmIMZxD8MUddW0i_Npwl/view" target="_blank" rel="noopener" title="Open full size"><img src="https://lh3.googleusercontent.com/d/1n-AqUpLjDRFQhmIMZxD8MUddW0i_Npwl" alt="Animated plot of beam displacement along the beam for no control, MPC, TDMPC and MAP-TD." loading="lazy" decoding="async" onerror="this.closest('figure').hidden=true"></a>
+              <figcaption>Control response of the cantilever beam: displacement along the beam with no control, with MPC, with TDMPC, and with MAP-TD. The dashed lines mark the target bounds.</figcaption>
+            </figure>
+            <figure class="post-fig">
+              <a class="frame" href="https://drive.google.com/file/d/1qYIuWiwmFu6LjipUr7q-A9AwsbSKTA7D/view" target="_blank" rel="noopener" title="Open full size"><img src="https://lh3.googleusercontent.com/d/1qYIuWiwmFu6LjipUr7q-A9AwsbSKTA7D" alt="Animated plots of displacement and velocity at four floors of the tower for no control, MPC, TDMPC and MAP-TD." loading="lazy" decoding="async" onerror="this.closest('figure').hidden=true"></a>
+              <figcaption>Control response of the tower at four floors (DOF 10, 35, 52, 70): (a) displacement and (b) velocity with no control, with MPC, with TDMPC, and with MAP-TD. The dashed lines mark the target bounds.</figcaption>
+            </figure>
+            <p>The average tracking error, as a percent of the L<sup>2</sup> norm, is below. Baseline-MPC uses the true equations. MAP-TD, which discovers its model from data, matches it on the beam (16.5% against 15.5%) and is about 37% lower on the tower (17.1% against 27.3%).</p>
+            <div class="table-wrap"><table class="data wrap-head">
+              <thead><tr><th>Tracking error (%)</th><th>Baseline-MPC</th><th>Baseline-MPC (CEM)</th><th>TDMPC</th><th>MAP-TD</th><th>MAP-TD-NN (offline)</th><th>MAP-TD-NN (online)</th></tr></thead>
+              <tbody>
+                <tr><td>Cantilever beam</td><td class="best">15.5</td><td>103.6</td><td>72.7</td><td>16.5</td><td>73.5</td><td>74.9</td></tr>
+                <tr><td>76-DOF tower</td><td>27.3</td><td>49.0</td><td>100.3</td><td class="best">17.1</td><td>69.3</td><td>69.1</td></tr>
+              </tbody>
+            </table></div>
+            <p>MAP-TD is also fast at run time. Wall-clock time per planning step:</p>
+            <div class="table-wrap"><table class="data wrap-head">
+              <thead><tr><th>Time per planning step</th><th>Baseline-MPC</th><th>Baseline-MPC (CEM)</th><th>TDMPC</th><th>MAP-TD</th><th>MAP-TD-NN</th></tr></thead>
+              <tbody>
+                <tr><td>Cantilever beam</td><td>38 s</td><td>74 s</td><td>1 ms</td><td class="best">15 ms</td><td>2.1 ms</td></tr>
+                <tr><td>76-DOF tower</td><td>43 s</td><td>446 s</td><td>1.1 ms</td><td class="best">71 ms</td><td>2.1 ms</td></tr>
+              </tbody>
+            </table></div>
+            <p class="table-note">That is roughly 2,500 times faster than gradient-based Baseline-MPC on the beam and roughly 600 times faster on the tower. TDMPC is faster still, but it does not control either structure well.</p>
+
+            <h4 class="mini-h">Limits and outlook</h4>
+            <p>MAP-TD is built for deterministic control. It does not propagate uncertainty about the environment, and its reward and exploration cannot tell random disturbances from a poor policy. The next steps are stochastic control with random loads, and non-stationary excitations.</p>
+            </div>
           </article>
         <h2 class="subhead">Applications</h2>
         <article class="item" id="flowmarl">

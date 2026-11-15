@@ -169,23 +169,29 @@ document.getElementById('yr').textContent = new Date().getFullYear();
   if (hasList) q.addEventListener('input', render);
   if (hasList) render();
 
-  const featEl = document.getElementById('featured-list');
-  if (featEl) {
+  const featLists = [].slice.call(document.querySelectorAll('[data-dois], #featured-list'));
+  if (featLists.length) {
     const FEAT = ['10.1016/j.cma.2022.115783', '10.1016/j.cpc.2025.109882', '10.1016/j.ymssp.2022.109939', '10.1016/j.ymssp.2024.111737', '10.1016/j.ymssp.2026.114226'];
     const load = function (src) { return new Promise(function (res) { const s = document.createElement('script'); s.src = src; s.onload = res; s.onerror = res; document.head.appendChild(s); }); };
     Promise.all([load('abstracts.js'), load('thumbs.js')]).then(function () {
-      featEl.innerHTML = FEAT.map(function (d) {
-        const p = P.find(function (x) { return x.d === d; }); if (!p) return '';
-        const title = '<a href="https://doi.org/' + p.d + '" target="_blank" rel="noopener">' + esc(p.ti) + '</a>';
-        return '<li class="pub">' + thumb(p) + '<div class="pb"><span class="ti">' + title + '</span><span class="au">' + authors(p.a) + '</span><span class="ve">' + esc(p.v) + '</span>' + ext(p) + panel(p) + '</div></li>';
-      }).join('');
+      featLists.forEach(function (el) {
+        const attr = el.getAttribute('data-dois');
+        const keys = attr ? attr.split('|') : FEAT;
+        el.innerHTML = keys.map(function (k) {
+          const p = P.find(function (x) { return (x.d || x.ti) === k; }); if (!p) return '';
+          const title = p.d ? '<a href="https://doi.org/' + p.d + '" target="_blank" rel="noopener">' + esc(p.ti) + '</a>' : esc(p.ti);
+          return '<li class="pub">' + thumb(p) + '<div class="pb"><span class="ti">' + title + '</span><span class="au">' + authors(p.a) + '</span><span class="ve">' + esc(p.v) + '</span>' + ext(p) + panel(p) + '</div></li>';
+        }).join('');
+      });
     });
-    featEl.addEventListener('click', function (e) {
-      const b = e.target.closest('.chip-abs'); if (!b) return;
-      const box = document.getElementById(b.getAttribute('aria-controls'));
-      const open = b.getAttribute('aria-expanded') !== 'true';
-      b.setAttribute('aria-expanded', String(open));
-      box.classList.toggle('open', open);
+    featLists.forEach(function (el) {
+      el.addEventListener('click', function (e) {
+        const b = e.target.closest('.chip-abs'); if (!b) return;
+        const box = document.getElementById(b.getAttribute('aria-controls'));
+        const open = b.getAttribute('aria-expanded') !== 'true';
+        b.setAttribute('aria-expanded', String(open));
+        box.classList.toggle('open', open);
+      });
     });
   }
 })();

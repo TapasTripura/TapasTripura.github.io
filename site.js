@@ -252,15 +252,17 @@ document.getElementById('yr').textContent = new Date().getFullYear();
 /* ---------- Table of contents highlight ---------- */
 (function () {
   const links = [].slice.call(document.querySelectorAll('.toc a'));
-  if (!links.length || !('IntersectionObserver' in window)) return;
-  const map = {};
-  links.forEach(function (a) { map[a.getAttribute('href').slice(1)] = a; });
-  const io = new IntersectionObserver(function (es) {
-    es.forEach(function (e) {
-      if (!e.isIntersecting) return;
-      links.forEach(function (a) { a.classList.remove('on'); });
-      const a = map[e.target.id]; if (a) a.classList.add('on');
-    });
-  }, { rootMargin: '-15% 0px -75% 0px' });
-  Object.keys(map).forEach(function (id) { const s = document.getElementById(id); if (s) io.observe(s); });
+  if (!links.length) return;
+  const heads = links.map(function (a) { return document.getElementById(a.getAttribute('href').slice(1)); });
+  let ticking = false;
+  function update() {
+    ticking = false;
+    let idx = -1;
+    heads.forEach(function (h, i) { if (h && h.getBoundingClientRect().top <= 220) idx = i; });
+    if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) idx = links.length - 1;
+    links.forEach(function (a, i) { a.classList.toggle('on', i === idx); });
+  }
+  window.addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
+  window.addEventListener('resize', update);
+  update();
 })();

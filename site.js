@@ -128,7 +128,7 @@ document.getElementById('yr').textContent = new Date().getFullYear();
   };
   function thumb(p) {
     const t = (window.THUMBS || {})[p.d || p.ti];
-    if (t) return '<a class="thumb real" href="' + t.f + '" target="_blank" rel="noopener" title="Open the figure full size"><img src="' + t.s + '" alt="' + esc('Main figure of the paper: ' + p.ti) + '" loading="lazy" decoding="async"></a>';
+    if (t) return '<span class="thumb real"><img src="' + t.s + '" alt="' + esc('Main figure of the paper: ' + p.ti) + '" loading="lazy" decoding="async"></span>';
     return '<span class="thumb tile" aria-hidden="true"><svg viewBox="0 0 100 100" focusable="false">' + GL[kind(p)] + '</svg><span class="tl">' + esc(abbr(p) + (typeof p.y === 'number' ? ' ' + p.y : '')) + '</span></span>';
   }
 

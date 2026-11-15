@@ -50,16 +50,16 @@
           
             <p class="topic-label">Figures</p>
             <figure class="post-fig">
-              <a class="frame" href="https://drive.google.com/file/d/1XQ7s_ULF-7DE6pwz3kxYQn7cVPkKost8/view" target="_blank" rel="noopener" title="Open full size"><img src="https://lh3.googleusercontent.com/d/1XQ7s_ULF-7DE6pwz3kxYQn7cVPkKost8" alt="Diagram of the wavelet neural operator and of the wavelet integral block." loading="lazy" decoding="async" onerror="this.closest('figure').hidden=true"></a>
+              <div class="frame"><img src="https://lh3.googleusercontent.com/d/1XQ7s_ULF-7DE6pwz3kxYQn7cVPkKost8" alt="Diagram of the wavelet neural operator and of the wavelet integral block." loading="lazy" decoding="async" onerror="this.closest('figure').hidden=true"></div>
               <figcaption>The WNO. An MLP lifts the input function and the grid, a chain of wavelet integral blocks (WIB) updates the features, and an MLP maps them to the output function. Inside a block, the input is wavelet-transformed, convolved with learned kernels for the approximate and detailed coefficients, transformed back, and added to a skip connection.</figcaption>
             </figure>
             <div class="fig-grid">
             <figure class="post-fig">
-              <a class="frame" href="https://drive.google.com/file/d/1YYSrkAn8Tj_RrOlTlvR1zX7LGxPKFvX8/view" target="_blank" rel="noopener" title="Open full size"><img src="https://lh3.googleusercontent.com/d/1YYSrkAn8Tj_RrOlTlvR1zX7LGxPKFvX8" alt="Animated vorticity fields on a 64 by 64 grid, ground truth next to the WNO prediction." loading="lazy" decoding="async" onerror="this.closest('figure').hidden=true"></a>
+              <div class="frame"><img src="https://lh3.googleusercontent.com/d/1YYSrkAn8Tj_RrOlTlvR1zX7LGxPKFvX8" alt="Animated vorticity fields on a 64 by 64 grid, ground truth next to the WNO prediction." loading="lazy" decoding="async" onerror="this.closest('figure').hidden=true"></div>
               <figcaption>Prediction of the incompressible Navier–Stokes vorticity field on a 64 × 64 grid, with the model trained at this low resolution: ground truth against WNO.</figcaption>
             </figure>
             <figure class="post-fig">
-              <a class="frame" href="https://drive.google.com/file/d/1CbaMyFYh22nQvyuwbfa179k5afh2cPIS/view" target="_blank" rel="noopener" title="Open full size"><img src="https://lh3.googleusercontent.com/d/1CbaMyFYh22nQvyuwbfa179k5afh2cPIS" alt="Animated vorticity fields on a 256 by 256 grid, ground truth next to the WNO prediction." loading="lazy" decoding="async" onerror="this.closest('figure').hidden=true"></a>
+              <div class="frame"><img src="https://lh3.googleusercontent.com/d/1CbaMyFYh22nQvyuwbfa179k5afh2cPIS" alt="Animated vorticity fields on a 256 by 256 grid, ground truth next to the WNO prediction." loading="lazy" decoding="async" onerror="this.closest('figure').hidden=true"></div>
               <figcaption>Zero-shot super-resolution of the Navier–Stokes vorticity field on a 256 × 256 grid: ground truth against WNO.</figcaption>
             </figure>
             </div>
@@ -75,11 +75,11 @@
           
             <p class="topic-label">Figures</p>
             <figure class="post-fig">
-              <a class="frame" href="https://drive.google.com/file/d/19PFJi8mU9ntEugZtHupESip5I0j2M13F/view" target="_blank" rel="noopener" title="Open full size"><img src="https://lh3.googleusercontent.com/d/19PFJi8mU9ntEugZtHupESip5I0j2M13F" alt="Diagram of the physics-informed wavelet neural operator: a wavelet neural operator whose output is trained with a physics loss made of the PDE, boundary and initial condition terms." loading="lazy" decoding="async" onerror="this.closest('figure').hidden=true"></a>
+              <div class="frame"><img src="https://lh3.googleusercontent.com/d/19PFJi8mU9ntEugZtHupESip5I0j2M13F" alt="Diagram of the physics-informed wavelet neural operator: a wavelet neural operator whose output is trained with a physics loss made of the PDE, boundary and initial condition terms." loading="lazy" decoding="async" onerror="this.closest('figure').hidden=true"></div>
               <figcaption>The PIWNO. The wavelet neural operator maps the input function and the coordinates to the solution. Instead of labeled data, a physics loss is minimized: the PDE residual inside the domain, plus the boundary and initial condition losses.</figcaption>
             </figure>
             <figure class="post-fig">
-              <a class="frame" href="https://drive.google.com/file/d/1nEI1KqYa9WQ5GMM4HHVw-Chdjp3Opb7i/view" target="_blank" rel="noopener" title="Open full size"><img src="https://lh3.googleusercontent.com/d/1nEI1KqYa9WQ5GMM4HHVw-Chdjp3Opb7i" alt="Animated phase-field solution of the Allen-Cahn equation, ground truth next to the predicted field." loading="lazy" decoding="async" onerror="this.closest('figure').hidden=true"></a>
+              <div class="frame"><img src="https://lh3.googleusercontent.com/d/1nEI1KqYa9WQ5GMM4HHVw-Chdjp3Opb7i" alt="Animated phase-field solution of the Allen-Cahn equation, ground truth next to the predicted field." loading="lazy" decoding="async" onerror="this.closest('figure').hidden=true"></div>
               <figcaption>Allen–Cahn phase-field model. Trained on a 64 × 64 grid and tested zero-shot on 128 × 128: ground truth against the predicted field.</figcaption>
             </figure>
           </article>
@@ -97,11 +97,11 @@
           
             <p class="topic-label">Figures</p>
             <figure class="post-fig">
-              <a class="frame" href="https://drive.google.com/file/d/1B8PBJEVxclZ2fLXZ0yOE7K4ox4HCXlsU/view" target="_blank" rel="noopener" title="Open full size"><img src="https://lh3.googleusercontent.com/d/1B8PBJEVxclZ2fLXZ0yOE7K4ox4HCXlsU" alt="Diagram of the multi-fidelity wavelet neural operator: a low-fidelity WNO, then a high-fidelity WNO that learns the residual, with the two solutions added." loading="lazy" decoding="async" onerror="this.closest('figure').hidden=true"></a>
+              <div class="frame"><img src="https://lh3.googleusercontent.com/d/1B8PBJEVxclZ2fLXZ0yOE7K4ox4HCXlsU" alt="Diagram of the multi-fidelity wavelet neural operator: a low-fidelity WNO, then a high-fidelity WNO that learns the residual, with the two solutions added." loading="lazy" decoding="async" onerror="this.closest('figure').hidden=true"></div>
               <figcaption>The MF-WNO. (I) A WNO is trained on the large low-fidelity (LF) dataset. (II) A second WNO takes the high-fidelity (HF) input together with the LF solution and learns the residual. Adding the residual to the LF solution gives the HF solution. The inset shows a wavelet integral block.</figcaption>
             </figure>
             <figure class="post-fig">
-              <a class="frame" href="https://drive.google.com/file/d/1UcdoBrLK0fSm3Czfuo91MP1tMp4DQ3vB/view" target="_blank" rel="noopener" title="Open full size"><img src="https://lh3.googleusercontent.com/d/1UcdoBrLK0fSm3Czfuo91MP1tMp4DQ3vB" alt="Predicted pressure fields and error maps on a triangular domain for HF-WNO, MF-DeepONet and MF-WNO." loading="lazy" decoding="async" onerror="this.closest('figure').hidden=true"></a>
+              <div class="frame"><img src="https://lh3.googleusercontent.com/d/1UcdoBrLK0fSm3Czfuo91MP1tMp4DQ3vB" alt="Predicted pressure fields and error maps on a triangular domain for HF-WNO, MF-DeepONet and MF-WNO." loading="lazy" decoding="async" onerror="this.closest('figure').hidden=true"></div>
               <figcaption>Darcy flow in a triangular domain with a notch, for one boundary condition, with models trained on 50 samples. The input boundary condition is on the left. For HF-WNO, MF-DeepONet and MF-WNO, the top row is the predicted field and the bottom row is the error.</figcaption>
             </figure>
           </article>
@@ -109,7 +109,7 @@
             <h3>Neural combinatorial WNO (NCWNO)</h3>
             <p>A scientific foundation model that learns many PDEs at once without catastrophic forgetting and adapts to unseen parametric PDEs.</p>
             <figure class="post-fig">
-              <a class="frame" href="https://drive.google.com/file/d/1d3_xI5HGNontsKYZSavuvD7mNDJq6Qri/view" target="_blank" rel="noopener" title="Open full size"><img src="https://lh3.googleusercontent.com/d/1d3_xI5HGNontsKYZSavuvD7mNDJq6Qri" alt="Diagram: PDEs 0 to n are used to train a foundation model, which is then adapted to PDEs n+1, n+2, n+3 and beyond, to accelerate computational simulation." loading="lazy" decoding="async" onerror="this.closest('figure').hidden=true"></a>
+              <div class="frame"><img src="https://lh3.googleusercontent.com/d/1d3_xI5HGNontsKYZSavuvD7mNDJq6Qri" alt="Diagram: PDEs 0 to n are used to train a foundation model, which is then adapted to PDEs n+1, n+2, n+3 and beyond, to accelerate computational simulation." loading="lazy" decoding="async" onerror="this.closest('figure').hidden=true"></div>
               <figcaption>A foundation model is trained once on a set of PDEs, then adapted to new PDEs to accelerate computational simulation.</figcaption>
             </figure>
             <div class="chips"><a class="chip" href="foundation-model.html" title="Open the scientific foundation model page"><svg class="ic" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M4 1.5h5.5L13 5v9.5H4z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"></path><path d="M9.5 1.5V5H13M6 8.5h5M6 11h5" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path></svg><span class="k">Page</span>Scientific foundation model</a></div>
@@ -122,7 +122,7 @@
           
             <p class="topic-label">Figures</p>
             <figure class="post-fig">
-              <a class="frame" href="https://drive.google.com/file/d/1htrRMZSM0lN9x7sYQx72WVnTA5h35GSg/view" target="_blank" rel="noopener" title="Open full size"><img src="https://lh3.googleusercontent.com/d/1htrRMZSM0lN9x7sYQx72WVnTA5h35GSg" alt="Diagram of the flow through states that generates wavelet bases and activations, with the resulting wavelet neural operator and its wavelet integral block." loading="lazy" decoding="async" onerror="this.closest('figure').hidden=true"></a>
+              <div class="frame"><img src="https://lh3.googleusercontent.com/d/1htrRMZSM0lN9x7sYQx72WVnTA5h35GSg" alt="Diagram of the flow through states that generates wavelet bases and activations, with the resulting wavelet neural operator and its wavelet integral block." loading="lazy" decoding="async" onerror="this.closest('figure').hidden=true"></div>
               <figcaption>The flow-induced architecture search. (a) Flow through states: starting from a root node, two small MLPs generate, block by block, the wavelet basis (green) and the activation (purple) of each wavelet integral block (WIB). The generated sequence defines the WNO. (b) The wavelet neural operator. (c) The wavelet integral block.</figcaption>
             </figure>
           </article>
@@ -135,11 +135,11 @@
           
             <p class="topic-label">Results</p>
             <figure class="post-fig">
-              <a class="frame" href="https://drive.google.com/file/d/1a9KHPVdENJnXkzezZ4aSKzkJgZGvEfDu/view" target="_blank" rel="noopener" title="Open full size"><img src="https://lh3.googleusercontent.com/d/1a9KHPVdENJnXkzezZ4aSKzkJgZGvEfDu" alt="Five tumor test cases showing actual elasticity, WNO-predicted elasticity and the error." loading="lazy" decoding="async" onerror="this.closest('figure').hidden=true"></a>
+              <div class="frame"><img src="https://lh3.googleusercontent.com/d/1a9KHPVdENJnXkzezZ4aSKzkJgZGvEfDu" alt="Five tumor test cases showing actual elasticity, WNO-predicted elasticity and the error." loading="lazy" decoding="async" onerror="this.closest('figure').hidden=true"></div>
               <figcaption>Test cases of the benign and malignant tumor classes. The reference (actual) elasticity is in the top row, the WNO prediction in the middle row, and the error in the bottom row. All axes are in mm.</figcaption>
             </figure>
             <figure class="post-fig">
-              <a class="frame" href="https://drive.google.com/file/d/1wp49Y8vZeVKOsaJpmQqjIhxj2vi1d0Dt/view" target="_blank" rel="noopener" title="Open full size"><img src="https://lh3.googleusercontent.com/d/1wp49Y8vZeVKOsaJpmQqjIhxj2vi1d0Dt" alt="Animated stiffness slices at 30, 50 and 70 hertz, ground truth above and prediction below." loading="lazy" decoding="async" onerror="this.closest('figure').hidden=true"></a>
+              <div class="frame"><img src="https://lh3.googleusercontent.com/d/1wp49Y8vZeVKOsaJpmQqjIhxj2vi1d0Dt" alt="Animated stiffness slices at 30, 50 and 70 hertz, ground truth above and prediction below." loading="lazy" decoding="async" onerror="this.closest('figure').hidden=true"></div>
               <figcaption>Shear stiffness prediction on the MRE dataset with a single wavelet expert (FWNO-MRE). Stiffness slices at the three excitation frequencies, 30, 50 and 70 Hz, for a single test subject: the ground truth from nonlinear inversion (NLI) in the top row and the prediction in the bottom row.</figcaption>
             </figure>
           </article>

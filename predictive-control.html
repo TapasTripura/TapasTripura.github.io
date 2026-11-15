@@ -55,7 +55,7 @@
 
             <h4 class="mini-h">How it works</h4>
             <figure class="post-fig">
-              <a class="frame" href="https://drive.google.com/file/d/1meZnRrrMx51hMey_uUOKqJ_nX4f1jW6R/view" target="_blank" rel="noopener" title="Open full size"><img src="https://lh3.googleusercontent.com/d/1meZnRrrMx51hMey_uUOKqJ_nX4f1jW6R" alt="Schematic of MAP-TD: sparse Bayesian learning, a neural operator surrogate, and a temporal-difference agent with model predictive planning in a loop with the environment." loading="lazy" decoding="async" onerror="this.closest('figure').hidden=true"></a>
+              <div class="frame"><img src="https://lh3.googleusercontent.com/d/1meZnRrrMx51hMey_uUOKqJ_nX4f1jW6R" alt="Schematic of MAP-TD: sparse Bayesian learning, a neural operator surrogate, and a temporal-difference agent with model predictive planning in a loop with the environment." loading="lazy" decoding="async" onerror="this.closest('figure').hidden=true"></div>
               <figcaption>The MAP-TD framework. (I) Data are turned into a physical model by sparse Bayesian learning. (II) A neural operator surrogate is trained on that model. (III) The agent plans with the model and learns its policy and value function by temporal-difference learning.</figcaption>
             </figure>
             <p><strong>1. Discover the physics.</strong> Sparse Bayesian learning with a spike-and-slab prior picks a few terms from a library of candidate functions, using one noisy trajectory. Terms with a marginal posterior inclusion probability above 0.5 are kept. The action then enters the discovered model as an external force:</p>
@@ -71,32 +71,32 @@
             <div class="eq">$$\partial_{tt}u=8.5494\pm0.1922\,\partial_{xxxx}u+0.9772\pm0.003\,f(x,t)$$</div>
             <p>This matches the equation used to generate the data. The coarse solver is a wavelet neural operator, with an average rollout error of 1.15% over 500 time steps.</p>
             <figure class="post-fig">
-              <a class="frame" href="https://drive.google.com/file/d/1OcwAmL2BbuPWe_AbGC-gHDJvgSzxSVFb/view" target="_blank" rel="noopener" title="Open full size"><img src="https://lh3.googleusercontent.com/d/1OcwAmL2BbuPWe_AbGC-gHDJvgSzxSVFb" alt="Drawing of a cantilever beam with a fixed support, a distributed load, a piezoelectric patch and a free end." loading="lazy" decoding="async" onerror="this.closest('figure').hidden=true"></a>
+              <div class="frame"><img src="https://lh3.googleusercontent.com/d/1OcwAmL2BbuPWe_AbGC-gHDJvgSzxSVFb" alt="Drawing of a cantilever beam with a fixed support, a distributed load, a piezoelectric patch and a free end." loading="lazy" decoding="async" onerror="this.closest('figure').hidden=true"></div>
               <figcaption>Setup of the cantilever beam. The red strip is the piezoelectric patch that applies the control, and a distributed load acts on the beam (lengths in meters).</figcaption>
             </figure>
 
             <h4 class="mini-h">Example 2: a 76-storey tower</h4>
             <p>The second benchmark is a 76-storey, 306.1 m tower under wind load, with twelve actuators, a tuned mass damper at the top, and nonlinearity added to some floors. The form of that nonlinearity is treated as unknown. The Bayesian step searches 774 candidate functions (466 once the nonlinearity is assumed to depend on displacement only) and finds the missing physics from one noisy trajectory. The coarse solver is an MLP, with a rollout error of about 11.9%. Because the policy search is guided by the discovered model, that surrogate error does not carry into the policy.</p>
             <figure class="post-fig narrow">
-              <a class="frame" href="https://drive.google.com/file/d/1zv7EVO-Hcw0TzIIn-5KVCvXiZ8yV2iOd/view" target="_blank" rel="noopener" title="Open full size"><img src="https://lh3.googleusercontent.com/d/1zv7EVO-Hcw0TzIIn-5KVCvXiZ8yV2iOd" alt="Drawing of a 76-storey tower with wind load, nonlinear floors and actuator floors marked." loading="lazy" decoding="async" onerror="this.closest('figure').hidden=true"></a>
+              <div class="frame"><img src="https://lh3.googleusercontent.com/d/1zv7EVO-Hcw0TzIIn-5KVCvXiZ8yV2iOd" alt="Drawing of a 76-storey tower with wind load, nonlinear floors and actuator floors marked." loading="lazy" decoding="async" onerror="this.closest('figure').hidden=true"></div>
               <figcaption>Setup of the 76-storey tower under lateral wind load. The nonlinear floors are in blue and the floors with actuators are in red.</figcaption>
             </figure>
 
             <h4 class="mini-h">Learning the policy</h4>
             <p>MAP-TD is compared with two Baseline-MPC controllers that use the true equations (a gradient-based one and a derivative-free one using the cross-entropy method), with TDMPC, which learns a latent model, and with MAP-TD variants whose model is a neural network. On the beam, MAP-TD reaches the return of the gradient-based Baseline-MPC within 0.1 million environment steps. On the tower it gets close to that return after about 300 episodes. TDMPC and the neural-network variants improve only a little, which the paper attributes to errors in their neural dynamics models that carry into the policy.</p>
             <figure class="post-fig">
-              <a class="frame" href="https://drive.google.com/file/d/1HHveyOixfdQwt2MME-5EgemOIDLScYf1/view" target="_blank" rel="noopener" title="Open full size"><img src="https://lh3.googleusercontent.com/d/1HHveyOixfdQwt2MME-5EgemOIDLScYf1" alt="Plots of episodic return against environment steps for MAP-TD, TDMPC, neural-network variants and Baseline-MPC, for the beam and the tower." loading="lazy" decoding="async" onerror="this.closest('figure').hidden=true"></a>
+              <div class="frame"><img src="https://lh3.googleusercontent.com/d/1HHveyOixfdQwt2MME-5EgemOIDLScYf1" alt="Plots of episodic return against environment steps for MAP-TD, TDMPC, neural-network variants and Baseline-MPC, for the beam and the tower." loading="lazy" decoding="async" onerror="this.closest('figure').hidden=true"></div>
               <figcaption>Episodic return during training for (a) the cantilever beam and (b) the 76-DOF tower. The dashed lines are the Baseline-MPC returns. The black MAP-TD curve is a variant that updates its model online.</figcaption>
             </figure>
 
             <h4 class="mini-h">Control results</h4>
             <p>On the beam, Baseline-MPC holds the deflection near zero and MAP-TD stays close to it, with some residual oscillation, while TDMPC behaves much like the uncontrolled beam. On the tower, MAP-TD and Baseline-MPC both reduce the displacement and keep the velocity within the target bounds, with only small, occasional violations.</p>
             <figure class="post-fig">
-              <a class="frame" href="https://drive.google.com/file/d/1n-AqUpLjDRFQhmIMZxD8MUddW0i_Npwl/view" target="_blank" rel="noopener" title="Open full size"><img src="https://lh3.googleusercontent.com/d/1n-AqUpLjDRFQhmIMZxD8MUddW0i_Npwl" alt="Animated plot of beam displacement along the beam for no control, MPC, TDMPC and MAP-TD." loading="lazy" decoding="async" onerror="this.closest('figure').hidden=true"></a>
+              <div class="frame"><img src="https://lh3.googleusercontent.com/d/1n-AqUpLjDRFQhmIMZxD8MUddW0i_Npwl" alt="Animated plot of beam displacement along the beam for no control, MPC, TDMPC and MAP-TD." loading="lazy" decoding="async" onerror="this.closest('figure').hidden=true"></div>
               <figcaption>Control response of the cantilever beam: displacement along the beam with no control, with MPC, with TDMPC, and with MAP-TD. The dashed lines mark the target bounds.</figcaption>
             </figure>
             <figure class="post-fig">
-              <a class="frame" href="https://drive.google.com/file/d/1qYIuWiwmFu6LjipUr7q-A9AwsbSKTA7D/view" target="_blank" rel="noopener" title="Open full size"><img src="https://lh3.googleusercontent.com/d/1qYIuWiwmFu6LjipUr7q-A9AwsbSKTA7D" alt="Animated plots of displacement and velocity at four floors of the tower for no control, MPC, TDMPC and MAP-TD." loading="lazy" decoding="async" onerror="this.closest('figure').hidden=true"></a>
+              <div class="frame"><img src="https://lh3.googleusercontent.com/d/1qYIuWiwmFu6LjipUr7q-A9AwsbSKTA7D" alt="Animated plots of displacement and velocity at four floors of the tower for no control, MPC, TDMPC and MAP-TD." loading="lazy" decoding="async" onerror="this.closest('figure').hidden=true"></div>
               <figcaption>Control response of the tower at four floors (DOF 10, 35, 52, 70): (a) displacement and (b) velocity with no control, with MPC, with TDMPC, and with MAP-TD. The dashed lines mark the target bounds.</figcaption>
             </figure>
             <p>The average tracking error, as a percent of the L<sup>2</sup> norm, is below. Baseline-MPC uses the true equations. MAP-TD, which discovers its model from data, matches it on the beam (16.5% against 15.5%) and is about 37% lower on the tower (17.1% against 27.3%).</p>
@@ -130,20 +130,20 @@
             <p class="topic-label">Results</p>
             <div class="fig-grid">
             <figure class="post-fig">
-              <a class="frame" href="https://drive.google.com/file/d/1ZLvf3bthLXbq7RgcPdRvbYeI7YaCB6hd/view" target="_blank" rel="noopener" title="Open full size"><img src="https://lh3.googleusercontent.com/d/1ZLvf3bthLXbq7RgcPdRvbYeI7YaCB6hd" alt="Animated flow fields behind a circular cylinder for the uncontrolled case, baseline MPC, TDMPC and FlowMARL." loading="lazy" decoding="async" onerror="this.closest('figure').hidden=true"></a>
+              <div class="frame"><img src="https://lh3.googleusercontent.com/d/1ZLvf3bthLXbq7RgcPdRvbYeI7YaCB6hd" alt="Animated flow fields behind a circular cylinder for the uncontrolled case, baseline MPC, TDMPC and FlowMARL." loading="lazy" decoding="async" onerror="this.closest('figure').hidden=true"></div>
               <figcaption>Flow control of the wake behind a circular cylinder. Flow fields for the uncontrolled case, baseline MPC, TDMPC, and FlowMARL.</figcaption>
             </figure>
             <figure class="post-fig">
-              <a class="frame" href="https://drive.google.com/file/d/1kf_xn5Z74XFCxtK5-6k19fY3kNeimgWL/view" target="_blank" rel="noopener" title="Open full size"><img src="https://lh3.googleusercontent.com/d/1kf_xn5Z74XFCxtK5-6k19fY3kNeimgWL" alt="Animated flow fields behind a square cylinder for the uncontrolled case and two controlled cases, with the jet locations marked." loading="lazy" decoding="async" onerror="this.closest('figure').hidden=true"></a>
+              <div class="frame"><img src="https://lh3.googleusercontent.com/d/1kf_xn5Z74XFCxtK5-6k19fY3kNeimgWL" alt="Animated flow fields behind a square cylinder for the uncontrolled case and two controlled cases, with the jet locations marked." loading="lazy" decoding="async" onerror="this.closest('figure').hidden=true"></div>
               <figcaption>Zero-shot generalization to a square geometry. Flow fields for the uncontrolled case and two controlled cases, with the two jet locations marked.</figcaption>
             </figure>
             </div>
             <figure class="post-fig">
-              <a class="frame" href="https://drive.google.com/file/d/1k3EWYOCwIC_pPwsbPi7V87R5U1505zuE/view" target="_blank" rel="noopener" title="Open full size"><img src="https://lh3.googleusercontent.com/d/1k3EWYOCwIC_pPwsbPi7V87R5U1505zuE" alt="Plots of the drag and lift coefficients of a circular cylinder over environment steps, and their power spectra, for the uncontrolled flow, TDMPC and FlowMARL." loading="lazy" decoding="async" onerror="this.closest('figure').hidden=true"></a>
+              <div class="frame"><img src="https://lh3.googleusercontent.com/d/1k3EWYOCwIC_pPwsbPi7V87R5U1505zuE" alt="Plots of the drag and lift coefficients of a circular cylinder over environment steps, and their power spectra, for the uncontrolled flow, TDMPC and FlowMARL." loading="lazy" decoding="async" onerror="this.closest('figure').hidden=true"></div>
               <figcaption>Drag and lift of the circular cylinder. (a) Drag coefficient, (b) lift coefficient, and (c, d) their power spectra, for the uncontrolled flow, TDMPC, and FlowMARL. The shaded band marks the first 2,000 environment steps. Both controllers lower the drag and almost remove the lift oscillations, and FlowMARL gives the lowest drag.</figcaption>
             </figure>
             <figure class="post-fig">
-              <a class="frame" href="https://drive.google.com/file/d/105mh1DkSLngyLaZ9i6ZYFSEjz8g2vVKj/view" target="_blank" rel="noopener" title="Open full size"><img src="https://lh3.googleusercontent.com/d/105mh1DkSLngyLaZ9i6ZYFSEjz8g2vVKj" alt="Plots of the drag and lift coefficients of a square cylinder over environment steps, and their power spectra, for the uncontrolled flow, TDMPC and FlowMARL." loading="lazy" decoding="async" onerror="this.closest('figure').hidden=true"></a>
+              <div class="frame"><img src="https://lh3.googleusercontent.com/d/105mh1DkSLngyLaZ9i6ZYFSEjz8g2vVKj" alt="Plots of the drag and lift coefficients of a square cylinder over environment steps, and their power spectra, for the uncontrolled flow, TDMPC and FlowMARL." loading="lazy" decoding="async" onerror="this.closest('figure').hidden=true"></div>
               <figcaption>Drag and lift of the square cylinder. The same four panels for the square cylinder.</figcaption>
             </figure>
           </article>

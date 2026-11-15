@@ -412,3 +412,8 @@ table.data td.best { font-weight: 600; color: var(--teal); }
 table.data.wrap-head th { white-space: normal; vertical-align: bottom; line-height: 1.3; padding-left: 6px; padding-right: 6px; }
 table.data.wrap-head td { padding-left: 6px; padding-right: 6px; }
 .item .mini-blog .table-wrap { margin: 14px 0 12px; }
+
+/* Embedded video in an item */
+.item .video { position: relative; aspect-ratio: 16 / 9; background: #000; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+.item .video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.item .video-fig { margin-top: 16px; }

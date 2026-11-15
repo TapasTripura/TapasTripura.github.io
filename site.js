@@ -272,3 +272,15 @@ document.getElementById('yr').textContent = new Date().getFullYear();
   window.addEventListener('resize', update);
   update();
 })();
+
+/* ---------- Updates column ---------- */
+(function () {
+  const list = document.getElementById('updates-list'); if (!list) return;
+  const esc = function (s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); };
+  const data = window.UPDATES || [];
+  list.innerHTML = data.map(function (u) {
+    const link = /^https?:\/\//.test(u[2] || '') ? u[2] : '';
+    const text = link ? '<a href="' + esc(link) + '" target="_blank" rel="noopener">' + esc(u[1]) + '</a>' : esc(u[1]);
+    return '<li><span class="u-date">' + esc(u[0]) + '</span><span class="u-text">' + text + '</span></li>';
+  }).join('');
+})();

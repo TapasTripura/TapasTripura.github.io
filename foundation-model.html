@@ -16,6 +16,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&amp;family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&amp;display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js" onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\(',right:'\\)',display:false}],throwOnError:false})"></script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -31,46 +34,171 @@
 <main id="main">
 <div class="wrap">
 <section class="sec first" id="foundation" aria-labelledby="h-foundation">
-      <h1 id="h-foundation">Scientific foundation model</h1>
-      <div class="body">
-        <div class="feature">
-          <h3>Neural Combinatorial Wavelet Neural Operator (NCWNO)</h3>
-          <p>Building a new machine-learning model from scratch for every scientific task takes a lot of computational time and memory. NCWNO is a foundation model for computational mechanics. It is pre-trained on a diverse spectrum of physics and then adapts to the solution operators of unseen parametric PDEs.</p>
-          <div class="cols">
-            <div>
-              <h4>What it does</h4>
-              <ul>
-                <li>Learns solution operators for several parametric PDEs at once.</li>
-                <li>Generalizes to new parametric PDEs with minimal fine-tuning.</li>
-              </ul>
-            </div>
-            <div>
-              <h4>What sets it apart</h4>
-              <ul>
-                <li>It does not suffer catastrophic forgetting.</li>
-                <li>It keeps positive transfer to new parametric PDEs.</li>
-                <li>It transfers knowledge across dissimilar tasks.</li>
-              </ul>
-            </div>
-          </div>
-          <p>In the showcase experiment, one pre-trained NCWNO predicts six PDEs simultaneously on a 64 × 64 spatial grid.</p>
-          <div class="links"><span class="lab">Paper</span><ul>
-            <li><a href="https://doi.org/10.1016/j.cpc.2025.109882" target="_blank" rel="noopener">NCWNO (CPC 2025)</a></li>
-          </ul></div>
-          <div class="links"><span class="lab"><svg class="gh" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>Code</span><ul>
-            <li><a href="https://github.com/TapasTripura/NCWNO" target="_blank" rel="noopener">NCWNO</a></li>
-          </ul></div>
+      <div class="side">
+        <h1 id="h-foundation">Scientific foundation model</h1>
+        <nav class="toc" aria-label="On this page">
+          <ol>
+            <li><a href="#motivation">Motivation</a></li>
+            <li><a href="#architecture">Architecture</a></li>
+            <li><a href="#simultaneous">Many PDEs at once</a></li>
+            <li><a href="#resolution">Other resolutions</a></li>
+            <li><a href="#ood">Unseen inputs</a></li>
+            <li><a href="#continual">Continual learning</a></li>
+            <li><a href="#comparisons">Comparisons</a></li>
+            <li><a href="#outlook">Limits and outlook</a></li>
+          </ol>
+        </nav>
+      </div>
+      <div class="body post">
+        <p class="lead">The Neural Combinatorial Wavelet Neural Operator (NCWNO) is a foundation model for scientific computing. A single network learns the solution operators of many PDEs at once, adapts to a new PDE by training only a small gate, and keeps what it learned about the old ones.</p>
+        <p class="byline">Tripura and Chakraborty, Computer Physics Communications 318 (2026) 109882.</p>
+        <div class="chips"><a class="chip" href="https://doi.org/10.1016/j.cpc.2025.109882" target="_blank" rel="noopener"><span class="k">Paper</span>CPC 2025</a><a class="chip" href="https://github.com/TapasTripura/NCWNO" target="_blank" rel="noopener"><svg class="gh" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg><span class="k">Code</span>NCWNO</a><a class="chip" href="https://github.com/csccm-iitd/NCWNO" target="_blank" rel="noopener"><svg class="gh" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg><span class="k">Code</span>NCWNO, lab repo</a></div>
+
+        <div class="glance">
+          <h3>At a glance</h3>
+          <ul>
+            <li><strong>One model, many PDEs.</strong> One network is trained on six 1D PDEs and another on six 2D PDEs, with about 1% mean relative error for most of them.</li>
+            <li><strong>New PDEs without forgetting.</strong> Learning a new PDE trains only the probability gates, and the predictions on the old PDEs stay exactly the same.</li>
+            <li><strong>Cheaper adaptation.</strong> Using the pre-trained model needs more than 50% less data and computational time, and cuts the cost of learning new equations by about 15 times in 1D and 5 times in 2D.</li>
+            <li><strong>Generalizes.</strong> Accuracy drops by roughly 2 to 3 points on finer and coarser grids, and by about 2 points on out-of-distribution inputs.</li>
+            <li><strong>Competitive.</strong> In the paper&rsquo;s benchmarks it beats the multiphysics operators ICON and MPP, and the task-specific DeepONet, FNO and WNO.</li>
+          </ul>
         </div>
-        <div class="row" style="margin-top:34px">
-          <h3>Neural architecture search for WNO</h3>
-          <p>A generative flow network searches for the best architecture of a wavelet neural operator, so the design no longer has to be tuned by hand.</p>
-          <div class="links"><span class="lab">Paper</span><ul>
-            <li><a href="https://doi.org/10.1016/j.cpc.2025.109755" target="_blank" rel="noopener">Generative flow neural architecture search (CPC 2025)</a></li>
-          </ul></div>
-          <div class="links"><span class="lab"><svg class="gh" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>Code</span><ul>
-            <li><a href="https://github.com/csccm-iitd/FWNO" target="_blank" rel="noopener">FWNO</a></li>
-          </ul></div>
-        </div>
+
+        <h2 id="motivation">Motivation</h2>
+        <p>Solving a parametric PDE for many input parameters usually means running an expensive numerical solver again and again. Neural operators remove most of that cost by learning the solution operator itself, the map from input functions to solution functions. But each operator is trained for one physical system. A new physical system means a new model from scratch, with its own training data, manual tuning, memory, computing time, and energy.</p>
+        <p>Foundation models changed this in language and vision: train once on a broad set of tasks, then adapt to many downstream tasks. Very little of this exists for scientific computing. The NCWNO brings the idea to PDEs with three goals: learn many PDEs in one model, adapt to new PDEs with little data and time, and never forget the old ones.</p>
+        <figure class="post-fig">
+          <a class="frame" href="https://drive.google.com/file/d/1d3_xI5HGNontsKYZSavuvD7mNDJq6Qri/view" target="_blank" rel="noopener" title="Open full size"><img src="https://lh3.googleusercontent.com/d/1d3_xI5HGNontsKYZSavuvD7mNDJq6Qri" alt="Diagram: PDEs 0 to n are used to train a foundation model, which is then adapted to PDEs n+1, n+2, n+3 and beyond, to accelerate computational simulation." loading="lazy" decoding="async" onerror="this.closest('figure').hidden=true"></a>
+          <figcaption>A foundation model is trained once on a set of PDEs, then adapted to new PDEs to accelerate computational simulation.</figcaption>
+        </figure>
+
+        <h2 id="architecture">Architecture</h2>
+        <p>The NCWNO builds on the Wavelet Neural Operator (WNO). A neural operator maps the input parameters \(\mathbf a\) to the solution \(\mathbf u\) through a lifting map \(\mathcal P\), a chain of iterative updates, and a projection \(\mathcal Q\). Each update applies a kernel integral operator to the current context \(v_j\):</p>
+        <div class="eq">$$v_{j+1}(\mathbf x)=\Gamma\Big(\big(\mathcal K v_j\big)(\mathbf x)+g\,v_j(\mathbf x)\Big),\qquad \big(\mathcal K v_j\big)(\mathbf x)=\int_\Omega k_\phi(\mathbf x-\xi)\,v_j(\xi)\,d\xi$$</div>
+        <p>In the WNO, this convolution is done in the wavelet domain, where \(W_\psi\) is the wavelet transform, \(s\) and \(r\) are the scale and translation, and \(\kappa_\phi\) is a learned kernel:</p>
+        <div class="eq">$$\big(\mathcal K_\phi v_j\big)(\mathbf x)=W_\psi^{-1}\Big(\kappa_\phi\cdot\big[W_\psi v_j\big](s,r)\Big)(\mathbf x)$$</div>
+        <p>The NCWNO replaces that single wavelet integral block with an expert block, which has three parts:</p>
+        <ul>
+          <li><strong>Local wavelet experts.</strong> Each expert is a wavelet integral block with its own wavelet basis (Daubechies in 1D, biorthogonal in 2D), so each one learns different multiscale features.</li>
+          <li><strong>Expert block.</strong> It ensembles the experts channel by channel, using weights from the gate.</li>
+          <li><strong>Probability gate.</strong> It takes the PDE label \(\ell\) and the context, and returns the probability of each expert through a softmax. The gate itself uses wavelet integral layers, so it still works on grids it was not trained on.</li>
+        </ul>
+        <p>With \(d_e\) experts, the kernel operator of an expert block becomes a probability-weighted sum:</p>
+        <div class="eq">$$\big(\mathcal K v_j\big)(\mathbf x)=\sum_{e=1}^{d_e}\boldsymbol\beta^{e}_{j}\cdot W_{\psi_e}^{-1}\Big(\kappa^{e}_{\phi}\cdot W_{\psi_e}\big(v_j;s,r\big)\Big)(\mathbf x),\qquad \boldsymbol\beta_j=\operatorname{softmax}\Big(p_\beta\big(\cdot\mid v_0,\ \ell;\ \theta_\beta\big)\Big)$$</div>
+        <figure class="post-fig">
+          <a class="frame" href="https://drive.google.com/file/d/13lf4Chol2LbIDBfM37dsPy1VCG8cWVcR/view" target="_blank" rel="noopener" title="Open full size"><img src="https://lh3.googleusercontent.com/d/13lf4Chol2LbIDBfM37dsPy1VCG8cWVcR" alt="Architecture of the NCWNO: a lifting map, a chain of expert blocks with probability gates and local wavelet integral blocks, and a projection to the solution." loading="lazy" decoding="async" onerror="this.closest('figure').hidden=true"></a>
+          <figcaption>The NCWNO. (a) The context function is derived from the input parameters and updated through expert blocks, where the local experts are ensembled with the probabilities from a gate. (b) Inside an expert block, the local wavelet integral blocks (WIB) are ensembled channel by channel.</figcaption>
+        </figure>
+        <p>Training has two stages. First, all expert and gate weights are trained together on \(m\) PDEs, which gives the foundation model. Second, to learn a new PDE, the experts are frozen and only the gate parameters are trained (see continual learning below). An expert block with \(d_e\) experts on a \(d\)-point grid costs \(\mathcal O(d\,d_e)\). The multiphysics models in the paper use four expert blocks, with 10 experts in 1D (41.11 million parameters) and 6 experts in 2D (92.77 million parameters).</p>
+
+        <h2 id="simultaneous">Learning many PDEs at once</h2>
+        <p>The first test is whether one network can hold many PDEs. The paper uses twelve benchmark problems: the Allen&ndash;Cahn, Nagumo, Burgers&rsquo;, Heat and Advection equations in 1D and 2D, the 1D Wave equation, and the 2D Navier&ndash;Stokes equation. Each PDE has 1,500 random initial fields for training and 100 for testing, on a 256-point grid in 1D and a 64 &times; 64 grid in 2D. The datasets are very different from one another: cosine similarity, normalized KL divergence and mutual information all show that they share little, which is what makes a single model hard.</p>
+        <p>Two NCWNOs are trained, one on the six 1D PDEs and one on the six 2D PDEs. The 1D model maps the first ten time steps to the next forty, and the 2D model maps the first ten to the next twenty:</p>
+        <div class="eq">$$\mathcal D_\theta^{\mathcal N_{1:6}}:\ u\big|_{\Omega_{1D}\times[0,10]}^{\{1:6\}}\ \longmapsto\ u\big|_{\Omega_{1D}\times[11,50]}^{\{1:6\}}$$</div>
+        <p>At inference there is no fine-tuning. The predictions follow the ground truth closely, with a mean relative error of about 1% for most PDEs. The exception is the 2D Allen&ndash;Cahn equation at about 4%, which the paper attributes to jumps in the solution field.</p>
+        <figure class="post-fig">
+          <a class="frame" href="https://drive.google.com/file/d/1s_oG1v0cau7LA3NY6JlwFY7CCG7ic1Bn/view" target="_blank" rel="noopener" title="Open full size"><img src="https://lh3.googleusercontent.com/d/1s_oG1v0cau7LA3NY6JlwFY7CCG7ic1Bn" alt="Animation comparing ground truth and NCWNO predictions for six 1D PDEs over the prediction time steps." loading="lazy" decoding="async" onerror="this.closest('figure').hidden=true"></a>
+          <figcaption>One NCWNO, six 1D PDEs. Animated predictions against ground truth for the Advection, Nagumo, Allen–Cahn, Burgers’, Heat and Wave equations.</figcaption>
+        </figure>
+        <figure class="post-fig">
+          <a class="frame" href="https://drive.google.com/file/d/1mlHcKuLwVxNBLYwLYzd_VN56Yr8KhGxG/view" target="_blank" rel="noopener" title="Open full size"><img src="https://lh3.googleusercontent.com/d/1mlHcKuLwVxNBLYwLYzd_VN56Yr8KhGxG" alt="Animation of the initial condition, ground truth and NCWNO prediction for six 2D PDEs." loading="lazy" decoding="async" onerror="this.closest('figure').hidden=true"></a>
+          <figcaption>One NCWNO, six 2D PDEs. The initial condition, the ground truth and the NCWNO prediction for the Advection, Allen–Cahn, Burgers’, Heat, Nagumo and Navier–Stokes equations.</figcaption>
+        </figure>
+        <p>The paper compares the NCWNO with two transformer-based multiphysics operators: ICON, which handles 1D problems, and MPP, which handles 2D problems. Relative L<sup>2</sup> error in percent, mean &plusmn; standard deviation over 100 test samples:</p>
+        <div class="table-wrap"><table class="data">
+          <thead><tr><th>1D PDEs</th><th>Size</th><th>Allen&ndash;Cahn</th><th>Nagumo</th><th>Burgers&rsquo;</th><th>Heat</th><th>Wave</th><th>Advection</th></tr></thead>
+          <tbody>
+            <tr><td>ICON</td><td>31.56M</td><td>7.86 &plusmn; 0.20</td><td>8.24 &plusmn; 0.21</td><td>9.09 &plusmn; 0.24</td><td>5.91 &plusmn; 0.22</td><td>9.93 &plusmn; 0.25</td><td>4.61 &plusmn; 0.17</td></tr>
+            <tr><td>NCWNO</td><td>41.11M</td><td class="best">1.12 &plusmn; 1.01</td><td class="best">1.03 &plusmn; 1.64</td><td class="best">0.08 &plusmn; 0.03</td><td class="best">1.23 &plusmn; 0.77</td><td class="best">1.91 &plusmn; 1.53</td><td class="best">0.52 &plusmn; 0.32</td></tr>
+          </tbody>
+        </table></div>
+        <div class="table-wrap"><table class="data">
+          <thead><tr><th>2D PDEs</th><th>Size</th><th>Navier&ndash;Stokes</th><th>Allen&ndash;Cahn</th><th>Burgers&rsquo;</th><th>Advection</th><th>Nagumo</th><th>Heat</th></tr></thead>
+          <tbody>
+            <tr><td>MPP-AViT-B</td><td>116M</td><td>2.85 &plusmn; 1.17</td><td>8.84 &plusmn; 4.51</td><td>5.09 &plusmn; 2.72</td><td>4.63 &plusmn; 2.47</td><td>7.01 &plusmn; 4.37</td><td>3.23 &plusmn; 1.42</td></tr>
+            <tr><td>MPP-AViT-L</td><td>409M</td><td>4.98 &plusmn; 0.64</td><td>5.01 &plusmn; 0.18</td><td>5.01 &plusmn; 0.45</td><td>5.01 &plusmn; 0.59</td><td>4.98 &plusmn; 0.51</td><td>5.01 &plusmn; 0.56</td></tr>
+            <tr><td>NCWNO</td><td>92.77M</td><td class="best">1.64 &plusmn; 0.88</td><td class="best">4.10 &plusmn; 1.59</td><td class="best">1.45 &plusmn; 0.63</td><td class="best">1.02 &plusmn; 0.33</td><td class="best">0.58 &plusmn; 0.33</td><td class="best">0.75 &plusmn; 0.32</td></tr>
+          </tbody>
+        </table></div>
+        <p class="table-note">The 1D NCWNO is about 1.3 times the size of ICON. The 2D NCWNO is smaller than both MPP models.</p>
+
+        <h2 id="resolution">Other resolutions, with no retraining</h2>
+        <p>Neural operators should not depend on the grid, so the pre-trained models are tested, without fine-tuning, on grids different from the training grid. Training used 256 points in 1D and 64 &times; 64 in 2D. Testing used 512 and 128 points in 1D, and 128 &times; 128 and 32 &times; 32 in 2D.</p>
+        <p>The mean accuracy, defined as \(1-\lVert u-u^{*}\rVert/\lVert u\rVert\), is 94.56 &plusmn; 1.40% on the finer 1D grid and 96.29 &plusmn; 0.83% on the coarser one. In 2D it is 96.29 &plusmn; 1.75% and 96.41 &plusmn; 2.08%. That is a drop of about 1.5 to 3.2 percentage points compared with the training resolution.</p>
+        <figure class="post-fig">
+          <a class="frame" href="https://drive.google.com/file/d/15M-8vIE4iDShug-XnQfGN1qeSWTFodaj/view" target="_blank" rel="noopener" title="Open full size"><img src="https://lh3.googleusercontent.com/d/15M-8vIE4iDShug-XnQfGN1qeSWTFodaj" alt="Accuracy against testing time step for zero-shot predictions on finer and coarser grids, for 1D and 2D PDEs." loading="lazy" decoding="async" onerror="this.closest('figure').hidden=true"></a>
+          <figcaption>Zero-shot accuracy on grids the model was not trained on. (a) 1D on 512 points, (c) 1D on 128 points, (b) 2D on 128 × 128, (d) 2D on 32 × 32. Shaded regions show 95% confidence intervals.</figcaption>
+        </figure>
+
+        <h2 id="ood">Unseen inputs</h2>
+        <p>The models are also tested on initial conditions from distributions they never saw. In the training data, the random initial fields come from a Gaussian random field with a fixed variance and length scale. For the out-of-distribution test, those two parameters are themselves drawn at random:</p>
+        <div class="eq">$$K(\mathbf x,\mathbf x')=\sigma^{2}\exp\!\Big(-\frac{\lVert\mathbf x-\mathbf x'\rVert^{2}}{2\ell^{2}}\Big),\qquad \sigma\sim\mathrm{Unif}(\cdot),\quad \ell\sim\mathrm{Unif}(\cdot)$$</div>
+        <p>For the 1D Burgers&rsquo; equation the random parameter is drawn from a wider range, and for the 2D Navier&ndash;Stokes equation the initial vorticity comes from a different Gaussian random field. Again there is no fine-tuning. On average, accuracy drops by about 2% in 1D and 1.75% in 2D.</p>
+        <figure class="post-fig">
+          <a class="frame" href="https://drive.google.com/file/d/14vKwUpTQSUVjut39S1pwF9f7c1vZuvfV/view" target="_blank" rel="noopener" title="Open full size"><img src="https://lh3.googleusercontent.com/d/14vKwUpTQSUVjut39S1pwF9f7c1vZuvfV" alt="Predictions of the NCWNO for 1D PDEs with out-of-distribution initial conditions, compared with ground truth." loading="lazy" decoding="async" onerror="this.closest('figure').hidden=true"></a>
+          <figcaption>Out-of-distribution inputs, 1D. Ground truth against NCWNO for the six 1D PDEs, with snapshots at four time steps.</figcaption>
+        </figure>
+        <figure class="post-fig">
+          <a class="frame" href="https://drive.google.com/file/d/1Qi_xbPD75i701dbFmTII4blnxGnjDu6_/view" target="_blank" rel="noopener" title="Open full size"><img src="https://lh3.googleusercontent.com/d/1Qi_xbPD75i701dbFmTII4blnxGnjDu6_" alt="Predictions of the NCWNO for 2D PDEs with out-of-distribution initial conditions at three time steps." loading="lazy" decoding="async" onerror="this.closest('figure').hidden=true"></a>
+          <figcaption>Out-of-distribution inputs, 2D. Ground truth against NCWNO at three time steps for each 2D PDE.</figcaption>
+        </figure>
+        <div class="table-wrap"><table class="data">
+          <thead><tr><th>Prediction accuracy (%)</th><th>Advection</th><th>Nagumo</th><th>Allen&ndash;Cahn</th><th>Burgers&rsquo;</th><th>Heat</th><th>Wave</th><th>Navier&ndash;Stokes</th></tr></thead>
+          <tbody>
+            <tr><td>1D</td><td>98.63 &plusmn; 0.35</td><td>95.72 &plusmn; 1.58</td><td>98.83 &plusmn; 0.19</td><td>97.55 &plusmn; 0.34</td><td>96.10 &plusmn; 0.64</td><td>96.04 &plusmn; 1.84</td><td>&ndash;</td></tr>
+            <tr><td>2D</td><td>95.71 &plusmn; 1.54</td><td>95.49 &plusmn; 2.37</td><td>95.44 &plusmn; 1.42</td><td>95.83 &plusmn; 1.67</td><td>98.30 &plusmn; 0.66</td><td>&ndash;</td><td>99.19 &plusmn; 0.12</td></tr>
+          </tbody>
+        </table></div>
+        <figure class="post-fig">
+          <a class="frame" href="https://drive.google.com/file/d/16GhLZmTz8iUlsFz3THLxVVSVYq91ZE62/view" target="_blank" rel="noopener" title="Open full size"><img src="https://lh3.googleusercontent.com/d/16GhLZmTz8iUlsFz3THLxVVSVYq91ZE62" alt="Accuracy against testing time step for out-of-distribution parameters, for 1D and 2D PDEs." loading="lazy" decoding="async" onerror="this.closest('figure').hidden=true"></a>
+          <figcaption>Prediction accuracy over the testing time steps for out-of-distribution parameters. (a) 1D PDEs, (b) 2D PDEs. Shaded regions show 95% confidence intervals.</figcaption>
+        </figure>
+
+        <h2 id="continual">Continual learning without forgetting</h2>
+        <p>This is the main point of the design. After pre-training on \(m\) PDEs, a new PDE \(\mathcal N_\tau\) is learned by freezing every expert and training only the gate parameters \(\theta_\beta\) on the new data:</p>
+        <div class="eq">$$\theta_\beta\leftarrow\theta_\beta-\alpha\,\nabla_{\theta_\beta}\mathcal L\big(u^{\tau},\ \mathcal Q(v_h^{\tau})\big),\qquad \mathcal D_\theta^{\mathcal N_{1:m}\cup\mathcal N_\tau}:\ \{\mathcal A_{1:m}\cup\mathcal A_\tau\}\mapsto\{\mathcal U_{1:m}\cup\mathcal U_\tau\}$$</div>
+        <p>The tuned gate parameters are small. They are stored in an ordered dictionary, so the gate for any earlier task can be loaded again to predict that task without fine-tuning. Large expert models never need to be saved again, and the old PDEs are not forgotten.</p>
+        <figure class="post-fig">
+          <a class="frame" href="https://drive.google.com/file/d/1Nqr6VyGMumpNRRLcAe3VLg0xbOTXswaW/view" target="_blank" rel="noopener" title="Open full size"><img src="https://lh3.googleusercontent.com/d/1Nqr6VyGMumpNRRLcAe3VLg0xbOTXswaW" alt="Diagram of pre-training an NCWNO on several PDEs and then fine-tuning the context gate for new tasks sequentially." loading="lazy" decoding="async" onerror="this.closest('figure').hidden=true"></a>
+          <figcaption>Continual learning. The NCWNO is pre-trained on a set of PDEs, then only the context gate is fine-tuned, one new task at a time.</figcaption>
+        </figure>
+        <p><strong>1D.</strong> The foundation model is pre-trained on the Allen&ndash;Cahn, Nagumo and Wave equations, then adapted in turn to Burgers&rsquo;, Advection and Heat. Before adaptation, the model predicts the unseen PDEs poorly, which is expected because the datasets are so different. After adaptation, the accuracy on the new PDEs rises to nearly 97&ndash;100%, and the accuracy on the pre-trained PDEs does not change.</p>
+        <figure class="post-fig">
+          <a class="frame" href="https://drive.google.com/file/d/17IcFh7IJZ1CrbDsAOb0TV18xwdH15J-j/view" target="_blank" rel="noopener" title="Open full size"><img src="https://lh3.googleusercontent.com/d/17IcFh7IJZ1CrbDsAOb0TV18xwdH15J-j" alt="Predictive accuracy against prediction time step for each 1D PDE after pre-training and after each fine-tuning stage." loading="lazy" decoding="async" onerror="this.closest('figure').hidden=true"></a>
+          <figcaption>Continual learning on 1D PDEs. Pre-trained on Allen–Cahn, Nagumo and Wave, then fine-tuned in turn on Burgers’, Advection and Heat. Each row tests one PDE; each column is the model after one stage.</figcaption>
+        </figure>
+        <p><strong>2D.</strong> The model is pre-trained on Navier&ndash;Stokes, Allen&ndash;Cahn and Burgers&rsquo;, then adapted to Advection, Nagumo and Heat. Accuracy on the new PDEs improves to nearly 94&ndash;100%, and the accuracy on the pre-trained PDEs stays exactly the same as before.</p>
+        <figure class="post-fig">
+          <a class="frame" href="https://drive.google.com/file/d/15Ei-T2RBjyyhZL3TTbyKY8l3cEr5eeC2/view" target="_blank" rel="noopener" title="Open full size"><img src="https://lh3.googleusercontent.com/d/15Ei-T2RBjyyhZL3TTbyKY8l3cEr5eeC2" alt="Predictive accuracy against prediction time step for each 2D PDE after pre-training and after each fine-tuning stage." loading="lazy" decoding="async" onerror="this.closest('figure').hidden=true"></a>
+          <figcaption>Continual learning on 2D PDEs. Pre-trained on Navier–Stokes, Allen–Cahn and Burgers’, then fine-tuned in turn on Advection, Nagumo and Heat. Each row tests one PDE; each column is the model after one stage.</figcaption>
+        </figure>
+        <p>Adaptation is also cheap. Pre-training used 1,500 samples per PDE and 200 epochs; each new PDE needed only 500 samples and 100 epochs. The cost of learning new equations falls by about 15 times in 1D and 5 times in 2D.</p>
+
+        <h2 id="comparisons">Comparisons</h2>
+        <p>The NCWNO was also trained on single PDEs and compared with task-specific operators on eight benchmark problems. Relative L<sup>2</sup> error in percent, mean &plusmn; standard deviation over 100 test samples:</p>
+        <div class="table-wrap"><table class="data">
+          <thead><tr><th>Problem</th><th>DeepONet</th><th>FNO</th><th>WNO</th><th>NCWNO</th></tr></thead>
+          <tbody>
+            <tr><td>1D Burgers&rsquo;</td><td>40.58 &plusmn; 35.13</td><td>1.31 &plusmn; 1.77</td><td>1.87 &plusmn; 0.90</td><td class="best">0.23 &plusmn; 0.22</td></tr>
+            <tr><td>1D Advection</td><td>0.28 &plusmn; 0.20</td><td>0.03 &plusmn; 0.02</td><td>0.04 &plusmn; 0.04</td><td class="best">0.01 &plusmn; 0.01</td></tr>
+            <tr><td>1D Allen&ndash;Cahn</td><td>6.17 &plusmn; 1.42</td><td>1.10 &plusmn; 4.90</td><td>7.87 &plusmn; 31.88</td><td class="best">0.22 &plusmn; 0.03</td></tr>
+            <tr><td>1D Kuramoto&ndash;Sivashinsky</td><td>154.31 &plusmn; 7.49</td><td>16.32 &plusmn; 23.77</td><td>74.84 &plusmn; 55.91</td><td class="best">6.71 &plusmn; 2.35</td></tr>
+            <tr><td>2D Darcy (square)</td><td>6.06 &plusmn; 2.45</td><td>1.01 &plusmn; 0.40</td><td>1.42 &plusmn; 0.52</td><td class="best">0.40 &plusmn; 0.18</td></tr>
+            <tr><td>2D Darcy (triangle)</td><td>0.94 &plusmn; 0.38</td><td>0.60 &plusmn; 0.23</td><td>1.10 &plusmn; 0.40</td><td class="best">0.25 &plusmn; 0.09</td></tr>
+            <tr><td>2D Navier&ndash;Stokes</td><td>5.76 &plusmn; 4.93</td><td>0.48 &plusmn; 0.33</td><td>1.38 &plusmn; 0.84</td><td class="best">0.22 &plusmn; 0.03</td></tr>
+            <tr><td>2D Nagumo</td><td>2.85 &plusmn; 0.88</td><td>0.96 &plusmn; 0.07</td><td>0.61 &plusmn; 0.22</td><td class="best">0.20 &plusmn; 2.35</td></tr>
+          </tbody>
+        </table></div>
+        <p>The number of local experts is a trade-off. More experts make the model remember old tasks better, but cost more time. In 1D, going from 4 to 10 experts (18.77M to 41.11M parameters) lowers the error on Advection from 11.81% to 1.12%, while an epoch grows from about 396 s to 1,038 s.</p>
+
+        <h2 id="outlook">Limits and outlook</h2>
+        <ul>
+          <li>The NCWNO assumes the task identity, the PDE label, is known in advance. A future version could discover task identities on its own.</li>
+          <li>Pre-training is supervised and needs labelled data. The model is built to accelerate simulations, not for image classification, model-order reduction, reinforcement learning, or generative modeling.</li>
+          <li>Natural extensions are a multiscale NCWNO for very large domains, and a physics-informed NCWNO that biases each local expert toward the physics of one aspect of a multiphysics process.</li>
+        </ul>
+        <div class="chips"><a class="chip" href="https://doi.org/10.1016/j.cpc.2025.109882" target="_blank" rel="noopener"><span class="k">Paper</span>CPC 2025</a><a class="chip" href="https://github.com/TapasTripura/NCWNO" target="_blank" rel="noopener"><svg class="gh" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg><span class="k">Code</span>NCWNO</a><a class="chip" href="https://github.com/csccm-iitd/NCWNO" target="_blank" rel="noopener"><svg class="gh" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg><span class="k">Code</span>NCWNO, lab repo</a></div>
       </div>
     </section>
 </div>

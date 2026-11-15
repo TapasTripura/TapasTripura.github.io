@@ -325,10 +325,10 @@ footer.foot .wrap { display: flex; flex-wrap: wrap; gap: 10px 28px; justify-cont
 .thrust-nav li { padding: 3px 0; }
 .thrust-title { font-family: var(--serif); font-weight: 600; font-size: 1.55rem; letter-spacing: -0.01em; line-height: 1.2; margin: 0 0 8px; }
 .thrust-lede { margin: 0 0 4px; }
-h4.subhead { font-family: var(--sans); font-size: 0.9375rem; font-weight: 600; margin: 30px 0 4px; padding-bottom: 8px; border-bottom: 1px solid var(--ink); }
+h4.subhead, h2.subhead { font-family: var(--sans); font-size: 0.9375rem; font-weight: 600; margin: 30px 0 4px; padding-bottom: 8px; border-bottom: 1px solid var(--ink); }
 .item { padding: 16px 0; border-bottom: 1px solid var(--line); }
 .item:last-child { border-bottom: 0; }
-.item h5 { font-family: var(--serif); font-weight: 600; font-size: 1.1rem; margin: 0 0 4px; }
+.item h5, .item h3 { font-family: var(--serif); font-weight: 600; font-size: 1.1rem; margin: 0 0 4px; }
 .item p { margin: 0 0 8px; }
 .item .chips { margin: 4px 0 8px; }
 
@@ -375,3 +375,22 @@ table.data td.best { font-weight: 600; color: var(--teal); }
 .thrust-art text.sm { font-size: 10.5px; }
 .thrust-art text.it { font-style: italic; }
 .thrust-art text.eqt { fill: var(--ink); font-family: var(--serif); font-style: italic; font-size: 13.5px; }
+
+/* Thrust pages and the Research hub */
+.crumb { font-family: var(--sans); font-size: 0.8125rem; color: var(--muted); margin: 0 0 14px; }
+.crumb a { color: var(--muted); }
+.thrust-page .item { scroll-margin-top: 88px; }
+.plist { list-style: none; margin: 0; padding: 0; }
+.plist li.pub:first-child { padding-top: 16px; }
+.more-thrusts { margin-top: 40px; }
+.topic-label { font-family: var(--sans); font-size: 0.8125rem; font-weight: 600; color: var(--muted); margin: 22px 0 8px; }
+.go { margin: 26px 0 0; }
+.thrust-art a.art-link { display: block; }
+.thrust-art a.art-link:hover svg, .thrust-art a.art-link:focus-visible svg { border-color: var(--teal); }
+.thrust-title a { color: inherit; text-decoration: none; }
+.thrust-title a:hover { text-decoration: underline; }
+
+.body .topic-label { margin: 22px 0 0; }
+.body .go { margin: 26px 0 0; }
+.body .crumb { margin: 0 0 14px; }
+.thrust-page .feat-more { margin: 20px 0 0; }

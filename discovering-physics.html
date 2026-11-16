@@ -183,7 +183,70 @@
             <h3>Lagrangian discovery</h3>
             <p>Discovers the interpretable Lagrangian of a dynamical system directly from data, with a Bayesian version that reports uncertainty on the identified terms.</p>
             <div class="links"><span class="lab">Papers</span><ul><li><a href="https://doi.org/10.1016/j.cpc.2023.108960" target="_blank" rel="noopener">CPC 2024</a></li><li><a href="https://doi.org/10.1016/j.ymssp.2024.111737" target="_blank" rel="noopener">Bayesian version, MSSP 2024</a></li></ul></div><div class="links"><span class="lab"><svg class="gh" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>Code</span><ul><li><a href="https://github.com/TapasTripura/Lagrange_Discovery_CPC" target="_blank" rel="noopener">Lagrangian discovery</a></li><li><a href="https://github.com/TapasTripura/Bayesian-Lagrangian-Discovery" target="_blank" rel="noopener">Bayesian Lagrangian</a></li></ul></div>
-          </article>
+          <p class="topic-label">Walkthrough: the Bayesian version</p>
+<div class="mini-blog">
+<h4 class="mini-h">Why learn the Lagrangian?</h4>
+<p>Discovering an ODE or PDE gives a model that fits the data, but nothing guarantees that it obeys the physics behind the data. If the discovered model does not conserve what the real system conserves, its long-term predictions for unseen conditions cannot be trusted. The Lagrangian sits one level below the equations: a single scalar function of displacements and velocities, from which the equations of motion, the Hamiltonian and the conservation laws all follow.</p>
+<p>Neural networks have been used to learn it. Hamiltonian networks need canonical coordinates, Deep Lagrangian Networks handle only discrete systems, and Lagrangian Neural Networks extend to continuous ones. But they are black boxes: the learned physics cannot be read or reused, they need many trajectories, and with little data they stop conserving energy.</p>
+<p>The Bayesian framework takes a different route. From a single observation lasting one to two seconds, it returns an interpretable Lagrangian, the uncertainty on each of its coefficients, the Hamiltonian by Legendre transformation, and the ODE or PDE by the Euler–Lagrange equation.</p>
+<h4 class="mini-h">How it works</h4>
+<figure class="post-fig">
+<div class="frame"><img src="https://lh3.googleusercontent.com/d/1I2fSuE37EymRs-SNtySY0anw6NXuATWa" alt="Schematic of the Bayesian Lagrangian discovery framework: data collection, design matrix and Euler–Lagrange library, sparse Bayesian regression, identified Lagrangian, Hamiltonian by Legendre transformation, and identified PDE." loading="lazy" decoding="async" onerror="this.closest('figure').hidden=true"></div>
+<figcaption>The Bayesian Lagrangian framework, shown on a continuous system with field u(x, t). (1) Snapshots of displacement and velocity are collected. (2) A design matrix of candidate functions is built, and the Euler–Lagrange operator turns it into a target vector and an Euler–Lagrange library. (3) Sparse Bayesian regression selects the active terms. (4) The identified Lagrangian, with uncertainty, gives (5) the Hamiltonian by Legendre transformation and (6) the PDE description.</figcaption>
+</figure>
+<p><strong>1. A library for the Lagrangian.</strong> Instead of a network, the Lagrangian of each degree of freedom is a sparse combination of candidate functions of the displacement and velocity:</p>
+<div class="eq">$$\mathcal L_i(\mathbf X,\dot{\mathbf X})=\mathbf L(\mathbf X,\dot{\mathbf X})\,\boldsymbol\beta_i$$</div>
+<p>The library \(\mathbf L\) holds a constant, polynomials and harmonic functions of the states. For continuous systems it also holds spatial derivatives of the field, such as \(\partial_x u\) and \((\partial_x u)^2\).</p>
+<p><strong>2. The Euler–Lagrange library.</strong> The true Lagrangian must satisfy the Euler–Lagrange equation. For a conservative system, substituting \(\mathcal L_i\) into it gives a condition that is linear in the unknown coefficients:</p>
+<div class="eq">$$\Big[\frac{d}{dt}\Big(\frac{\partial\mathbf L}{\partial\dot X_i}\Big)-\frac{\partial\mathbf L}{\partial X_i}\Big]\boldsymbol\beta_i=\hat{\mathbf L}\,\boldsymbol\beta_i=\mathbf 0$$</div>
+<p>Here \(\hat{\mathbf L}\) is the Euler–Lagrange library: the Euler–Lagrange operator applied to every column of \(\mathbf L\). This is what biases the search toward Lagrangians that respect the physics.</p>
+<p><strong>3. A target that avoids the trivial solution.</strong> Because the right-hand side is zero, \(\boldsymbol\beta_i=\mathbf 0\) always solves it and says nothing. To get a meaningful solution, the column belonging to the kinetic term \(\dot X_i^2\) is moved to the left as the target, and the remaining columns form the regression library:</p>
+<div class="eq">$$\hat{\mathbf y}_{\dot X_i^2}=\hat{\mathbf L}_{-\dot X_i^2}\,\boldsymbol\beta_i+\boldsymbol\epsilon,\qquad \mathcal L_i=\mathbf L_{-\dot X_i^2}\,\boldsymbol\beta_i+\dot X_i^2$$</div>
+<p>The kinetic term anchors the scale of the Lagrangian. The total Lagrangian is the sum over the degrees of freedom, \(\mathcal L=\sum_i\mathcal L_i\), normalized by the coefficient of the kinetic term.</p>
+<p><strong>4. Sparse Bayesian regression.</strong> Each regression is solved with the sparse Bayesian regression of the <a href="#stochastic-systems-discovery">stochastic systems walkthrough</a> above, with the spike-and-slab prior and the Gibbs sampler. It runs once per degree of freedom, and each coefficient comes with its uncertainty.</p>
+<p><strong>5. Hamiltonian and equations of motion.</strong> The Hamiltonian follows from the identified Lagrangian by the Legendre transformation, and the Euler–Lagrange equation applied to it gives the ODE or PDE of the system:</p>
+<div class="eq">$$\mathcal H=\sum_{i=1}^{m}\frac{\partial\mathcal L}{\partial\dot X_i}\,\dot X_i-\mathcal L$$</div>
+<h4 class="mini-h">Six systems</h4>
+<p>The framework is tested on four discrete systems (a cubic–quintic Duffing oscillator, a Penning trap, a three-degree-of-freedom structure and a two-body problem) and two continuous ones (a vibrating string and an Euler–Bernoulli beam). In every case the discovered Lagrangian has exactly the structure of the true one, with coefficients close to the true values. The subscripts show the uncertainty from the Bayesian regression.</p>
+<div class="table-wrap"><table class="data">
+<tbody>
+<tr><td colspan="2"><strong>Duffing oscillator</strong>, relative error 0.6037 ± 0.03%</td></tr>
+<tr><td>True</td><td>\(\small \mathcal L=\tfrac12\dot X^2-500X^2-1250X^4-15000X^6\)</td></tr>
+<tr><td>Discovered</td><td>\(\small \mathcal L^{*}=\tfrac12\dot X^2-498.46_{\pm1.50}X^2-1226.76_{\pm21.48}X^4-14912.12_{\pm92.11}X^6\)</td></tr>
+<tr><td colspan="2"><strong>Penning trap</strong>, relative error 0.0912 ± 0.01%</td></tr>
+<tr><td>True</td><td>\(\small \mathcal L=\tfrac12(\dot X^2+\dot Y^2+\dot Z^2)+25(X^2+Y^2-2Z^2)+50(X\dot Y+\dot XY)\)</td></tr>
+<tr><td>Discovered</td><td>\(\small \mathcal L^{*}=\tfrac12(\dot X^2+\dot Y^2+\dot Z^2)+24.99_{\pm0.01}(X^2+Y^2-2Z^2)+49.95_{\pm0.66}(X\dot Y+\dot XY)\)</td></tr>
+<tr><td colspan="2"><strong>3DOF structure</strong>, relative error 0.0961 ± 0.11%</td></tr>
+<tr><td>True</td><td>\(\small \mathcal L=\tfrac12\sum_{k=1}^{3}\dot X_k^2-2500\big(X_1^2+(X_2-X_1)^2+(X_3-X_2)^2\big)\)</td></tr>
+<tr><td>Discovered</td><td>\(\small \mathcal L^{*}=\tfrac12\sum_{k=1}^{3}\dot X_k^2-2497.68_{\pm0.14}X_1^2-2497.21_{\pm0.12}(X_2-X_1)^2-2497.94_{\pm0.22}(X_3-X_2)^2\)</td></tr>
+<tr><td colspan="2"><strong>String</strong>, relative error 0.1437 ± 0.11%</td></tr>
+<tr><td>True</td><td>\(\small \mathcal L=\tfrac12\sum_i(\partial_tu_i)^2-\sum_i10(\partial_xu_i)^2\)</td></tr>
+<tr><td>Discovered</td><td>\(\small \mathcal L^{*}=\tfrac12\sum_i(\partial_tu_i)^2-\sum_i9.9857_{\pm0.025}(\partial_xu_i)^2\)</td></tr>
+<tr><td colspan="2"><strong>Euler–Bernoulli beam</strong>, relative error 0.2980 ± 0.28%</td></tr>
+<tr><td>True</td><td>\(\small \mathcal L=\tfrac12\sum_i(\partial_tu_i)^2-2.1231\sum_i(\partial_{xx}u_i)^2\)</td></tr>
+<tr><td>Discovered</td><td>\(\small \mathcal L^{*}=\tfrac12\sum_i(\partial_tu_i)^2-2.1168_{\pm0.01}\sum_i(\partial_{xx}u_i)^2\)</td></tr>
+<tr><td colspan="2"><strong>Two-body problem</strong>, relative error 0.3058 ± 0.37%</td></tr>
+<tr><td>True</td><td>\(\small \mathcal L=\tfrac12\dot{\mathbf r}_1^2+\tfrac12\dot{\mathbf r}_2^2+9.81\,|\mathbf r_2-\mathbf r_1|^{-1}\)</td></tr>
+<tr><td>Discovered</td><td>\(\small \mathcal L^{*}=\tfrac12\dot{\mathbf r}_1^2+\tfrac12\dot{\mathbf r}_2^2+9.78_{\pm0.0057}\,|\mathbf r_2-\mathbf r_1|^{-1}\)</td></tr>
+</tbody></table></div>
+<p class="table-note">Relative error is \(\lVert\boldsymbol\beta-\boldsymbol\beta^{*}\rVert/\lVert\boldsymbol\beta\rVert\) between the true and discovered coefficients, in percent.</p>
+<h4 class="mini-h">Against HNN and LNN</h4>
+<p>The Hamiltonian from the proposed framework is compared with one learned by a Hamiltonian neural network (HNN) and by a Lagrangian neural network (LNN). All three are trained on the same noise-free data, for the Duffing oscillator, the 3DOF structure and the Penning trap.</p>
+<figure class="post-fig">
+<div class="frame"><img src="https://lh3.googleusercontent.com/d/1ZSuLpZ32ZbEyJCGA6Fyos3-yYE9xc-p3" alt="Absolute relative error of the Hamiltonian over time for HNN, LNN and the proposed framework on the cubic–quintic Duffing oscillator, the 3DOF structure and the Penning trap." loading="lazy" decoding="async" onerror="this.closest('figure').hidden=true"></div>
+<figcaption>Error in the Hamiltonian over 1 s, on a log scale, for (a) the cubic–quintic Duffing oscillator, (b) the 3DOF structure and (c) the Penning trap. The shaded bands are error bounds over 25 initial conditions. The proposed framework uses the mean of its identified parameters.</figcaption>
+</figure>
+<p>HNN and LNN violate energy conservation strongly, while the Hamiltonian from the Bayesian framework conserves energy with small error. Averaged over 25 initial conditions, the relative error of the energy is:</p>
+<div class="table-wrap"><table class="data wrap-head">
+<thead><tr><th>Mean relative error (%)</th><th>Duffing oscillator</th><th>3DOF structure</th><th>Penning trap</th></tr></thead>
+<tbody>
+<tr><td>Proposed</td><td class="best">0.06</td><td class="best">0.06</td><td class="best">0.33</td></tr>
+<tr><td>HNN</td><td>99.34</td><td>45.45</td><td>101.52</td></tr>
+<tr><td>LNN</td><td>110.49</td><td>444.93</td><td>33.68×10<sup>5</sup></td></tr>
+</tbody></table></div>
+<p>The paper attributes this to HNN and LNN being suited to simple systems, such as pendulums with unit mass and length, and needing a lot of training data. The Bayesian framework works in the low-data regime and, unlike the black-box networks, returns a Lagrangian that can be read.</p>
+</div>
+</article>
         <article class="item" id="spde-discovery">
             <h3>SPDE discovery</h3>
             <p>Discovers stochastic partial differential equations (SPDEs) from data, the first attempt of its kind. The framework combines stochastic calculus, variational Bayes theory and sparse learning. An extended Kramers–Moyal expansion expresses the drift and diffusion of an SPDE in terms of the state responses, and spike-and-slab priors select the governing terms. It identifies the underlying SPDEs accurately from limited data, which matters in climate modeling, financial forecasting and chemical kinetics, where little is known about the external disturbances.</p>

@@ -446,3 +446,7 @@ table.data.wrap-head td { padding-left: 6px; padding-right: 6px; }
 /* Carnelian and navy: headings in navy, a marker bar on each main title */
 .hero h1, .sec > h1, .sec > h2, .side h1, .gallery > h2, .brand { color: var(--head); }
 .item h3::before { content: ""; position: absolute; left: -14px; top: 0.2em; bottom: 0.2em; width: 3px; border-radius: 2px; background: var(--teal); }
+
+/* Publication titles: a quiet underline, carnelian on hover */
+.pubs li.pub a:not([class]) { text-decoration-color: color-mix(in srgb, currentColor 28%, transparent); }
+.pubs li.pub a:not([class]):hover { text-decoration-color: var(--teal); }
